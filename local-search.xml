@@ -4,34 +4,21 @@
   
   
   <entry>
-    <title>这是一个测试</title>
-    <link href="/2022/08/28/test/"/>
-    <url>/2022/08/28/test/</url>
+    <title>使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行</title>
+    <link href="/2022/08/30/to-do-list-by-nodeJS/"/>
+    <url>/2022/08/30/to-do-list-by-nodeJS/</url>
     
-    <content type="html"><![CDATA[<h1 id="这是一个测试文件"><a href="#这是一个测试文件" class="headerlink" title="这是一个测试文件"></a>这是一个测试文件</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><!-- more --><p><em>斜体</em></p><p><strong>黑体</strong></p><blockquote><p>引用</p></blockquote><ul><li><p>无序列表</p></li><li><p>无序列表</p></li><li><p><input checked="" disabled="" type="checkbox"> 选择框</p></li><li><p><input disabled="" type="checkbox"> 选择框</p></li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//代码块</span><br><span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x+<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure><p>图片<br><img src="/images/icon.png"></p><p>超链接<br>这是一个链接 <a href="https://www.runoob.com/">菜鸟教程</a></p><table><thead><tr><th>表头</th><th>表头</th></tr></thead><tbody><tr><td>单元格</td><td>单元格</td></tr><tr><td>单元格</td><td>单元格</td></tr></tbody></table><p>这是一句话<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="这是对应的脚注">[1]</span></a></sup></p><p>tag便笺：</p><p class="note note-primary">标签</p><p class="note note-secondary">标签</p><p class="note note-success">标签</p><p class="note note-danger">标签</p><p class="note note-warning">标签</p><p class="note note-info">标签</p><p class="note note-light">标签</p><p>这是行内标签<br><span class="label label-primary">Label</span></p><p>这是按钮<br><a class="btn" href="url" title="鼠标悬停时显示的文字">text</a></p><p>这是组图</p><div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div></div><div class="group-image-row"><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div></div></div><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>这是对应的脚注<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    <content type="html"><![CDATA[<h1 id="使用node-js创建一个todo列表——node-js服务器搭建以及json读写"><a href="#使用node-js创建一个todo列表——node-js服务器搭建以及json读写" class="headerlink" title="使用node.js创建一个todo列表——node.js服务器搭建以及json读写"></a>使用node.js创建一个todo列表——node.js服务器搭建以及json读写</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些日子学习了 nodejs ，顺理成章的想要找点东西练练手。恰好最近需要一个简介的todo list网页，因为之前用的一些todo list应用都被墙了，访问速度感人，于是就想自己搞一个todo。</p><p>而恰好，我要搞的todo是一个非常简单的程序，非常适合用nodejs这样的解释型脚本语言来实现，比起java这样光搭框架就要半天的专注大型项目的语言，nodejs 的优势就是非明显了。</p><p>nodejs搭建服务器只需要去nodejs官网复制这样的一块代码：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()<br><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hi!&#x27;</span>)<br>&#125;)<br><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server ready&#x27;</span>))<br></code></pre></td></tr></table></figure><p>所以我们可以把更多的经历放在我们的业务实现上。</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>在开始动工之前，要先列出需求。当时我的需求如下：</p><ul><li><p>添加需要做的事情</p></li><li><p>展示需要做的事情</p></li><li><p>完成需要做的事情</p></li><li><p>查看曾经完成的事情</p></li></ul><h3 id="解决方案分析"><a href="#解决方案分析" class="headerlink" title="解决方案分析"></a>解决方案分析</h3><p>对于上述需求，我打算这样实现：</p><ul><li><p>使用json文件系统实现持久化操作</p></li><li><p>使用nodejs来获取数据</p></li><li><p>使用nodejs来处理数据并储存数据</p></li></ul><p>这样的话。明确了需求与实现方式，我们就可以动工了。</p><p>……to be continue</p>]]></content>
     
     
     
     <tags>
       
-      <tag>Hexo</tag>
+      <tag>前端</tag>
       
-      <tag>Fluid</tag>
+      <tag>node.js</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2022/08/27/hello-world/"/>
-    <url>/2022/08/27/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
