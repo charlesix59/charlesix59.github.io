@@ -4,13 +4,21 @@
   
   
   <entry>
-    <title>test</title>
+    <title>这是一个测试</title>
     <link href="/2022/08/28/test/"/>
     <url>/2022/08/28/test/</url>
     
-    <content type="html"><![CDATA[<h1 id="这是一个测试文件"><a href="#这是一个测试文件" class="headerlink" title="这是一个测试文件"></a>这是一个测试文件</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><p><em>斜体</em></p><p><strong>黑体</strong></p><blockquote><p>引用</p></blockquote><ul><li><p>无序列表</p></li><li><p>无序列表</p></li><li><p><input disabled="" type="checkbox"> 选择框</p></li><li><p><input disabled="" type="checkbox"> 选择框</p></li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//代码块</span><br><span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x+<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure><p>图片<br><img src="..%5Cimages%5Cicon.png"></p><p>超链接<br>这是一个链接 <a href="https://www.runoob.com/">菜鸟教程</a></p><table><thead><tr><th>表头</th><th>表头</th></tr></thead><tbody><tr><td>单元格</td><td>单元格</td></tr><tr><td>单元格</td><td>单元格</td></tr></tbody></table>]]></content>
+    <content type="html"><![CDATA[<h1 id="这是一个测试文件"><a href="#这是一个测试文件" class="headerlink" title="这是一个测试文件"></a>这是一个测试文件</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><!-- more --><p><em>斜体</em></p><p><strong>黑体</strong></p><blockquote><p>引用</p></blockquote><ul><li><p>无序列表</p></li><li><p>无序列表</p></li><li><p><input checked="" disabled="" type="checkbox"> 选择框</p></li><li><p><input disabled="" type="checkbox"> 选择框</p></li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//代码块</span><br><span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x+<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure><p>图片<br><img src="/images/icon.png"></p><p>超链接<br>这是一个链接 <a href="https://www.runoob.com/">菜鸟教程</a></p><table><thead><tr><th>表头</th><th>表头</th></tr></thead><tbody><tr><td>单元格</td><td>单元格</td></tr><tr><td>单元格</td><td>单元格</td></tr></tbody></table><p>这是一句话<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="这是对应的脚注">[1]</span></a></sup></p><p>tag便笺：</p><p class="note note-primary">标签</p><p class="note note-secondary">标签</p><p class="note note-success">标签</p><p class="note note-danger">标签</p><p class="note note-warning">标签</p><p class="note note-info">标签</p><p class="note note-light">标签</p><p>这是行内标签<br><span class="label label-primary">Label</span></p><p>这是按钮<br><a class="btn" href="url" title="鼠标悬停时显示的文字">text</a></p><p>这是组图</p><div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div></div><div class="group-image-row"><div class="group-image-wrap"><img src="/img/avatar.png"></div><div class="group-image-wrap"><img src="/img/avatar.png"></div></div></div><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>这是对应的脚注<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Fluid</tag>
+      
+    </tags>
     
   </entry>
   
