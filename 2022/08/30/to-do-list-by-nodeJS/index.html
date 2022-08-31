@@ -24,7 +24,7 @@
 <meta property="og:description" content="使用node.js创建一个todo列表——node.js服务器搭建以及json读写前言前些日子学习了 nodejs ，顺理成章的想要找点东西练练手。恰好最近需要一个简介的todo list网页，因为之前用的一些todo list应用都被墙了，访问速度感人，于是就想自己搞一个todo。 而恰好，我要搞的todo是一个非常简单的程序，非常适合用nodejs这样的解释型脚本语言来实现，比起java这样光">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-30T14:45:38.000Z">
-<meta property="article:modified_time" content="2022-08-31T01:18:44.928Z">
+<meta property="article:modified_time" content="2022-08-31T16:11:47.471Z">
 <meta property="article:author" content="charlesix59">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="node.js">
@@ -278,6 +278,8 @@
                 
                 <h1 id="使用node-js创建一个todo列表——node-js服务器搭建以及json读写"><a href="#使用node-js创建一个todo列表——node-js服务器搭建以及json读写" class="headerlink" title="使用node.js创建一个todo列表——node.js服务器搭建以及json读写"></a>使用node.js创建一个todo列表——node.js服务器搭建以及json读写</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些日子学习了 nodejs ，顺理成章的想要找点东西练练手。恰好最近需要一个简介的todo list网页，因为之前用的一些todo list应用都被墙了，访问速度感人，于是就想自己搞一个todo。</p>
 <p>而恰好，我要搞的todo是一个非常简单的程序，非常适合用nodejs这样的解释型脚本语言来实现，比起java这样光搭框架就要半天的专注大型项目的语言，nodejs 的优势就是非明显了。</p>
+<span id="more"></span>
+
 <p>nodejs搭建服务器只需要去nodejs官网复制这样的一块代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()<br><br>app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hi!&#x27;</span>)<br>&#125;)<br><br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server ready&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
@@ -419,9 +421,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="2022/09/01/fluid-tags-bug-fix/" title="fluid_tags_bug_fix">
+                      <a href="2022/09/01/fluid-tags-bug-fix/" title="修复fluid的tags中的词云tag跳转异常问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">fluid_tags_bug_fix</span>
+                        <span class="hidden-mobile">修复fluid的tags中的词云tag跳转异常问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

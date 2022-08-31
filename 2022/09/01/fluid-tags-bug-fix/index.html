@@ -18,7 +18,7 @@
   
     <meta name="description" content="修复fluid的tags中的词云tag跳转异常问题前言最近在尝试搭建自己的blog，再再三考量之下选择了hexo，不得不说这个blog框架还是很香的，配合github的托管能够快速搭建一个界面美观的博客。 但是在使用的过程中我发现了一个小问题，就是博客的tags并不能正常工作。 当我们从首页中的tag跳转时，可以跳转到正常的界面，如图：  但是当我从tags界面的词云中跳转时就会出现错误  错误界">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fluid_tags_bug_fix">
+<meta property="og:title" content="修复fluid的tags中的词云tag跳转异常问题">
 <meta property="og:url" content="2022/09/01/fluid-tags-bug-fix/index.html">
 <meta property="og:site_name" content="茶理的私人博客">
 <meta property="og:description" content="修复fluid的tags中的词云tag跳转异常问题前言最近在尝试搭建自己的blog，再再三考量之下选择了hexo，不得不说这个blog框架还是很香的，配合github的托管能够快速搭建一个界面美观的博客。 但是在使用的过程中我发现了一个小问题，就是博客的tags并不能正常工作。 当我们从首页中的tag跳转时，可以跳转到正常的界面，如图：  但是当我从tags界面的词云中跳转时就会出现错误  错误界">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="2022/09/01/fluid-tags-bug-fix/img2.png">
 <meta property="og:image" content="2022/09/01/fluid-tags-bug-fix/img3.png">
 <meta property="article:published_time" content="2022-08-31T16:01:18.000Z">
-<meta property="article:modified_time" content="2022-08-31T16:05:38.210Z">
+<meta property="article:modified_time" content="2022-08-31T16:11:03.050Z">
 <meta property="article:author" content="charlesix59">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="hexo">
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>fluid_tags_bug_fix - 茶理的私人博客</title>
+  <title>修复fluid的tags中的词云tag跳转异常问题 - 茶理的私人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="fluid_tags_bug_fix"></span>
+            <span id="subtitle" data-typed-text="修复fluid的tags中的词云tag跳转异常问题"></span>
           
         </div>
 
@@ -275,7 +275,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">fluid_tags_bug_fix</h1>
+            <h1 style="display: none">修复fluid的tags中的词云tag跳转异常问题</h1>
             
             
               <div class="markdown-body">
@@ -288,6 +288,8 @@
 <p><img src="./img2.png" srcset="/img/loading.gif" lazyload></p>
 <p>错误界面如图:</p>
 <p><img src="./img3.png" srcset="/img/loading.gif" lazyload></p>
+<span id="more"></span>
+
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><font color=red>我们可以很明显的观测到问题——url地址错误，重复了一次’tags&#x2F;‘目录</font></p>
 <p>我们首先说解决方案：</p>
 <p><font color=red>找到目录<code>&lt;your hexo dirctory&gt;\node_modules\hexo\lib\plugins\helper</code>中的tagcloud.js文件，将文件第71行改为：</font></p>
@@ -333,7 +335,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>fluid_tags_bug_fix</div>
+      <div>修复fluid的tags中的词云tag跳转异常问题</div>
       <div>2022/09/01/fluid-tags-bug-fix/</div>
     </div>
     <div class="license-meta">
