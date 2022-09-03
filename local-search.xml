@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>小圆季节灏文档|小圆季节灏信息码获取</title>
+    <link href="/2022/09/03/ASL-V3-docs/"/>
+    <url>/2022/09/03/ASL-V3-docs/</url>
+    
+    <content type="html"><![CDATA[<h1 id="小圆季节灏"><a href="#小圆季节灏" class="headerlink" title="小圆季节灏"></a>小圆季节灏</h1><p>GitHub地址：<a href="https://github.com/charlesix59/QDU_AFL_V3">https://github.com/charlesix59/QDU_AFL_V3</a></p><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>腾讯真的恶心，直接填个人信息无法过审，所以我就只能曲线救国了。</p><p>信息代码的获取方法在操作指南中</p><p>乞望见谅</p><p>2022.9.3</p><hr><p>有些事说是小心也好，说是形式也罢。</p><p>但是体现在个人身上，是痛苦与气愤。</p><p>我对如是行径感到恶心。</p><p>虽然大多是为了自己，如果下次又有魑魅魍魉在人间横行，我依然会用自己的方式祛魅。</p><p>2022.9.2</p><hr>某大学终于打开了虚妄的门扉，推倒了染血的藩篱。这是一场胜利，或许是。<p>有幸看到<b><strong>小圆</strong></b>在此刻退休，目前仍未更新的版本也不会再继续更新了。</p><p>对于小圆的退休我并不感到遗憾</p><blockquote><p>但愿世间人无病，何妨架上药生尘。</p></blockquote><p>我们还有别的战场要奔赴，哪里有压迫，哪里就有反抗。不合理仍然存在，以真理之名，我仍要与这些恶魔战斗。</p><p>无论如何，很高兴看到这一片光辉闪烁着，我们可以暂时唱着欢歌，相拥而眠；不必枕戈待旦，横刀冷对了。</p><p>今天，它退休了，但当黑暗再次笼罩之时，我仍将燃起炬火，予你微弱的光芒。</p><p>5.26</p><hr><p>最近校园集结号迁移到微信小程序了，于是我又赶出来一个。</p><p>因为是微信小程序，大家能在微信中直接搜索到我就不上传gitee了</p><p>从网页到mui到微信小程序这都第三版了，考虑要不要直接uniapp……（那我就快要成为真正的集结号了）</p><h3 id="早期版本"><a href="#早期版本" class="headerlink" title="早期版本"></a>早期版本</h3><p>V2版本：<a href="https://gitee.com/charles-min/QDU_ASLv2">校园集结号自主请假: 勾勾啊哈哈 (gitee.com)</a></p><p>V1版本：<a href="https://github.com/charlesix59/QDU_self_ASF_web">charlesix59&#x2F;QDU_self_ASF_web (github.com)</a></p><h3 id="一些废话"><a href="#一些废话" class="headerlink" title="一些废话"></a>一些废话</h3><blockquote><p>沉默呵，沉默呵！不在沉默中爆发，就在沉默中灭亡——鲁迅</p></blockquote><blockquote><p>哪里有压迫哪里就有反抗——毛泽东</p></blockquote><p>信息码获取</p><p>其实原理非常简单，只需要您填写一个json文件，格式如下：</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;王佳然&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;number&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;2020114514&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;sclass&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;汉语言文学01&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;collage&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;文学与新闻传播学院&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tname&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;张芸&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;tel&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;13845926573&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure><p>复制一份到任意文本编辑器，修改各个值为你需要的值，然后复制，粘贴到小程序中的信息码文本框即可</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>小程序</tag>
+      
+      <tag>文档</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>核酸上课论</title>
     <link href="/2022/09/02/a-article-about-NAT-and-AC/"/>
     <url>/2022/09/02/a-article-about-NAT-and-AC/</url>
