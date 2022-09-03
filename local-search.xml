@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>修复微信小程序真机调试无法显示背景图片的问题</title>
+    <link href="/2022/09/03/fix-wxml-cant-load-bg-img/"/>
+    <url>/2022/09/03/fix-wxml-cant-load-bg-img/</url>
+    
+    <content type="html"><![CDATA[<h1 id="修复微信小程序真机调试无法显示背景图片的问题"><a href="#修复微信小程序真机调试无法显示背景图片的问题" class="headerlink" title="修复微信小程序真机调试无法显示背景图片的问题"></a>修复微信小程序真机调试无法显示背景图片的问题</h1><p>腾讯出于某些原因的考虑，不支持微信小程序的背景图片为本地图片， 所以这就要求我们把图片存放在服务器中。<br>如果你是云开发项目将，可以将图片放在腾讯的云服务器上，具体操作如图：<br><img src="img1.png" alt="先点击云开发控制台"><br><img src="img2.png" alt="上传图片"><br><img src="img3.png" alt="将图片的本地url转化为网络资源的url"><br>注意：因为存放在云服务器上，加载可能会稍慢</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>小圆季节灏文档|小圆季节灏信息码获取</title>
     <link href="/2022/09/03/ASL-V3-docs/"/>
     <url>/2022/09/03/ASL-V3-docs/</url>
