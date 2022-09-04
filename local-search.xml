@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>修復hexo fluid归档、分类、标签界面查看文章404错误</title>
+    <link href="/2022/09/04/fix-fluid-open-err-page-bug/"/>
+    <url>/2022/09/04/fix-fluid-open-err-page-bug/</url>
+    
+    <content type="html"><![CDATA[<h1 id="修復fluid归档、分类、标签界面查看文章404错误"><a href="#修復fluid归档、分类、标签界面查看文章404错误" class="headerlink" title="修復fluid归档、分类、标签界面查看文章404错误"></a>修復fluid归档、分类、标签界面查看文章404错误</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次遇到了<a href="https://charlesix59.github.io/2022/09/01/fluid-tags-bug-fix/">tag跳转的问题</a>之后，我又遇到了这个奇怪的问题。按照按图索骥的原则，我又用那篇文章中提到过的方法进行了纠错，最终也是顺利的解决了这个bug。<br>错误如图：<br><img src="img1.png"></p><span id="more"></span><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><font color=red>还是和以前一样，先说结论</font><br><font color=orange>警告⚠：如果你的错误和我的不同，请不要随意修改</font><br>首先找到fluid主题的目录中的<code>&lt;your fluid dir&gt;/layout/_partials</code><br>打开<code>category-list.ejs</code>文件<br>修改第<strong>45行</strong>为</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../&lt;%= url_for(cat.path) %&gt;&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: center&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><p>修改第<strong>50</strong>行为</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../&lt;%= url_for(post.path) %&gt;&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&lt;%= post.title %&gt;&quot;</span></span><br></code></pre></td></tr></table></figure><p>然后打开<code>archieve-list.ejs</code><br>修改第10行为</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../&lt;%= url_for(post.path) %&gt;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><p>然后<strong>复制</strong>整个文档，<strong>新建</strong>一个名为<code>sub-archive-list.ejs</code>（名字可以自定）的文件，将复制的内容<strong>粘贴</strong>过去<br>并修改第10行为</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../../&lt;%= url_for(post.path) %&gt;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item list-group-item-action&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure><p>然后回到上一级目录，找到<code>tag.ejs</code>，修改第12行引用的文件为你新建的那个文件：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;%- partial(&#x27;_partials/sub-archive-list.ejs&#x27;, &#123; params: &#123; key: page.layout, postTotal: tag ? tag.posts.length : 0 &#125; &#125;) %&gt;<br></code></pre></td></tr></table></figure><p>同时如上修改<code>category.ejs</code>中的第12行为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;%- partial(&#x27;_partials/sub-archive-list.ejs&#x27;, &#123; params: &#123; key: page.layout, postTotal: cat ? cat.posts.length : 0 &#125; &#125;) %&gt;<br></code></pre></td></tr></table></figure><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>我不知道是不是因为我配置不完全或者安装出现问题才导致有这么多的bug，但是随着我的重装这个问题也没有得到很好的解决。<br>如果你也遇到了相似的问题可以尝试用这种方法解决<br>如果你对详细的解决思路感兴趣，你可以查看<a href="#%E5%89%8D%E8%A8%80">前言</a>中提到的文章</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>修复微信小程序真机调试无法显示背景图片的问题</title>
     <link href="/2022/09/03/fix-wxml-cant-load-bg-img/"/>
     <url>/2022/09/03/fix-wxml-cant-load-bg-img/</url>
@@ -49,7 +74,7 @@
       
       <tag>前端</tag>
       
-      <tag>小程序</tag>
+      <tag>微信小程序</tag>
       
       <tag>文档</tag>
       
