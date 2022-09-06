@@ -16,26 +16,29 @@
   <meta name="author" content="charlesix59">
   <meta name="keywords" content="">
   
-    <meta name="description" content="小圆季节灏GitHub地址：https:&#x2F;&#x2F;github.com&#x2F;charlesix59&#x2F;QDU_AFL_V3 简介腾讯真的恶心，直接填个人信息无法过审，所以我就只能曲线救国了。 信息代码的获取方法在操作指南中 乞望见谅 2022.9.3   有些事说是小心也好，说是形式也罢。 但是体现在个人身上，是痛苦与气愤。 我对如是行径感到恶心。 虽然大多是为了自己，如果下次又有魑魅魍魉在人间横行，我依然会">
+    <meta name="description" content="修复fluid的tags中的词云tag跳转异常问题前言最近在尝试搭建自己的blog，再再三考量之下选择了hexo，不得不说这个blog框架还是很香的，配合github的托管能够快速搭建一个界面美观的博客。 但是在使用的过程中我发现了一个小问题，就是博客的tags并不能正常工作。 当我们从首页中的tag跳转时，可以跳转到正常的界面，如图：  但是当我从tags界面的词云中跳转时就会出现错误  错误界">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小圆季节灏文档|小圆季节灏信息码获取">
-<meta property="og:url" content="2022/09/03/ASL-V3-docs/index.html">
+<meta property="og:title" content="修复fluid的tags中的词云tag跳转异常问题">
+<meta property="og:url" content="2022/09/01/technology/fluid-tags-bug-fix/index.html">
 <meta property="og:site_name" content="茶理的私人博客">
-<meta property="og:description" content="小圆季节灏GitHub地址：https:&#x2F;&#x2F;github.com&#x2F;charlesix59&#x2F;QDU_AFL_V3 简介腾讯真的恶心，直接填个人信息无法过审，所以我就只能曲线救国了。 信息代码的获取方法在操作指南中 乞望见谅 2022.9.3   有些事说是小心也好，说是形式也罢。 但是体现在个人身上，是痛苦与气愤。 我对如是行径感到恶心。 虽然大多是为了自己，如果下次又有魑魅魍魉在人间横行，我依然会">
+<meta property="og:description" content="修复fluid的tags中的词云tag跳转异常问题前言最近在尝试搭建自己的blog，再再三考量之下选择了hexo，不得不说这个blog框架还是很香的，配合github的托管能够快速搭建一个界面美观的博客。 但是在使用的过程中我发现了一个小问题，就是博客的tags并不能正常工作。 当我们从首页中的tag跳转时，可以跳转到正常的界面，如图：  但是当我从tags界面的词云中跳转时就会出现错误  错误界">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-03T00:54:20.000Z">
-<meta property="article:modified_time" content="2022-09-04T05:24:26.021Z">
+<meta property="og:image" content="2022/09/01/technology/fluid-tags-bug-fix/img1.png">
+<meta property="og:image" content="2022/09/01/technology/fluid-tags-bug-fix/img2.png">
+<meta property="og:image" content="2022/09/01/technology/fluid-tags-bug-fix/img3.png">
+<meta property="article:published_time" content="2022-08-31T16:01:18.000Z">
+<meta property="article:modified_time" content="2022-09-01T01:56:06.982Z">
 <meta property="article:author" content="charlesix59">
 <meta property="article:tag" content="前端">
-<meta property="article:tag" content="微信小程序">
-<meta property="article:tag" content="文档">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="2022/09/01/technology/fluid-tags-bug-fix/img1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>小圆季节灏文档|小圆季节灏信息码获取 - 茶理的私人博客</title>
+  <title>修复fluid的tags中的词云tag跳转异常问题 - 茶理的私人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="小圆季节灏文档|小圆季节灏信息码获取"></span>
+            <span id="subtitle" data-typed-text="修复fluid的tags中的词云tag跳转异常问题"></span>
           
         </div>
 
@@ -211,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-03 08:54" pubdate>
-          2022年9月3日 早上
+        <time datetime="2022-09-01 00:01" pubdate>
+          2022年9月1日 凌晨
         </time>
       </span>
     
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          2.1k 字
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          9 分钟
+          18 分钟
         
       </span>
     
@@ -272,53 +275,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">小圆季节灏文档|小圆季节灏信息码获取</h1>
+            <h1 style="display: none">修复fluid的tags中的词云tag跳转异常问题</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="小圆季节灏"><a href="#小圆季节灏" class="headerlink" title="小圆季节灏"></a>小圆季节灏</h1><p>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/charlesix59/QDU_AFL_V3">https://github.com/charlesix59/QDU_AFL_V3</a></p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>腾讯真的恶心，直接填个人信息无法过审，所以我就只能曲线救国了。</p>
-<p>信息代码的获取方法在操作指南中</p>
-<p>乞望见谅</p>
-<p>2022.9.3</p>
-<hr>
+                <h1 id="修复fluid的tags中的词云tag跳转异常问题"><a href="#修复fluid的tags中的词云tag跳转异常问题" class="headerlink" title="修复fluid的tags中的词云tag跳转异常问题"></a>修复fluid的tags中的词云tag跳转异常问题</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在尝试搭建自己的blog，再再三考量之下选择了<strong>hexo</strong>，不得不说这个blog框架还是很香的，配合github的托管能够快速搭建一个界面美观的博客。</p>
+<p>但是在使用的过程中我发现了一个小问题，就是博客的tags并不能正常工作。</p>
+<p>当我们从首页中的tag跳转时，可以跳转到正常的界面，如图：</p>
+<p><img src="./img1.png" srcset="/img/loading.gif" lazyload></p>
+<p><font color=red>但是当我从tags界面的词云中跳转时就会出现错误</font></p>
+<p><img src="./img2.png" srcset="/img/loading.gif" lazyload></p>
+<p>错误界面如图:</p>
+<p><img src="./img3.png" srcset="/img/loading.gif" lazyload></p>
+<span id="more"></span>
 
-<p>有些事说是小心也好，说是形式也罢。</p>
-<p>但是体现在个人身上，是痛苦与气愤。</p>
-<p>我对如是行径感到恶心。</p>
-<p>虽然大多是为了自己，如果下次又有魑魅魍魉在人间横行，我依然会用自己的方式祛魅。</p>
-<p>2022.9.2</p>
-<hr>
-某大学终于打开了虚妄的门扉，推倒了染血的藩篱。这是一场胜利，或许是。
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><font color=red>我们可以很明显的观测到问题——url地址错误，重复了一次’tags&#x2F;‘目录</font></p>
+<p>我们首先说解决方案：</p>
+<p><font color=red>找到目录<code>&lt;your hexo dirctory&gt;\node_modules\hexo\lib\plugins\helper</code>中的tagcloud.js文件，将文件第71行改为：</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">`&lt;a href=&quot;<span class="hljs-subst">$&#123;url_for.call(<span class="hljs-variable language_">this</span>, tag.path).substring(<span class="hljs-number">5</span>)&#125;</span>&quot; style=&quot;<span class="hljs-subst">$&#123;style&#125;</span>&quot;<span class="hljs-subst">$&#123;attr&#125;</span>&gt;<span class="hljs-subst">$&#123;transform ? transform(tag.name) : tag.name&#125;</span>&lt;/a&gt;`</span><br><span class="hljs-comment">//原代码为：</span><br><span class="hljs-comment">//`&lt;a href=&quot;$&#123;url_for.call(this, tag.path))&#125;&quot; style=&quot;$&#123;style&#125;&quot;$&#123;attr&#125;&gt;$&#123;transform ? transform(tag.name) : tag.name&#125;&lt;/a&gt;`</span><br><span class="hljs-comment">//加上了一个子字符串分割</span><br></code></pre></td></tr></table></figure>
 
-<p>有幸看到<b><strong>小圆</strong></b>在此刻退休，目前仍未更新的版本也不会再继续更新了。</p>
-<p>对于小圆的退休我并不感到遗憾</p>
-<blockquote>
-<p>但愿世间人无病，何妨架上药生尘。</p>
-</blockquote>
-<p>我们还有别的战场要奔赴，哪里有压迫，哪里就有反抗。不合理仍然存在，以真理之名，我仍要与这些恶魔战斗。</p>
-<p>无论如何，很高兴看到这一片光辉闪烁着，我们可以暂时唱着欢歌，相拥而眠；不必枕戈待旦，横刀冷对了。</p>
-<p>今天，它退休了，但当黑暗再次笼罩之时，我仍将燃起炬火，予你微弱的光芒。</p>
-<p>5.26</p>
-<hr>
+<p><em><strong>注意！这个方法只适合跟我描述的错误相同的朋友，如果问题不同请不要随意更改！</strong></em></p>
+<h2 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h2><p>这一部分讲述我怎么分析并解决问题的，如果不感兴趣可以直接关掉网页了</p>
+<p>首先发现到这一点后，我企图弄清楚fluid是如何生成tags这个html文件的。但是我观察文件夹时并没有和明显的察觉到这一点。于是我找到<code>public</code>文件夹，<strong>这个文件夹存放的是通过hexo生成的html文件。</strong> 然后我们找到<code>tags</code>文件夹下的<code>index.html</code>   文件，随着翻阅html文件，我发现了这样的一块代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center tagcloud&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;tags/node-js/&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: 15px; color: #bbe&quot;</span>&gt;</span>node.js<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;tags/前端/&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: 15px; color: #bbe&quot;</span>&gt;</span>前端<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>最近校园集结号迁移到微信小程序了，于是我又赶出来一个。</p>
-<p>因为是微信小程序，大家能在微信中直接搜索到我就不上传gitee了</p>
-<p>从网页到mui到微信小程序这都第三版了，考虑要不要直接uniapp……（那我就快要成为真正的集结号了）</p>
-<h3 id="早期版本"><a href="#早期版本" class="headerlink" title="早期版本"></a>早期版本</h3><p>V2版本：<a target="_blank" rel="noopener" href="https://gitee.com/charles-min/QDU_ASLv2">校园集结号自主请假: 勾勾啊哈哈 (gitee.com)</a></p>
-<p>V1版本：<a target="_blank" rel="noopener" href="https://github.com/charlesix59/QDU_self_ASF_web">charlesix59&#x2F;QDU_self_ASF_web (github.com)</a></p>
-<h3 id="一些废话"><a href="#一些废话" class="headerlink" title="一些废话"></a>一些废话</h3><blockquote>
-<p>沉默呵，沉默呵！不在沉默中爆发，就在沉默中灭亡——鲁迅</p>
-</blockquote>
-<blockquote>
-<p>哪里有压迫哪里就有反抗——毛泽东</p>
-</blockquote>
-<p>信息码获取</p>
-<p>其实原理非常简单，只需要您填写一个json文件，格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的名字&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;number&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的学号&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;sclass&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的班级&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;collage&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的学院&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;tname&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你导员的大号&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;tel&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的电话&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你要去的地方&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;dormitory&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;你的住处&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>毫无疑问，这就是生成词云的代码，但是我已经生成为html的文件我们并不能直接改，因为如果要这样解决问题，每次生成新的html之后我们都要手动修改一次，这是很没有效率的。于是我们顺藤摸瓜继续寻找问题。</p>
+<p>于是我在webstrom使用<kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>r</kbd>全局查找tagcloud，发现在fluid的layout中有一个名为<code>tags.ejs</code>文件，这显然是生成tags的文件之一。其中有这样的一块代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;div class=&quot;text-center tagcloud&quot;&gt;<br>  &lt;%- tagcloud(&#123;<br>    min_font: min_font,<br>    max_font: max_font,<br>    amount: 999,<br>    unit: unit,<br>    color: true,<br>    start_color,<br>    end_color<br>  &#125;) %&gt;<br>&lt;/div&gt;<br></code></pre></td></tr></table></figure>
 
-<p>复制一份到任意文本编辑器，修改各个值为你需要的值，然后复制，粘贴到小程序中的信息码文本框即可</p>
+<p>很明显，这是生成上面那个html的映射文件，但是这其中依然没有修改herf的方法。于是我们继续向源头寻找。</p>
+<p>然后我们发现tagcloud包是被引用进来的，而他的源码就在我们面提到过的文件夹中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">`&lt;a href=&quot;<span class="hljs-subst">$&#123;url_for.call(<span class="hljs-variable language_">this</span>, tag.path)&#125;</span>&quot; style=&quot;<span class="hljs-subst">$&#123;style&#125;</span>&quot;<span class="hljs-subst">$&#123;attr&#125;</span>&gt;<span class="hljs-subst">$&#123;transform ? transform(tag.name) : tag.name&#125;</span>&lt;/a&gt;`</span><br></code></pre></td></tr></table></figure>
+
+<p>这一行很明显就是生成每个小tag的代码。虽然我们看不太懂<code>$&#123;url_for.call(this, tag.path)&#125;</code>这行代码的意思，但是我们知道最终他都会被解析为字符串。如果你熟悉js，就会知道js拥有将所有东西转化为字符串的能力😂因此我们直接使用substring方法来更改这一行代码就可以解决问题了</p>
 
                 
               </div>
@@ -354,9 +344,7 @@
       
         <a href="tags/前端/">#前端</a>
       
-        <a href="tags/微信小程序/">#微信小程序</a>
-      
-        <a href="tags/文档/">#文档</a>
+        <a href="tags/hexo/">#hexo</a>
       
     </div>
   
@@ -368,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>小圆季节灏文档|小圆季节灏信息码获取</div>
-      <div>2022/09/03/ASL-V3-docs/</div>
+      <div>修复fluid的tags中的词云tag跳转异常问题</div>
+      <div>2022/09/01/technology/fluid-tags-bug-fix/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月3日</div>
+          <div>2022年9月1日</div>
         </div>
       
       
@@ -411,9 +399,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../../../../2022/09/03/fix-wxml-cant-load-bg-img/" title="修复微信小程序真机调试无法显示背景图片的问题">
+                      <a href="../../../../2022/09/02/prose/a-article-about-NAT-and-AC/" title="核酸上课论">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">修复微信小程序真机调试无法显示背景图片的问题</span>
+                        <span class="hidden-mobile">核酸上课论</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -421,8 +409,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="../../../../2022/09/02/a-article-about-NAT-and-AC/" title="核酸上课论">
-                        <span class="hidden-mobile">核酸上课论</span>
+                      <a href="../../../../2022/08/30/technology/to-do-list-by-nodeJS/" title="使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行">
+                        <span class="hidden-mobile">使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
