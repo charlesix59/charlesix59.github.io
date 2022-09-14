@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>解决插件使用GitHub calendar 插件无响应问题</title>
+    <link href="/2022/09/14/technology/slove_github_canlendar_no_response/"/>
+    <url>/2022/09/14/technology/slove_github_canlendar_no_response/</url>
+    
+    <content type="html"><![CDATA[<p>最近开始发掘好用的hexo插件，先瞄准的是很久之前就看见过的小冰的GitHub Calendar</p><p><a href="https://zfe.space/post/hexo-githubcalendar.html">教程：hexo-githubcalendar 插件 1.0 | 小冰博客 (zfe.space)</a></p><p>但是按照他描述的方法配置完成之后，发现并没有生成Calendar，于是我就开始了漫长的排查。</p><span id="more"></span><h2 id="问题与解决方案"><a href="#问题与解决方案" class="headerlink" title="问题与解决方案"></a>问题与解决方案</h2><p>我这里先说我的问题，因为我是用了fluid主题，所以我先找到了小冰给出的fluid配置参数，实际上只需要将配置中的最后一行改为：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">plus_style:</span> <span class="hljs-string">&quot;#github_container &gt; .position-relative &gt; .border&#123;border:0!important&#125;#github-calendar&#123;position: relative;margin-top: -2rem;background-color: var(--board-bg-color);transition: background-color 0.2s ease-in-out;border-radius: 0.5rem;z-index: 3;-webkit-box-shadow: 0 12px 15px 0 rgb(0 0 0 / 24%), 0 17px 50px 0 rgb(0 0 0 / 19%);box-shadow: 0 12px 15px 0 rgb(0 0 0 / 24%), 0 17px 50px 0 rgb(0 0 0 / 19%);&#125;&quot;</span><br></code></pre></td></tr></table></figure><p>但是随着我按照教程完整的配置完全，发现并没有用，在对应插件的没有出现在它应该出现的位置。后来，觉得fluid有很多配置都是直接配置在<code>_config.fluid.yaml</code>中，我就尝试着将配置文件复制到这个文件一份，结果阴差阳错的成功了。</p><p>后来我又删除了hexo自带的config中的配置，结果又刷不出来了。</p><p><strong>所以，如果你是使用了某个主题，并且刷不出这个插件，<font color=red>你可以将主题和hexo的配置都加入插件配置</font></strong></p><h2 id="其他可能的问题"><a href="#其他可能的问题" class="headerlink" title="其他可能的问题"></a>其他可能的问题</h2><p><strong>这个插件想要使用应该不是只配置一个<code>_config.yaml</code>就可以了</strong> ，你还需要在对应的界面（enable_page属性中对应的）加入相应的元素，如果是layout.type是id,那么就要插入:</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;这里替换为layout.name&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure><p>如果你的layout.type是class，那么你要保证你那个界面又n-1个name为<code>layout.name</code>的代码块</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>雪月文集·卷一（2020.9-2021.7）</title>
     <link href="/2022/09/14/%E9%9B%AA%E6%9C%88%E6%96%87%E9%9B%86/1/"/>
     <url>/2022/09/14/%E9%9B%AA%E6%9C%88%E6%96%87%E9%9B%86/1/</url>
