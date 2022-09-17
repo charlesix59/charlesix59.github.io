@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>软考复习之机械硬盘</title>
+    <link href="/2022/09/17/qccstp/disk/"/>
+    <url>/2022/09/17/qccstp/disk/</url>
+    
+    <content type="html"><![CDATA[<h1 id="机械硬盘管理"><a href="#机械硬盘管理" class="headerlink" title="机械硬盘管理"></a>机械硬盘管理</h1><h2 id="硬盘结构"><a href="#硬盘结构" class="headerlink" title="硬盘结构"></a>硬盘结构</h2><p>硬盘内部是由许许多多的圆形盘片、机械手臂、 磁头与主轴马达所组成的</p><p>实际的数据都是写在具有磁性物质的盘片上头，而读写主要是通过在机械手臂上的磁头（head）来达成。 实际运行时， 主轴马达让盘片转动，然后机械手臂可伸展让磁头在盘片上头进行读写的动作。 另外，由于单一盘片的容量有限，因此<strong>有的硬盘内部会有两个以上的盘片</strong></p><p><img src="Disktructure.jpg"></p><p>磁盘上的数据都存放于磁道上。<mark>磁道就是磁盘上的一组同心圆</mark>，<strong>其宽度与磁头的宽度相同</strong>。为了避免减小干扰，<strong>磁道与磁道之间要保持一定的间隔</strong>（inter-track gap），<mark>沿磁盘半径方向，单位长度内磁道的数目称之为道密度</mark>（道&#x2F;英寸，TPI），最外层为0道。</p><p><mark>沿磁道方向，单位长度内存储二进制信息的个数叫位密度</mark>。为了简化电路设计，<strong>每个磁道存储的位数都是相同的，所以其位密度也随着从外向内而增加</strong>。磁盘的数据传输是以块为单位的，所以<mark>磁盘上的数据也以块的形式进行存放。这些块就称为扇区</mark>（sector），<strong>每个磁道通常包括10~100个扇区。同样为了避免干扰，扇区之间也相互留有空隙</strong>（inter–sector gap）。柱面是若干个磁盘组成的磁盘组，<mark>所有盘面上相同位置的磁道组称为一个柱面</mark>（每个柱面有n个磁道）；若每个磁盘有m个磁道，则该磁盘组共有m个柱面。</p><p>通常数据的读写会由外圈开始往内写</p><h2 id="磁盘容量"><a href="#磁盘容量" class="headerlink" title="磁盘容量"></a>磁盘容量</h2><p><strong>磁盘的非格式化容量为<mark>Cn&#x3D;w×3.14×d×m×n</mark>,其中w为位密度，d为最内圈直径，m为记录面数，n为每面磁道数。</strong><br>磁盘格式化后能够存储有用信息的总量。**<mark>存储容量&#x3D;n×t×s×b</mark>,其中：n为保存数据的总盘面<br>数；t为每面磁道数；s为每道的扇区数；b为每个扇区存储的字节数。**</p><h2 id="磁盘读取时间"><a href="#磁盘读取时间" class="headerlink" title="磁盘读取时间"></a>磁盘读取时间</h2><p>磁盘的存取时间包括寻道时间和等待时间。<mark>寻道时间（查找时间，Seek Time）为磁头移动到目标磁道所需的时间</mark>（movabe–head disk），对于固定磁头磁盘而言，无须移动磁头，只需选择目标磁道对应的磁头即可。<mark>等待时间为等待读写的扇区旋转到磁头下方所用的时间</mark>。一般选用磁道旋转一周所用时间的一半作为平均等待时间。寻道时间由磁盘机的性能决定</p><p><mark>磁盘的数据传输速率是指磁头找到地址后，单位时间写入或读出的字节数</mark>。<mark>R&#x3D;TB&#x2F;T</mark>,其中：TB为一个磁道上记录的字节数，T为磁盘每转一圈所需的时间，R为数据传输速率。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软考</tag>
+      
+      <tag>计组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>软考复习之安全性措施</title>
     <link href="/2022/09/17/qccstp/salf/"/>
     <url>/2022/09/17/qccstp/salf/</url>
