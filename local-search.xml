@@ -4,13 +4,38 @@
   
   
   <entry>
-    <title>软考之软件需求</title>
+    <title>软考复习之软件需求</title>
     <link href="/2022/09/21/qccstp/sr/"/>
     <url>/2022/09/21/qccstp/sr/</url>
     
     <content type="html"><![CDATA[<h1 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h1><p>软件需求是<br>(1)用户解决问题或达到目标所需条件或权能(Capability)。</p><p>(2)系统或系统部件要满足合同、标准、规范或其它正式规定文档所需具有的条件或权能。</p><p>(3)一种反映上面(1)或(2)所述条件或权能的文档说明。</p><p>它包括功能性需求及非功能性需求，非功能性需求对设计和实现提出了限制，比如性能要求，质量标准，或者设计限制。</p><h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul><li><p>业务需求（Business Requirments）：组织或者客户高层次的目标，从宏观上描述开发系统的必要性、意义和目标，具有以业务为想到、可度量、合理、可行的特点。BR的核心部分是业务建模，对当前企业当前业务流程进行评估，并对新开发系统的业务处理流程进行展望。</p></li><li><p>用户需求（User Requirements）：用户要求系统必须要完成的任务，即用户要系统做什么，产生什么业务价值。</p></li><li><p>系统需求（System Requirments）：整个系统的顶级需求，由系统分析人员对UR进行分析、提炼、整理，从而生成指导开发的、更准确地软件需求。完整的表达了软件项目的预期特征，为接下来的软件设计和测试提供了依据和基础。</p></li><li><p>功能需求（Functional Requirements）：规定开发人员必须在产品中要实现的软件功能</p><h3 id="非功能性需求"><a href="#非功能性需求" class="headerlink" title="非功能性需求"></a>非功能性需求</h3></li><li><p>产品必须遵从的规范、标准和合约</p></li><li><p>外部界面的具体细节</p></li><li><p>性能需求</p></li><li><p>设计或实现的约束条件及质量属性</p><h2 id="过程标准"><a href="#过程标准" class="headerlink" title="过程标准"></a>过程标准</h2><p>清楚(Clear)、完整(Complete)、一致(Consistent)、可测试(Testable)。<br>此外还有其他的概念，如可跟踪的、可修改的等等</p></li></ul>]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>软考复习之其他知识点</title>
+    <link href="/2022/09/21/qccstp/other/"/>
+    <url>/2022/09/21/qccstp/other/</url>
+    
+    <content type="html"><![CDATA[<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h2><h3 id="McCabe算法"><a href="#McCabe算法" class="headerlink" title="McCabe算法"></a>McCabe算法</h3><p><code>V(G)=m−n+2p</code></p><p>其中，V(G) 是有向图 G 中的环路数，m 是图 G 中弧的个数，n 是图 G 中的结点数，p 是图 G 中的强连通分量个数</p><h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><p>有向非强连通图的<mark>极大</mark>强连通子图，称为强连通分量</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软考</tag>
+      
+    </tags>
     
   </entry>
   
