@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>这是写给自己与亲密之人的文章</title>
+    <link href="/2022/09/24/pa/test/"/>
+    <url>/2022/09/24/pa/test/</url>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="827d8f8810445cf8cd641681749b57919dd4890bef66f5d46b44efe84673b499">94f6c91cd8d2be653aefd254273d997903a8f1c87f87e153aea6a2013b921c5f8b549932328fb70775aa4417f32ce950c4a930c7597e9955b84196a88933321903231b7ac9c5e515d08bef9d498f3adef0d4e4ca576d7505e704da0c5f679775eea76524f4d0d5b21ab71006792f1e8ff489280d4cb23830472fac4a8c19fc2d9eab6ddb01e596ee03fbfa8cc42357a6ecc26e54db8ae3d1ca01c2a0e6471999dbfe0ab64bd64c33326bb8f15f7db5a94082822fb19e4de3de3dbb157fc5b21c5b4c04f5cbd63ec6581e6b47a9c11fe95a82d08d22200a11abe751116c6bea7c4616b05e8bf044a7376339f600ddbd7167a1c176aa2f7d50f67301574188a30e158ff9f05e1b5815d1c81e4fc6b2cc93407aa71e084af77217d4b2a0fd350f453091e7622d079e9841f1405767a5a8b4d9f4e2ff93698090e024cf01a65691cdb0e7fc273399c69fddffbd4a6a0ee2c144c3450a94b5546c020b1f7ff258382e8f150c3e241c12c9e4bf287f89f8e4293cd39b7df179474e32b3dea9261ceb91754b1bd97439bad0cc9f17a5b1fbabe3997bc245a95131eaf3df282a447a2d96e3dd89a8e854dbb3a01391e02e0fabdfca0b62e47d19d249951c0b8b959a8ef8</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">这是一个很简单的密码呢</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>给挚爱之人</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>软考复习之内存管理</title>
     <link href="/2022/09/24/qccstp/mm/"/>
     <url>/2022/09/24/qccstp/mm/</url>
