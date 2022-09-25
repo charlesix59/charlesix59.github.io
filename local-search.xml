@@ -8,9 +8,23 @@
     <link href="/2022/09/25/qccstp/alp/"/>
     <url>/2022/09/25/qccstp/alp/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="软考复习之应用层常用协议"><a href="#软考复习之应用层常用协议" class="headerlink" title="软考复习之应用层常用协议"></a>软考复习之应用层常用协议</h1><table><thead><tr><th>名称</th><th>全拼</th><th>实现</th><th>端口</th><th>备注</th></tr></thead><tbody><tr><td>Domain Name System</td><td>DNS</td><td>TCP+UDP</td><td>53</td><td>提供域名解析服务</td></tr><tr><td>File Transfer Protocol</td><td>FTP</td><td>TCP</td><td>21(控制) <br>20（数据）</td><td>文件传输</td></tr><tr><td>远程终端协议</td><td>Telnet</td><td>TCP</td><td>23</td><td>远程终端</td></tr><tr><td>Hyper Text Transfer Protocol</td><td>HTTP</td><td>TCP</td><td>80</td><td></td></tr><tr><td>Hyper Text Transfer Protocol Secure</td><td>HTTPS</td><td>TCP</td><td>443</td><td></td></tr><tr><td>Post Office Protocol - Version 3</td><td>POP3</td><td>TCP</td><td>110</td><td>从服务器查看邮件</td></tr><tr><td>Simple Mail Transfer Protocol</td><td>SMTP</td><td>TCP</td><td>25</td><td>发送邮件</td></tr><tr><td>Simple Network Management Protocol</td><td>SNMP</td><td>UDP</td><td>161、162</td><td>用于在 IP 网络管理网络节点</td></tr><tr><td>Trivial File Transfer Protocol</td><td>TFTP</td><td>UDP</td><td>69</td><td>用来在客户机与服务器之间进行简单文件传输的协议</td></tr></tbody></table>]]></content>
     
     
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>软考</tag>
+      
+      <tag>计网</tag>
+      
+    </tags>
     
   </entry>
   
