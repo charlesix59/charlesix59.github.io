@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>解決spring boot阿里云鏡像站无法添加lombok的问题</title>
+    <link href="/2022/11/04/technology/fix_lombok_cant_add_bug/"/>
+    <url>/2022/11/04/technology/fix_lombok_cant_add_bug/</url>
+    
+    <content type="html"><![CDATA[<p>最近在写spring boot的时候发生一个挺让人无语的问题，在引入lombok的时候maven报错了,报错信息类似下面：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Cannot resolve org.springframework.boot:spring-boot-starter-data-elasticsearch:pom:2.7.3 failed to transfer from http://maven.aliyun.com/nexus/content/groups/public during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of nexus-aliyun has elapsed or updates are forced. Original error: Could not transfer artifact org.springframework.boot:spring-boot-starter-data-elasticsearch:pom:2.7.3 from/to nexus-aliyun (http://maven.aliyun.com/nexus/content/groups/public): transfer failed for http://maven.aliyun.com/nexus/content/groups/public/org/springframework/boot/spring-boot-starter-data-elasticsearch/2.7.3/spring-boot-starter-data-elasticsearch-2.7.3.pom<br></code></pre></td></tr></table></figure><p>之前没有遇到过这种情况，可能当天阿里云抽了点风吧。（今天已经恢复正常了，可以正常引入lombok）<br>我的解决方案是：</p><p>退到1.18.20（退了两个版本）</p><p>直接在Java代码里面写<code>import lombok.Data</code>，IDEA也有一定的概率直接引入可用的版本</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>后端</tag>
+      
+      <tag>spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>更伟大的人——我读《沉默的大多数》</title>
     <link href="/2022/10/24/prose/the_greater/"/>
     <url>/2022/10/24/prose/the_greater/</url>
