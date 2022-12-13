@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>C语言等于运算符返回什么？</title>
+    <link href="/2022/12/13/technology/what_eq_return/"/>
+    <url>/2022/12/13/technology/what_eq_return/</url>
+    
+    <content type="html"><![CDATA[<p>今天有一位非CS专业的同学问了我一道题，题干是：</p><blockquote><p>赋值表达式a&#x3D;5的值是____</p></blockquote><p>思考一小下，你觉得答案是什么？</p><span id="more"></span><p>我给出的答案是<code>void</code>，因为我的记忆中没有关于赋值表达式的返回值是什么的答案，于是我根据我的经验，<br>给出了这个我觉得最有可能的答案。但是我本人也对这个答案持怀疑态度</p><p>于是我便查阅了C reference<br><img src="ref.png"></p><p>这才发现，原来是有返回值的，<strong>而且返回值是等号左边的变量的值</strong>。<br>于是我便敲了一个程序来验证，运行结果果然和C reference中的描述的一样</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br><span class="hljs-type">int</span> a=<span class="hljs-number">1</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,a=<span class="hljs-number">5</span>);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125; <br></code></pre></td></tr></table></figure><p>运行结果：5</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>React函数组件对state进行初始化操作</title>
     <link href="/2022/11/24/technology/react_fn_comp_init/"/>
     <url>/2022/11/24/technology/react_fn_comp_init/</url>
