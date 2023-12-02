@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>el-tree选取父节点不能同时选中子节点的解决方案</title>
+    <link href="/2023/12/02/technology/el-tree_not_work/"/>
+    <url>/2023/12/02/technology/el-tree_not_work/</url>
+    
+    <content type="html"><![CDATA[<p>之前在用<code>element-ui</code>的<code>el-tree</code>组件时，发现当父组件没有展开过的时候，<br>我们调用<code>check-change</code>方法时，子组件虽然会被选中但是不会触发事件。对于这个问题，<br>我坚信<code>element-ui</code>官方一定考虑过并给出了解决方案。</p><p>但是在搜索引擎中排名最高的解决方案是：使用<code>check</code>方法代替<code>check-change</code>事件，但是实际上<br>这种方法并没有效果。如果要解决问题，一个直觉但是不考虑需求的方案是默认展开所有节点，<br>即在组件中添加<code>default-expand-all</code>属性。但是这个方法麻烦而且并不是直接解决问题，<br>最好的解决方案存在与官方文档中，我们只需要添加一个属性：<br><strong><code>render-after-expand: false</code></strong></p><p>在<code>el-tree</code>中，为了提高加载的效率，防止一口气加载所有节点引起阻塞，因此tree组件默认是<br>每次展开才会渲染子节点的，这就导致我们的子节点因为没有被渲染所以没有触发<code>check-change</code>事件。</p><p>因此只要饥饿加载tree节点即可简单的解决问题。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>全面理解useEffect——useEffect用法解析与使用技巧</title>
     <link href="/2023/10/02/technology/use_effect/"/>
     <url>/2023/10/02/technology/use_effect/</url>
