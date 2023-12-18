@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>flex-direction为row时主动换行</title>
+    <link href="/2023/12/18/technology/flex_active_warp/"/>
+    <url>/2023/12/18/technology/flex_active_warp/</url>
+    
+    <content type="html"><![CDATA[<h1 id="flex-direction为row时主动换行"><a href="#flex-direction为row时主动换行" class="headerlink" title="flex-direction为row时主动换行"></a>flex-direction为row时主动换行</h1><p>我今天在写<code>react-native</code>时候，遇到了很不舒服的一件事情。因为RN默认是<code>flex</code>布局，所以如果我想要实现<code>inline</code>模式就只能设置父元素的<code>flex-direction</code>的value为<code>row</code>。这样如果我们如果想要换行需要怎么处理呢？</p><p>要知道，在RN中是没有<code>&lt;br&gt;</code>标签的，所以要想换行需要采取一些非常的手段。</p><p>刚开始的时候我问了ChatGPT，他给出的答案是使用伪类撑开元素：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-item&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-item break-after&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!-- 想要在这个元素后换行 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-item&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-item&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.flex-container</span> &#123;<br>  <span class="hljs-attribute">display</span>: flex;<br>  <span class="hljs-attribute">flex-wrap</span>: wrap;<br>  <span class="hljs-attribute">flex-direction</span>: row;<br>&#125;<br><br><span class="hljs-selector-class">.flex-item</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.break-after</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;&quot;</span>;<br>  <span class="hljs-attribute">flex-basis</span>: <span class="hljs-number">100%</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>经过我的尝试，这种方法很遗憾的不起任何作用，而且在RN中使用CSS class并不是很容易，不过他却启发了我：</p><p><font color="red">如果我们将特殊的元素设置足够长，并且设置<code>flex-shrink</code>属性使其shrink为合适的大小能不能起作用呢？</font></p><p>开始时我将长度设置为<code>100%</code>，但是这会使得这个元素自称一行，于是我尝试将其长度设置为一个足够长的常数，然后我很惊喜的发现他奏效了。</p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">&lt;<span class="hljs-title class_">Text</span> style=&#123;&#123;<span class="hljs-attr">flexBasis</span>: <span class="hljs-number">10000</span>, <span class="hljs-attr">flexShrink</span>: <span class="hljs-number">0</span>&#125;&#125;&gt;&#123;rhythm&#125;&lt;/<span class="hljs-title class_">Text</span>&gt;<br></code></pre></td></tr></table></figure><p>so，如果你也想要在flex布局中尝试主动换行，那么希望这篇文章能够解答你的疑惑。</p><p>当然，如果你有更好的方法，非常希望能在下方评论区和我分享你的好主意🤗</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>css</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>el-tree选取父节点不能同时选中子节点的解决方案</title>
     <link href="/2023/12/02/technology/el-tree_not_work/"/>
     <url>/2023/12/02/technology/el-tree_not_work/</url>
