@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/technology/react/use_effect/"><!-- Primary Meta Tags --><title>全面理解useEffect——useEffect用法解析与使用技巧</title><meta name="title" content="全面理解useEffect——useEffect用法解析与使用技巧"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/technology/react/use_effect/"><meta property="og:title" content="全面理解useEffect——useEffect用法解析与使用技巧"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/technology/react/use_effect/"><meta property="twitter:title" content="全面理解useEffect——useEffect用法解析与使用技巧"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>全面理解useEffect——useEffect用法解析与使用技巧</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="全面理解useeffect">全面理解useEffect</h1>
+<p><code>useEffect</code>可以说是react的hook中最强大的一个，他能够以一种极为优雅的方式模拟我们的生命周期。但是优雅的代价就是这个hook极其的晦涩，不容易被理解与掌握。下面我们就来全方位的探讨一下，<code>useEffect</code>到底怎么用</p>
+<h2 id="useeffect的结构">useEffect的结构</h2>
+<p>在上一篇关于react的文章我提到过，函数式组件每次<code>reRender</code>都会重新执行一遍，如果我们需要生命周期的效果，那我们就需要<code>useEffect</code>函数。我们先来看一下useEffect的结构：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(setup, dependencies</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<ul>
+<li>
+<p>参数</p>
+<ul>
+<li>
+<p><code>setup</code>：一个实现了你需要的副作用逻辑的函数，这个函数将会在组件首次被绑定以及每次<strong>重新渲染导致<code>dependencies</code>更新时</strong>调用。同时他还可以<code>return</code>一个清除函数，这个函数将会在函数卸载以及每次<strong>重新渲染导致<code>dependencies</code>更新之前</strong>调用</p>
+</li>
+<li>
+<p><code>dependencies</code>：在<code>setup</code>中引用的所有<code>reactive values</code>（state、参数以及在组件内部定义的变量和函数）或更新凭据组成的数组。这个数组必须是有限的并且偏平的，每次更新react将使用<code>Object.is()</code>比较每个依赖项是否与之前相同，如果不同则更新。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>return</p>
+<ul>
+<li><code>undefinded</code> （无返回值）</li>
+</ul>
+</li>
+</ul>
+<p>中文博客中经常会漏掉<code>setup</code>函数的返回值，但是它的返回值是这个函数的半壁江山，我们决不能将其忽略不提，如果忽略掉的话我们就有一半的效果无法实现了。</p>
+<p>❗：<code>useEffect</code>也是一个hook，请在组件或者自定义hook的最上层使用，不要在循环或分支结构中定义hook</p>
+<h2 id="模拟生命周期">模拟生命周期</h2>
+<p>react生命周期大概分为三种，<code>mount</code>、<code>update</code>、<code>unmount</code>，当然在类式组件，我们已经可以规定是在mount之前，mount时还是mount之后调用，在函数式组件我们就不分的这么清楚了，因为在函数式组件我们的生命周期其实是独立的，是面向状态的。</p>
+<p>下面我们就使用useEffect简单模拟一下类式组件的生命周期：</p>
+<p><strong>只在初始化时执行(<code>DidMounted</code>)</strong> ：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 不依赖任何变量，则传入一个空数组</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"init"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {};</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, []);</span></span></code></pre>
+<p><strong>每次更新时执行(<code>render</code>)</strong> ：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 依赖所有变量，则不传入</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"rerender"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span></code></pre>
+<p><strong>每次卸载时执行(<code>beforeUnmount</code>)</strong> ：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">// 不依赖任何变量，return的函数将会在卸载之前被调用</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"unmount"</span><span style="color:#E1E4E8">);};</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, []);</span></span></code></pre>
+<p>实际上，我们经常说<code>useEffect</code>的作用是模拟声明周期，而这似乎违背了函数式组件的初衷，也违背了<code>useEffect</code>的初衷。我们应该多从<strong>状态</strong>的角度去思考，<code>useEffect</code>并非是什么生命周期函数，而是<strong>状态更新</strong>函数。</p>
+<h2 id="控制更新">控制更新</h2>
+<p>如果某个变量在每次组件更新的时候都需要更新，那我们完全没有必要使用<code>useEffect</code>，我们使用副作用钩子一定是因为我们需要控制某个变量的更新。</p>
+<p>我们可以使用<code>useEffect</code>将<strong>组件内部的状态与组件外部系统同步</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 比如说，我们可以在父组件更新props的时候调用useEffect</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Child</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">childContext</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setChildContext</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setChildContext</span><span style="color:#E1E4E8">(count);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [count]);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>this is a child, count = {childContext}&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p>或者我们可以使用<code>useEffect</code>将<strong>组件组件外部系统与内部的状态同步</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#9ECBFF"> "./styles.css"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { useEffect, useState } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> fetch</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // 假设这是一个网络请求</span></span>
+<span class="line"><span style="color:#6A737D">  // 当然，这个外部状态也可以是一个外部组件，外部变量，jsAPI等等</span></span>
+<span class="line"><span style="color:#F97583">  await</span><span style="color:#F97583"> new</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setTimeout</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"fetch date"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }, count);</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> onClick</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setCount</span><span style="color:#E1E4E8">(count </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#6A737D">  // 每次修改count都会将更改同步外部系统</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    fetch</span><span style="color:#E1E4E8">(count);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [count]);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"App"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{onClick}>Change state in father&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>count is {count}&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>其实生命周期也不过是对状态的统一更改，react现在只是将生命周期将颗粒度从组件降低到了状态。</p>
+<h2 id="一些tips">一些tips</h2>
+<h3 id="在useeffect中使用state">在useEffect中使用state</h3>
+<p>有时候我们可能会需要在<code>useEffect</code>中使用和修改<code>state</code>，但是这是极端危险的行为，因为当我们修改<code>state</code>时会触发页面的<code>rerender</code>，然后因为<code>useEffect</code>依赖了<code>state</code>，这将会导致<code>state</code>被再次更改继而引起死循环……</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Child</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ({ </span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">childContext</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setChildContext</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        setChildConte</span><span style="color:#E1E4E8">(childContext);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }, [count, childContext]);</span></span>
+<span class="line"><span style="color:#6A737D">    // !! 千万不要这么做，会引发死循环</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>this is a child, count = {childContext}&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p>如果我们在<code>useEffect</code>中根据之前的state更新state，我们可以这么写：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  setChildContext</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">c</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [count]);</span></span>
+<span class="line"><span style="color:#6A737D">// 不需要依赖childContext，安全</span></span></code></pre>
+<p>如果你真的既要在Effect中读取state，又要修改state，那么我给出的建议是，：<strong>使用两个依赖同一个更新凭证<code>useEffect</code></strong></p>
+<p>千万别这么做：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  setChildContext</span><span style="color:#E1E4E8">(Math.</span><span style="color:#B392F0">random</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(childContext)</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [count, childContext])</span></span>
+<span class="line"><span style="color:#6A737D">// 死循环！！😭</span></span></code></pre>
+<p>正确的做法如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  setChildContext</span><span style="color:#E1E4E8">(Math.</span><span style="color:#B392F0">random</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [count]);</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(childContext)</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [count, childContext])</span></span>
+<span class="line"><span style="color:#6A737D">// 安全😊</span></span></code></pre>
+<h3 id="消除不必要的对象与函数依赖">消除不必要的对象与函数依赖</h3>
+<p>如果我们在组件内定义了一个函数或对象，我们在上一篇文章详细讲过，它每次都会被初始化。就像这样：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> childContext</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    count: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    childContext.count </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> count;</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"run effect"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#6A737D">    // 不要这样，每次Render都会触发effect😔</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [count, childContext]);</span></span></code></pre>
+<p>取而代之的是，如果你的对象或者函数只在<code>useEffect</code>中使用，则写在<code>setup</code>内部</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Child</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ({</span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8">}) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> childContext</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      count: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    childContext.count </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> count;</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"run effect"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [count]);</span></span>
+<span class="line"><span style="color:#6A737D">  // 推荐，只有在依赖更新的时候才会触发effect 😊</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>this is a child&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p>如果你是希望有一个在整个组件都可以被访问的静态变量，那么可以将对象写在组件外部：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> childContext</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  count: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Child</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> ({</span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8">}) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    childContext.count </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> count;</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"run effect"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [count]);</span></span>
+<span class="line"><span style="color:#6A737D">  // 推荐，只有在依赖更新的时候才会触发effect 😊</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>this is a child&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<h2 id="uselayouteffect">useLayoutEffect</h2>
+<p>我们在使用<code>useEffect</code>的时候有时会出现一种问题：我们的组件会发生闪烁或突然的变化。</p>
+<p>这时因为<code>useEffect</code>是在<code>mount</code>之后执行的，因此第一次渲染出的值是我们定义的初始值，如果更新的性能比较差或者更新的范围比较大，可能会导致我们的<code>view</code>发生闪烁的现象。</p>
+<p>这个时候我们就可以使用<code>useLayoutEffect</code>，他和<code>useEffect</code>的最大区别就是他是在<code>mount</code>之前执行的，所以不会导致<code>view</code>的闪烁。</p>
+<p>但是如果我们没有很明显的ui闪烁问题，我们应该尽可能的使用<code>useEffect</code>，因为它的运行效率更好。</p>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#useeffect的结构" data-astro-cid-xvrfupwn>useEffect的结构</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#模拟生命周期" data-astro-cid-xvrfupwn>模拟生命周期</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#控制更新" data-astro-cid-xvrfupwn>控制更新</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#一些tips" data-astro-cid-xvrfupwn>一些tips</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#在useeffect中使用state" data-astro-cid-xvrfupwn>在useEffect中使用state</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#消除不必要的对象与函数依赖" data-astro-cid-xvrfupwn>消除不必要的对象与函数依赖</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#uselayouteffect" data-astro-cid-xvrfupwn>useLayoutEffect</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

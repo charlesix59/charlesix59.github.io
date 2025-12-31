@@ -1,0 +1,645 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/subject/hadoop/"><!-- Primary Meta Tags --><title>Hadoop 知识整理</title><meta name="title" content="Hadoop 知识整理"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/subject/hadoop/"><meta property="og:title" content="Hadoop 知识整理"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/subject/hadoop/"><meta property="twitter:title" content="Hadoop 知识整理"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>Hadoop 知识整理</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="hadoop知识点整理">hadoop知识点整理</h1>
+<h2 id="第一章-大数据的概念">第一章 大数据的概念</h2>
+<p>大数据是指无法用现有的软件工具提取、存储、搜索、共享、分析和处理的海量的复杂的数据图集。</p>
+<h3 id="特征">特征</h3>
+<p><strong>4个V</strong>：</p>
+<ul>
+<li>
+<p>Volume：数据体量巨大</p>
+</li>
+<li>
+<p>Variety：数据种类繁多</p>
+</li>
+<li>
+<p>Value：数据价值密度低</p>
+</li>
+<li>
+<p>Velocity：处理速度快</p>
+</li>
+</ul>
+<h3 id="hadoop生态圈">hadoop生态圈</h3>
+<p>大数据工具主要包括：Hadoop、Hbase、ZooKeeper、Hive、Mahout、Sqoop、Storm等</p>
+<h4 id="hadoop">Hadoop</h4>
+<p><strong>Doug Cutting</strong>开发，受到<strong>Map/Reduce</strong>启发，核心是<strong>MapReduce编程模型和HDFS分布式文件系统</strong>。</p>
+<p>采用分而治之的思想，Map用来切分大的数据，Reduce用来合并Map计算的结果。</p>
+<p>HDFS 分布式文件系统，为海量数据提供存储服务，将大文件拆分为块，多节点存放，具有高吞吐量、高容错性的特点。</p>
+<h4 id="hbase">HBASE</h4>
+<p>HBASE是Apache开源的KV型数据库，是建立在HDFS之上，提供高可靠性、高性能、列存储、可伸缩、实时读写的数据库系统。</p>
+<p>仅支持单行事务。</p>
+<p>主要用来存储非结构化和半结构化的松散数据。</p>
+<h4 id="hive">Hive</h4>
+<p>Apache Hive数据仓库软件提供对存储在分布式中的大型数据集的查询和管理，它本事是建立在Hadoop之上的</p>
+<h4 id="storm">Storm</h4>
+<p>Apache Storm是一个免费、开源的分布式实时计算机系统，简化了数据流的可靠处理。</p>
+<h4 id="zookeeper">ZooKeeper</h4>
+<p>zooKeeper是一个高性能、分布式的开源分布式应用协调服务，他是storm、hbase的重要组件，它是一个为分布式应用提供一致性服务的软件。</p>
+<p>服务端跑在JAVA上</p>
+<p>ZooKeeper有两个角色，一个是leader，负责写服务和数据同步，剩下的是follower，提供读服务。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>
+<p>顺序一致性：按照客户端发送请求的顺序更新数据</p>
+</li>
+<li>
+<p>原子性</p>
+</li>
+<li>
+<p>单一性：无论客户端连接哪个server都看到同一个视图</p>
+</li>
+<li>
+<p>可靠性：一旦数据更新成功将一直保持，直到新的更新</p>
+</li>
+<li>
+<p>及时性：客户会在一个确定的时间内得到最新的数据</p>
+</li>
+</ul>
+<p><strong>运用场景</strong>：</p>
+<ul>
+<li>
+<p>数据发布订阅</p>
+</li>
+<li>
+<p>名空间服务</p>
+</li>
+<li>
+<p>分布式通知</p>
+</li>
+<li>
+<p>分布式锁</p>
+</li>
+<li>
+<p>集群管理</p>
+</li>
+</ul>
+<h4 id="sqoop">sqoop</h4>
+<p>sqoop是Apache顶级项目，允许用户将数据从关系型数据库中抽取数据到Hadoop中</p>
+<h4 id="mahout">mahout</h4>
+<p>mahout是一个强大的数据挖掘工具，是一个分布式机器学习算法的集合，包括分布式协同过滤的实现、分类、聚类等</p>
+<h3 id="hadoop历史和版本">Hadoop历史和版本</h3>
+<p>历史：</p>
+<ul>
+<li>
+<p>2011年12月，Apache基金会发布了Apache Hadoop 版本1.0</p>
+</li>
+<li>
+<p>2013年8月，版本2.0.6可用</p>
+</li>
+<li>
+<p>2017年12月发布Apache Hadoop3</p>
+</li>
+</ul>
+<p>发行版：</p>
+<p>Hadoop有许多变体：</p>
+<ul>
+<li>
+<p>Cloudera Hadoop分布：是Coludera Enterprise的核心，包括Apache Hadoop、Apache Spark，Apache Kafka 以及十多个其他紧密继承的领先开源项目</p>
+</li>
+<li>
+<p>Hortonworks Hadoop分布：是基于YARN的安全性强、企业就绪的开源版本</p>
+</li>
+<li>
+<p>MapR Hadoop分布：是Hadoop的完成整企业级发行版</p>
+</li>
+<li>
+<p>PivotalHD：是领先的基于标准的Hadoop该发行版，为Business Data Lake架构奠定了基础</p>
+</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>
+<p>高可靠性</p>
+</li>
+<li>
+<p>高拓展性</p>
+</li>
+<li>
+<p>高效性</p>
+</li>
+<li>
+<p>高容错性</p>
+</li>
+</ul>
+<h2 id="第二章-hadoop-组成与结构">第二章 Hadoop 组成与结构</h2>
+<p>Hadoop1的三大核心模块：</p>
+<ul>
+<li>
+<p>Common模块：支持其他模块的工具模块</p>
+</li>
+<li>
+<p>HDFS模块：一个高可靠、高吞吐量的分布式文件系统</p>
+</li>
+<li>
+<p>MapReduce模块：一个分布式的资源调度和离线并行计算系统</p>
+</li>
+</ul>
+<p>Hadoop2的组成：</p>
+<p>MapReduce模块仅作为分布式计算框架存在，资源调度功能交给YARN来调度处理</p>
+<h3 id="hdfs">HDFS</h3>
+<p>一个分布式文件系统。</p>
+<p>HDF的设计适合一次写入多次读出的场景且不支持文件修改。适合用来做数据分析，并不适合做网盘使用。</p>
+<p>Master-Slave结构，Master是NameNode，Slave是DataNode</p>
+<p>client职责如下：</p>
+<ul>
+<li>
+<p>文件切分</p>
+</li>
+<li>
+<p>与NameNode交互获取文件的位置信息</p>
+</li>
+<li>
+<p>与DataNode交互读取或写入数据</p>
+</li>
+<li>
+<p>提供一些明恋来管理HDFS，比如启动或者关闭HDFS</p>
+</li>
+<li>
+<p>可以通过一些命令来访问HDFS</p>
+</li>
+</ul>
+<p>NameNode职责如下：</p>
+<ul>
+<li>
+<p>配置副本策略</p>
+</li>
+<li>
+<p>处理client读写请求</p>
+</li>
+<li>
+<p>管理block（数据块）映射信息，以元数据的形式存储在Fsimage镜像文件中</p>
+</li>
+<li>
+<p>管理HDFS命名空间</p>
+</li>
+</ul>
+<p>DataNode的职责：</p>
+<ul>
+<li>
+<p>执行实际的数据块</p>
+</li>
+<li>
+<p>执行数据块的读写操作</p>
+</li>
+</ul>
+<p>SecondaryNameNode，第二名称节点，并非名称节点的热备，晋档NameNode重启或者热备NameNode激活时将宕机前所保留集群的快照发送给NameNode以恢复此前集群的状态。具体功能为：</p>
+<ul>
+<li>
+<p>存辅NameNode，分担其工作量</p>
+</li>
+<li>
+<p>定期合并Fsimage和Edits，并推送给NameNode</p>
+</li>
+<li>
+<p>在紧急情况下可辅助恢复NameNode</p>
+</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>
+<p>高容错性</p>
+</li>
+<li>
+<p>适合大数据处理</p>
+</li>
+<li>
+<p>支持流式数据访问</p>
+</li>
+<li>
+<p>可构建在廉价机器上</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>
+<p>不适合低延时数据访问</p>
+</li>
+<li>
+<p>无法高效的对大量小文件进行存储</p>
+</li>
+<li>
+<p>不支持并发写入文件和随机修改</p>
+</li>
+</ul>
+<h3 id="yarn架构">YARN架构</h3>
+<p>MRv1的局限：</p>
+<ul>
+<li>
+<p>扩展性差</p>
+</li>
+<li>
+<p>可靠性差</p>
+</li>
+<li>
+<p>资源利用率低</p>
+</li>
+<li>
+<p>无法支持多种计算机框架</p>
+</li>
+</ul>
+<p>YARN是一个弹性计算平台，他的目标已经不局限于支持MapReduce一种计算框架，而是朝着对多种框架的统一管理前进</p>
+<p>优点：</p>
+<ul>
+<li>
+<p>资源利用率高</p>
+</li>
+<li>
+<p>运维成本低</p>
+</li>
+<li>
+<p>数据共享</p>
+</li>
+</ul>
+<p>对比：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>V1</th><th>V2</th></tr></thead><tbody><tr><td>基本框架</td><td>JobTracker由资源管理和作业控制两部分组成</td><td>将JobTracker的两个功能拆分成两个独立的进程，资源管理进程负责整个集群的资源，而作业控制则是直接与应用程序相关的模块，每个进程只负责一个作业</td></tr><tr><td>编程模型与数据处理引擎</td><td></td><td>MRv2重用了v1中的编程模型与数据处理引擎</td></tr><tr><td>运行时环境</td><td>由JobTracker和TaskTracker两类服务组成，JT负责资源和任务的管理与调度，TT负责单个节点的资源管理和任务进行</td><td>将资源部管理与应用程序管理分开，分别又YARN和ApplicationMaster负责</td></tr></tbody></table>
+<h4 id="yarn基本架构">YARN基本架构</h4>
+<p>总体上仍然是Master/Slave架构</p>
+<p>YARN的组成成分如下：</p>
+<ul>
+<li>
+<p>ResourceManager：一个全局的资源管理器，负责整个系统的资源管理与分配。它由两个组件构成：</p>
+<ul>
+<li>
+<p>调度器（Scheduler）：根据容量、队列等限制条件将资源分配给各个正在运行的应用程序</p>
+</li>
+<li>
+<p>应用程序管理器（Application Manager ASM）：负责整个系统中所有应用程序</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ApplicationMaster（AM）的主要功能有：</p>
+<ul>
+<li>
+<p>与RM调度器协商以获取资源（Container）</p>
+</li>
+<li>
+<p>将得到的任务进一步分给内部任务</p>
+</li>
+<li>
+<p>与NM通信以启动/停止任务</p>
+</li>
+<li>
+<p>监控所有任务运行状态</p>
+</li>
+</ul>
+</li>
+<li>
+<p>NodeManager：是每个节点上资源和任务管理器</p>
+</li>
+<li>
+<p>Container：是YARN山中的资源抽象，它封装了某个节点上的多维度资源</p>
+</li>
+</ul>
+<h2 id="第三章-hadoop运行模式与大数据技术框架">第三章 Hadoop运行模式与大数据技术框架</h2>
+<p>Hadoop的运行模式主要有四种：</p>
+<ul>
+<li>
+<p>本地模式</p>
+</li>
+<li>
+<p>伪分布式</p>
+</li>
+<li>
+<p>全分布式</p>
+</li>
+<li>
+<p>高可用模式</p>
+</li>
+</ul>
+<h3 id="伪分布式模式">伪分布式模式</h3>
+<p>Hadoop可以运行在单个节点上，其中每一个Hadoop守护进程运行在单独的Java进程中，这个模式称之为伪分布式模式。Hadoop所有进程都运行在一台服务器以模拟全分布式模式，常用于学习阶段。</p>
+<p>后台的五个进程为：</p>
+<ul>
+<li>
+<p>NameNode</p>
+</li>
+<li>
+<p>DataNode</p>
+</li>
+<li>
+<p>SecondaryNameNode</p>
+</li>
+<li>
+<p>ResourceManager</p>
+</li>
+<li>
+<p>NodeManager</p>
+</li>
+</ul>
+<h3 id="高可用模式">高可用模式</h3>
+<p>Hadoop是一种主从式架构，这样就会有<strong>单点故障</strong>的问题</p>
+<h2 id="hdfs-1">HDFS</h2>
+<ul>
+<li>
+<p>数据块（block）</p>
+<ul>
+<li>
+<p>HDFS默认的最基本的存储单位是128MB的数据块</p>
+</li>
+<li>
+<p>128M为一块</p>
+</li>
+<li>
+<p>一个文件如果小于一个数据块的大小，并不占用整个数据块的空间</p>
+</li>
+</ul>
+</li>
+<li>
+<p>存放策略（3副本）</p>
+<ul>
+<li>
+<p>第一个和client同node</p>
+</li>
+<li>
+<p>第二个放在与第一个节点的不同机架中的随机的一个node</p>
+</li>
+<li>
+<p>第三个放在与第一个节点不同的机架中与第二个不同的随机node中</p>
+</li>
+</ul>
+</li>
+<li>
+<p>NameNode 和DataNode</p>
+<ul>
+<li>
+<p>HDFS体系结构中有两类节点，一类是NameNode ( Master) ，又叫”元数据节点”;另一类是DataNode (Slave) ，又叫”数据 节点”。</p>
+</li>
+<li>
+<p>元数据节点用来管理文件系统的命名空间，作用如下：</p>
+<ul>
+<li>
+<p>其将所有的文件和文件夹的元数据保存在一个文件 系统树中</p>
+</li>
+<li>
+<p>这些信息也会在硬盘上保存成以下文件:命名空间镜像(namespace image)及修改日志(edit log)</p>
+</li>
+<li>
+<p>还保存了一个文件包括哪些数据块，分布在哪些数据节点上，然而这些信息并不存储在硬盘上，而是在系统启动的时候从数据节点收集而成的</p>
+</li>
+</ul>
+</li>
+<li>
+<p>数据节点是文件系统中真正存储数据的地方，作用如下:</p>
+<ul>
+<li>
+<p>客户端(clien)或者 元数据信息(namenode)可以向数据节点请求写入或者读出数据块</p>
+</li>
+<li>
+<p>周期性的向元数据节点回报其存储的数据块信息</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>hadoop.tmp.dir</code>，临时目录，其他临时目录的父目录，默认 <code>/tmp/hadoop-${user.name}</code>，在<code>core-site.xml</code>中配置</p>
+</li>
+<li>
+<p>元数据节点目录结构，在<code>hdfs-site.xml</code>中配置<code>dfs.name.dir</code>参数，以<code>,</code>分隔，默认在<code>{hadoop.tmp.dir}/dir/name</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>数据节点目录结构</p>
+<ul>
+<li>在<code>hdfs-site.xml</code>中配置参数<code>dfs.data.dir</code>，以<code>,</code>分隔</li>
+</ul>
+</li>
+<li>
+<p>HDFS通信协议</p>
+<ul>
+<li>所有HDFS通信协议都是构建在TCP/IP协议上的</li>
+</ul>
+</li>
+<li>
+<p>HDFS安全模式</p>
+<ul>
+<li>Namenode启动后会进入一种称为安全模式的特殊状态。处于安全模式的Namenode是不会进行数据块的复制的。Namenode从所有的DataNode接受心跳信号和块状态报告</li>
+</ul>
+</li>
+</ul>
+<p><strong>Name Node、DataNode 和Client</strong></p>
+<ul>
+<li>
+<p>Namencodte 是分布式文件素统中的管理者， 主要负责管理 文件系统的命名空间、集群配置信息和存储块的复制等。NameNode 会将文件系统的Meta-data 存储在内存中，这些信息主要包括了文件信息，每个文件对应的文件块的信息和每个 文件块DataNode的信息等。</p>
+</li>
+<li>
+<p>DataNode是文件存储的基本单元， 它将Block 存储在本地文件系统中，保存了Block 的meta-data,同时 周期性地将所有存在的Block信息发送给NameNode.</p>
+</li>
+<li>
+<p>Client 就是需要获取分布式文件系统文件的应用程序。</p>
+</li>
+<li>
+<p>Client读取文件信息</p>
+</li>
+</ul>
+<h3 id="hadoop-shell命令">Hadoop Shell命令</h3>
+<p>实际上是属性，命令为：<code>hadoop fs -xx</code></p>
+<ul>
+<li>
+<p><code>cat</code>:</p>
+</li>
+<li>
+<p><code>chgrp</code>: change group</p>
+</li>
+<li>
+<p><code>chmod</code>:</p>
+</li>
+<li>
+<p><code>chown</code></p>
+</li>
+<li>
+<p><code>copyFromLocal</code></p>
+</li>
+<li>
+<p><code>copyToLocal</code></p>
+</li>
+<li>
+<p><code>cp</code>: copy</p>
+</li>
+<li>
+<p><code>du</code>：显示目录中所有文件的大小</p>
+</li>
+<li>
+<p><code>dus</code>：显示单个文件大小</p>
+</li>
+<li>
+<p><code>expunge</code>：清空回收站</p>
+</li>
+<li>
+<p><code>get</code>：复制到本地</p>
+</li>
+<li>
+<p><code>getmerge</code>：将 source dir 中的文件链接成 local target dir</p>
+</li>
+<li>
+<p>ls</p>
+</li>
+<li>
+<p>lsr：递归ls</p>
+</li>
+<li>
+<p>mkdir</p>
+</li>
+<li>
+<p>movefromLocal</p>
+</li>
+<li>
+<p>mv</p>
+</li>
+<li>
+<p>put：本地到远程</p>
+</li>
+<li>
+<p>rm</p>
+</li>
+<li>
+<p>rmr：递归rm</p>
+</li>
+<li>
+<p>setrep：改变副本数</p>
+</li>
+<li>
+<p>stat：返回指定路径的统计信息</p>
+</li>
+<li>
+<p>tail：将尾部1kb的字节输出到stdout</p>
+</li>
+<li>
+<p>test：检测文件是否存在</p>
+</li>
+<li>
+<p>text：将源文件输出为文本格式</p>
+</li>
+<li>
+<p>touchz：新建一个0自己的文件</p>
+</li>
+</ul>
+<p>Hadoop管理命令：</p>
+<ul>
+<li>
+<p>distcp：分布式拷贝（集群之间）</p>
+</li>
+<li>
+<p>fsck：检查整个文件系统的健康情况</p>
+</li>
+<li>
+<p>jar：运行java文件</p>
+</li>
+<li>
+<p>job：用于和MapReduce交互</p>
+</li>
+<li>
+<p>balancer：运行集群平衡工具</p>
+</li>
+<li>
+<p>dfsadmin：运行一个dfs admin客户端</p>
+</li>
+<li>
+<p>namenode： 运行namenode</p>
+</li>
+</ul>
+<h3 id="java接口">java接口</h3>
+<p>Hadoop中关于文件操作类基本都在<code>org.apache.hadoop.fs</code>包中</p>
+<p>Hadoop类库中最终面向用户提供接口是<code>FileSystem</code></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// 获取FileSystem具体类</span></span>
+<span class="line"><span style="color:#F97583">static</span><span style="color:#E1E4E8"> FileSystem </span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(Configuration conf);</span></span>
+<span class="line"><span style="color:#6A737D">// 写文件</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> FSDataOutputStream </span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(Path f) throws IOException;</span></span>
+<span class="line"><span style="color:#6A737D">//读文件</span></span>
+<span class="line"><span style="color:#6A737D">// 上传文件到HDFS</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> copyFileLocalFile</span><span style="color:#E1E4E8">(Path src,Path dist);</span></span>
+<span class="line"><span style="color:#6A737D">// 重命名文件</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> rename</span><span style="color:#E1E4E8">(Path src, Path dist);</span></span>
+<span class="line"><span style="color:#6A737D">// 删除文件&#x26;目录</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> delete</span><span style="color:#E1E4E8">(Path f, </span><span style="color:#F97583">boolean</span><span style="color:#E1E4E8"> recursive) throws IOException;</span></span>
+<span class="line"><span style="color:#6A737D">// 创建目录</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> mkdirs</span><span style="color:#E1E4E8">(Path f) throws IOException;</span></span>
+<span class="line"><span style="color:#6A737D">// 遍历目录</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> FileStatus</span><span style="color:#E1E4E8">[] </span><span style="color:#B392F0">listStatus</span><span style="color:#E1E4E8">(Path f) throws FileNotFoundException, IOException</span></span></code></pre>
+<h2 id="mapreduce">MapReduce</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> map</span><span style="color:#E1E4E8">(Object Key,Text value,Context context)</span></span>
+<span class="line"><span style="color:#E1E4E8">throws IOExcetion, InterruptedException{</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="mapreduce工作原理">MapReduce工作原理</h3>
+<p>MapReduce框架的运作完全基于“键值对”，即数据的输入是一批“键值对” (key-value) ，生成的结果也是批“键值对”，只是有时候它们的类型不一样而已。Key和value的类由于需要支持被序列化 (Serealire) 操作，所以它们必须要实现<code>Writable</code> 接口，而且key的类还必须实现<code>WirtableComparable</code>接口，使得可以让框架对数据集的执行排序操作，MapRedtre运行机制，按照时间顺序包括:输入分片(input split)、map 阶段、combiner 阶段、shuffle阶段和reduce阶段。</p>
+<p>在进行map计算之前，MapReduce会根据输入文件计算输入分片</p>
+<h3 id="yarn运行流程">YARN运行流程</h3>
+<ol>
+<li>
+<p>JobClient 向YARY中提交应用程序，其中 包括ApplicationMaster 程序、启动ApplicationMaster的命令、用户程序、环境变量、作业信息、文件位置信息等</p>
+</li>
+<li>
+<p>RecourseManager为该应用程序分配第一个 Container. 并与对应的 Node-Manager 通信（通过心跳方式），更求它在这个Container中启动应用程序的ApplicationMaster</p>
+</li>
+<li>
+<p>ApplicationMaster首先向ReoourceManager注册，这样用 户可以直接通过ResourceManager查看应用程序的运行状态。然后它将为各个任务申请资源，并监控它的运行状，直到运行结束</p>
+</li>
+<li>
+<p>ApplicationMaster 采用轮询的方式通过RPC协议向ResourceManager申请和领取资源</p>
+</li>
+<li>
+<p>一旦ApplicationMaster申请到资源后，便与对应的NodeManager通信，要求它启动任务</p>
+</li>
+<li>
+<p>NodeManager为任务设置好运行环境(包括环境变量、JAR包、二进制程序等)后，将任务启动命令写到一个脚本中， 并通过运行该脚本启动任务。</p>
+</li>
+<li>
+<p>各个任务通过某个RPC协议向AplcationMaster汇报自己的状态和进度，以让ApplicationMaster随时掌握各个任务的运行状态，从而可以在任务失败时重新启动任务。</p>
+</li>
+<li>
+<p>应用程序运行完成后， ApplicationMaster向ResourceManager注销并关闭自己</p>
+</li>
+</ol>
+<h3 id="作业关键过程详解">作业关键过程详解</h3>
+<p><strong>map</strong>：map任务最终是交给Map任务执行器</p>
+<p><strong>Reduce</strong>：从所有map节点取到属于自己的map输出</p>
+<p><strong>Partitioner</strong>：当Mapper处理好数据后，需要使用Partitioner（分区器）确定怎样合理地将Mapper输出分配到Reduce上</p>
+<p><strong>Combiner</strong>：相当于一个本地的Reduce，主要是对Mapper输出的大量本地文件进行一次合并。Combiner函数执行时机可能是在map的merge操作完成之前</p>
+<h3 id="mapreduce各种输入输出">MapReduce各种输入输出</h3>
+<p><strong>InputFormat</strong>：负责处理MR的输入部分，来决定Map的数量，InputFormat</p>
+<p><strong>FileInputFormat</strong>：是所有以文件作为数据源的InputFormat实现的基类，FileInputFormat保存作为job输入的所有文件</p>
+<h2 id="mapreduce-设计模式">MapReduce 设计模式</h2>
+<ul>
+<li>
+<p><strong>过滤器模式</strong>：设定某种条件，当负责条件时保留数据，不符合条件时丢弃数据</p>
+</li>
+<li>
+<p><strong>Top N</strong>：根据数据集的排名，获取前N条记录</p>
+</li>
+<li>
+<p><strong>去重模式</strong>：去重</p>
+</li>
+<li>
+<p><strong>数据重组</strong>：按照一定的规划整理数据。数据重组要求划分的分区数量已经确定，划分分区的条件已经确定</p>
+</li>
+<li></li>
+</ul>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第一章-大数据的概念" data-astro-cid-xvrfupwn>第一章 大数据的概念</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#特征" data-astro-cid-xvrfupwn>特征</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hadoop生态圈" data-astro-cid-xvrfupwn>hadoop生态圈</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hadoop历史和版本" data-astro-cid-xvrfupwn>Hadoop历史和版本</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第二章-hadoop-组成与结构" data-astro-cid-xvrfupwn>第二章 Hadoop 组成与结构</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hdfs" data-astro-cid-xvrfupwn>HDFS</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#yarn架构" data-astro-cid-xvrfupwn>YARN架构</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第三章-hadoop运行模式与大数据技术框架" data-astro-cid-xvrfupwn>第三章 Hadoop运行模式与大数据技术框架</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#伪分布式模式" data-astro-cid-xvrfupwn>伪分布式模式</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#高可用模式" data-astro-cid-xvrfupwn>高可用模式</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#hdfs-1" data-astro-cid-xvrfupwn>HDFS</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hadoop-shell命令" data-astro-cid-xvrfupwn>Hadoop Shell命令</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#java接口" data-astro-cid-xvrfupwn>java接口</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#mapreduce" data-astro-cid-xvrfupwn>MapReduce</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#mapreduce工作原理" data-astro-cid-xvrfupwn>MapReduce工作原理</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#yarn运行流程" data-astro-cid-xvrfupwn>YARN运行流程</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#作业关键过程详解" data-astro-cid-xvrfupwn>作业关键过程详解</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#mapreduce各种输入输出" data-astro-cid-xvrfupwn>MapReduce各种输入输出</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#mapreduce-设计模式" data-astro-cid-xvrfupwn>MapReduce 设计模式</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

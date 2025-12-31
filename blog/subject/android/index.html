@@ -1,0 +1,553 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/subject/android/"><!-- Primary Meta Tags --><title>Android 60问60答 （一篇复习整个Android）</title><meta name="title" content="Android 60问60答 （一篇复习整个Android）"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/subject/android/"><meta property="og:title" content="Android 60问60答 （一篇复习整个Android）"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/subject/android/"><meta property="twitter:title" content="Android 60问60答 （一篇复习整个Android）"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>Android 60问60答 （一篇复习整个Android）</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="android-60问60答-一篇复习整个android">Android 60问60答 （一篇复习整个Android）</h1>
+<h2 id="有哪些移动端平台">有哪些移动端平台？</h2>
+<p>厂商开发平台：</p>
+<ul>
+<li>
+<p>los</p>
+</li>
+<li>
+<p>黑莓（blackBerry）</p>
+</li>
+</ul>
+<p>第三方私有平台：第三方开发供移动设备厂商使用</p>
+<ul>
+<li>WindowsMobile</li>
+</ul>
+<p>免费开源平台：</p>
+<ul>
+<li>
+<p>Android</p>
+</li>
+<li>
+<p>Symbian</p>
+</li>
+</ul>
+<h2 id="android中linux内核的作用">Android中Linux内核的作用</h2>
+<ul>
+<li>
+<p>充当用户和设备之间的接口。</p>
+</li>
+<li>
+<p>管理所用活动内存和资源共享</p>
+</li>
+<li>
+<p>充当设备上所安装的应用的主机</p>
+</li>
+<li>
+<p>常由硬件制造商使用，因为它提供一个硬件抽象层，可在硬件发生变化时，确保上层保持不变</p>
+</li>
+</ul>
+<h2 id="android使用的数据库是">Android使用的数据库是？</h2>
+<p>SQLite，提供可用于所有应用的功能强大的轻量级关系数据库</p>
+<h2 id="android有哪些构建块">Android有哪些构建块？</h2>
+<ul>
+<li>
+<p>活动：专为一个清晰的目的提供独特的可视化UI</p>
+</li>
+<li>
+<p>服务：始终在后台，完成特定的任务</p>
+</li>
+<li>
+<p>内容提供者：存储和检索存储在文件、SQLite、web或任何其他持久化存储位置的数据</p>
+</li>
+<li>
+<p>广播接收器：相应系统范围内广播通知的应用的组成部分</p>
+</li>
+</ul>
+<h2 id="android项目的目录结构">Android项目的目录结构</h2>
+<ul>
+<li>
+<p><code>/src/main/java</code>：项目使用的java源文件</p>
+</li>
+<li>
+<p><code>/build</code>：编译后生成文件</p>
+</li>
+<li>
+<p><code>libs</code>：专有库</p>
+</li>
+<li>
+<p><code>/src/main/resourse</code>：应用资源文件，有</p>
+<ul>
+<li>
+<p>Drawable：位图文件或者绘制对象资源类型的xml文件</p>
+</li>
+<li>
+<p>Mipmap：使用于不同启动器图标密度的可会址对象文件</p>
+</li>
+<li>
+<p>Layout：用于定义用户界面布局的XML文件</p>
+</li>
+<li>
+<p>Menu：定义应用菜单的XML文件</p>
+</li>
+<li>
+<p>Raw：需要以原始形式保存的任意文件</p>
+</li>
+<li>
+<p>Values：包括字符串、整数、颜色等简单值的xml文件</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="小部件的常用属性">小部件的常用属性</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>属性名称</th><th>关联方法</th><th>描述</th></tr></thead><tbody><tr><td>android:layout_gravity</td><td></td><td>定义如何在布局容器内对齐小部件</td></tr><tr><td>android_gravity</td><td>setGravity(int)</td><td>设置对象在容器中的放置</td></tr><tr><td>android:layout_weight</td><td></td><td>指定小部件的大小比例。如果不拉伸则设置为0，否则根据权重拉伸</td></tr></tbody></table>
+<h3 id="android颜色表示">Android颜色表示</h3>
+<p>AARRGGBB</p>
+<p>透明度｜红｜绿｜蓝</p>
+<h2 id="listview小部件的作用">ListView小部件的作用</h2>
+<p>此小部件向用户显示一个列表，它与Java中的列表框组件类似，ListView默认支持垂直滚动。要想使用小部件，如下所示：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">ListView</span><span style="color:#B392F0"> android:id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"@id/listview"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_width</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"match_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layoutheight</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"warp_content"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">ListView</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="imageview小部件">ImageView小部件</h2>
+<p>用于显示图像，可以从其他资源（例如drawable目录、因特网、内容提供者）加载图像，它根据源图像的大小调整自己的尺寸。要想使用该小部件，如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">ImageView</span><span style="color:#B392F0"> android:id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"@id/imageview"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_width</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"match_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layoutheight</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"warp_content"</span></span>
+<span class="line"><span style="color:#B392F0">    android:src</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"@drawable/map"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">IamgeView</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="webview小组件">WebView小组件</h2>
+<p>用于显示网页，使用如下</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">WebView</span><span style="color:#B392F0"> android:id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"@id/webview"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_width</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"match_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layoutheight</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"warp_content"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">WebView</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>要想加载网页需要在Java中调用：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">WebView view </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (WebView)</span><span style="color:#B392F0">findViewById</span><span style="color:#E1E4E8">(R.id.webview);</span></span>
+<span class="line"><span style="color:#E1E4E8">view.</span><span style="color:#B392F0">loadUrl</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://google.com"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h2 id="android布局有那些">Android布局有那些？</h2>
+<h3 id="表格布局">表格布局</h3>
+<p>此布局以行和列的形式排列其子视图。表格航对象创建可容纳小部件的行，表格布局的最大列数取决于用最大列数分割的行。</p>
+<p>使用表格布局如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">TableLayout</span><span style="color:#B392F0"> xmlns:android</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"略"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_height</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"fill_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_height</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"fill_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:stretchColumns</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">TableRow</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">TextView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">TextView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">TextView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#6A737D">        &#x3C;!-- 这里有三个元素，故是三列 --></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">TableRow</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">TableLayout</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="框架布局">框架布局</h3>
+<p>以堆栈格式从上往下添加视图，项位置用<code>android:gravity</code>属性设置，布局的大小取决于最大视图的大小。</p>
+<p>使用框架布局如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">FrameLayout</span><span style="color:#E1E4E8"> xmlns:android:</span><span style="color:#9ECBFF">"略"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_height</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"fill_parent"</span></span>
+<span class="line"><span style="color:#B392F0">    android:layout_height</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"fill_parent"</span></span>
+<span class="line"><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">ImageView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">ImageView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">ImageView</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#6A737D">    &#x3C;!-- 这里有三个元素，故是三行 --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">FrameLayout</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="使用那个方法来关联活动">使用那个方法来关联活动？</h2>
+<p><code>setContentView()</code>方法用于将UI与活动关联，用法如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onCreate</span><span style="color:#E1E4E8">(Bundle saveInstanceState){</span></span>
+<span class="line"><span style="color:#79B8FF">    super</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">onCreate</span><span style="color:#E1E4E8">(sabeInstanceState);</span></span>
+<span class="line"><span style="color:#B392F0">    setContentView</span><span style="color:#E1E4E8">(R.layout.main);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="如何注册活动为主活动">如何注册活动为主活动？</h2>
+<p>只有在<code>manifest.xml</code>中注册过的活动才能被系统访问，要注册活动如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">manifest</span><span style="color:#E1E4E8"> ...></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">application</span><span style="color:#E1E4E8"> ...></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">activity</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"..."</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">application</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">manifest</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>activity标签中也可以添加一些属性，比如可以指定某活动为主活动：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">activity</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">".mainActivity"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">intent-filter</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">action</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.intent.action.MAIN"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">categort</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.intent.category.LAUNCHER"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">intent-filter</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">activity</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="活动生命周期">活动生命周期？</h2>
+<ul>
+<li>
+<p>正在运行：活动对于用户是在屏幕上可见的</p>
+</li>
+<li>
+<p>已暂停：焦点在另一个活动上，但是此活动依然可见</p>
+</li>
+<li>
+<p>已停止；活动被另一个活动安全覆盖，且现处于后台中。停止的活动也是活动的，其对象依然保留在内存中</p>
+</li>
+</ul>
+<h3 id="活动生命周期方法">活动生命周期方法</h3>
+<ul>
+<li><strong>onResume</strong>：此方法在活动开始与用户交互之前调用。当活动位于栈顶且准备好接收用户输入就会调用。</li>
+</ul>
+<p><img alt="在这里插入图片描述" loading="lazy" decoding="async" fetchpriority="auto" width="1920" height="1200" src="/_astro/default.DOL7xRHI_ZmS8NF.webp" ></p>
+<h2 id="intent的作用">Intent的作用</h2>
+<p>意图（intent）是用于激活应用组件（活动、服务和广播接收器）的消息</p>
+<h2 id="如何使用显式intent启动活动">如何使用显式intent启动活动？</h2>
+<p>显式Intent指定目标组件的名称以激活组件。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Intent</span><span style="color:#E1E4E8">(MyFirstActivity.this,MySecondActicity.class);</span></span>
+<span class="line"><span style="color:#B392F0">startActivity</span><span style="color:#E1E4E8">(intent);</span></span></code></pre>
+<h2 id="如何使用隐式intent启动活动">如何使用隐式intent启动活动？</h2>
+<p>隐式intent用于激活其他应用中的组件，不通过名称指定目标组件。要使得隐式的intent生效，<strong>需要为被调用的组件设置intent过滤器，<code>intent-filter</code>在<code>manifest.xml</code>中设置</strong>。之后可以使用隐式intent表述action，Android会自动与现有组件的intent过滤器比较，找到合适的组件</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Intent</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">setAction</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"com.anna.chapter6.a6"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">addCategory</span><span style="color:#E1E4E8">(Intent.CATEGORY_DEAFULT);</span></span>
+<span class="line"><span style="color:#B392F0">startActivity</span><span style="color:#E1E4E8">(intent);</span></span></code></pre>
+<h2 id="如何使用intent在组件之间传递数据">如何使用Intent在组件之间传递数据</h2>
+<h3 id="使用intent">使用Intent</h3>
+<p>写入方：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">putExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">"Nicole"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Intent</span><span style="color:#E1E4E8">(MainActivity.this,OtherActivity.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">putExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Nicole"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">putExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"age"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">putExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"address"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Shenzhen"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>读取方：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getIntent</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">String nameString </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> intent.</span><span style="color:#B392F0">getStringExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> age </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> intent.</span><span style="color:#B392F0">getIntExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"age"</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">String addressString </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> intent.</span><span style="color:#B392F0">getStringExtra</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"address"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="使用bundle">使用Bundle</h3>
+<p>写入方：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Intent</span><span style="color:#E1E4E8">(MainActivity.this,OtherActivity.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">Bundle bundle </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Bundle</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">bundle.</span><span style="color:#B392F0">putString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Ben"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">bundle.</span><span style="color:#B392F0">putInt</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"age"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">28</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">bundle.</span><span style="color:#B392F0">putString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"address"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"China"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">intent.</span><span style="color:#B392F0">putExtras</span><span style="color:#E1E4E8">(bundle); </span><span style="color:#6A737D">//将bundle传入intent中。</span></span></code></pre>
+<p>读取方：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getIntent</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">Bundle bundle </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> intent.</span><span style="color:#B392F0">getExtras</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">String nameString </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> bundle.</span><span style="color:#B392F0">getString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> age </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> bundle.</span><span style="color:#B392F0">getInt</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"age"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">String addressString </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> bundle.</span><span style="color:#B392F0">getString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"address"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h2 id="adb是什么">ADB是什么</h2>
+<p>Android Debug Bridge（ADB）充当开发硬件与设备/仿真器之间的通信媒介</p>
+<h2 id="adb有哪些常用命令">ADB有哪些常用命令？</h2>
+<ul>
+<li>
+<p>device：生成已连接的设备列表</p>
+</li>
+<li>
+<p>pull：将指定文件从设备复制到计算机</p>
+</li>
+<li>
+<p>push：将指定文件从计算机复制到设备</p>
+</li>
+<li>
+<p><code>install&#x3C;path></code>：在设备上安装应用（指定路径）</p>
+</li>
+</ul>
+<h2 id="logcat有哪些日志级别">Logcat有哪些日志级别？</h2>
+<ul>
+<li>
+<p>错误，使用Log.e()记录</p>
+</li>
+<li>
+<p>警告，使用Log.w()记录</p>
+</li>
+<li>
+<p>信息，使用Log.i()记录</p>
+</li>
+<li>
+<p>调试，使用Log.d()记录</p>
+</li>
+<li>
+<p>详细信息，使用Log.v()记录</p>
+</li>
+</ul>
+<h2 id="内部存储区与外部存储器的概念">内部存储区与外部存储器的概念</h2>
+<p>设备内部的储存，以文件存储，属于应用私有</p>
+<p>外部存储器存放在SD卡，所有应用与用户都可以访问</p>
+<h2 id="共享首选项是什么">共享首选项是什么？</h2>
+<p>共享首选项是轻量级机制，用于存储基本数据类型的键值对，是快速存储默认值、类实例变量、用户界面状态以及用户偏好的理想方式</p>
+<h2 id="一个程序的数据库在哪">一个程序的数据库在哪？</h2>
+<p><code>/data/data/&#x3C;package name>/databases</code></p>
+<h2 id="如何以编程的方式创建数据库">如何以编程的方式创建数据库？</h2>
+<p>在Android中，可以使用<code>android.database.sqlite.SQLiteDatabase</code>以编程方式创建数据库。SQLiteDatabase类公开各种方法来管理SQLite数据库。</p>
+<h2 id="操作数据库的方法有哪些">操作数据库的方法有哪些？</h2>
+<ul>
+<li>
+<p><code>openOrCreateDatabase(String path,SQLiteDatabase.CursorFactory factory,DatabaseErrorHandler errorHandler)</code></p>
+</li>
+<li>
+<p><code>updata(String table,ContentValue values,String whereClause,String[] whereArgs)</code></p>
+</li>
+<li>
+<p><code>query(SQLiteDatabase db,String[] columns, String selection, Srtring[] selections,String groupby,String having,String sortOrder)</code></p>
+</li>
+<li>
+<p><code>getColumnIndex(String ColumnName)</code> 返回给的列名的基于0的索引，或1</p>
+</li>
+<li>
+<p><code>getColumnName(int ColumnIndex)</code></p>
+</li>
+<li>
+<p><code>excute()</code> 如果不是SELECT、INSERT、DELETE或UPDATE，则执行SQL语句</p>
+</li>
+</ul>
+<h2 id="如何检索受sql语句影响的行数">如何检索受SQL语句影响的行数？</h2>
+<p>使用<code>excuteUpadataDelete()</code>或<code>excuteInsert()</code>方法</p>
+<h2 id="如何访问内容提供者公开的数据">如何访问内容提供者公开的数据？</h2>
+<p>使用<code>android.content.ContentResolver</code>类</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">ContentResolver resolver </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getContentResolver</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="如何读写内部存储区">如何读写内部存储区</h2>
+<p><strong>写文件</strong>：</p>
+<ol>
+<li>
+<p>使用<code>android.content.Context</code>类的<code>openFileOutput()</code>方法打开或创建文件</p>
+</li>
+<li>
+<p>使用<code>java.io.FileOutputStream</code>类的<code>write()</code>方法将数据写入文件</p>
+</li>
+<li>
+<p>使用<code>java.io.FileOutputStream</code>类的<code>close()</code>方法关闭文件</p>
+</li>
+</ol>
+<p><strong>读文件</strong></p>
+<ol>
+<li>
+<p>使用<code>android.content.Context</code>类的<code>openFileOutput()</code>方法打开或创建文件</p>
+</li>
+<li>
+<p>使用<code>java.io.FileOutputStream</code>类的<code>read()</code>方法从文件读取数据</p>
+</li>
+<li>
+<p>使用<code>java.io.FileOutputStream</code>类的<code>close()</code>方法关闭文件</p>
+</li>
+</ol>
+<h2 id="getfiledir与getdir的作用">getFIleDir与getDir的作用</h2>
+<ul>
+<li>
+<p><code>getFileDir()</code>：获取用于保存的内部文件的文件系统目录的绝对路径</p>
+</li>
+<li>
+<p><code>getDIr(String dirname,int node)</code>：在您的内部存储空间创建或打开一个现有目录，接收以下参数：</p>
+<ul>
+<li>
+<p>dirname：要检索的文件夹名称</p>
+</li>
+<li>
+<p>mode：文件的创建模式</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="外部环境enviroment的有哪些状态">外部环境Enviroment的有哪些状态？</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>常量</th><th>描述</th></tr></thead><tbody><tr><td>MEDID_MOUNTED</td><td>已经在加载，可以读写访问</td></tr><tr><td>MEDID_REMOVED</td><td>不存在</td></tr><tr><td>MEDID_UNMOUNTED</td><td>已存在但是没有加载</td></tr><tr><td>MEDID_MOUNTED_READ_ONLY</td><td>已存在但只读</td></tr></tbody></table>
+<h2 id=""></h2>
+<p><code>getExternalStorageDirectory(String type)</code>：检索外部存储目录</p>
+<p><code>getExternalStorageState()</code>：检索外部存储设备当前的状态，返回Environment中的某个常量</p>
+<h2 id="如何读写外部设备">如何读写外部设备</h2>
+<p>需要使用<code>getExternalStorageDirectory</code>方法获取到外部存储的路径，然后读写过程与内部存储的读写方式相同</p>
+<p>⚠️：写入之前需要在manifest文件中指定所需的权限</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">user-permission</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.permission.WRITE_EXTERNAL_STORAGE"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">user-permission</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="如何检索公共首选项">如何检索公共首选项</h2>
+<p>需要使用<code>SharedPerferences</code>接口提供的方法</p>
+<ul>
+<li>
+<p><code>contains(String key)</code>：检查首选项是否包含特定首选项，参数指定要检查的key</p>
+</li>
+<li>
+<p><code>getXXX(String key,XXX defValue)</code>：它从首选项中检索指定数据类型的值</p>
+</li>
+</ul>
+<h2 id="如何获取网络权限">如何获取网络权限</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">user-permission</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.permission.INTERNET"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">user-permission</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="如何启动一个服务">如何启动一个服务</h2>
+<p>可以使用<code>startService)</code>方法从引用组建启动服务</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Intent intent </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Intent</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">,myService.class);</span></span>
+<span class="line"><span style="color:#B392F0">startService</span><span style="color:#E1E4E8">(intent);</span></span></code></pre>
+<h2 id="启动的服务与绑定的服务的区别">启动的服务与绑定的服务的区别</h2>
+<h3 id="启动的服务">启动的服务</h3>
+<p>启动的服务<strong>生命周期</strong>如下：
+<code>onCreate()</code>---><code>onStartCommand()</code>（<code>onStart()</code>方法已过时） ---> <code>onDestory()</code></p>
+<p><strong>特点</strong>：</p>
+<p>一旦服务开启跟调用者(开启者)就没有任何关系了。
+开启者退出了，开启者挂了，服务还在后台长期的运行。
+开启者<strong>不能调用</strong>服务里面的方法。</p>
+<h3 id="绑定的服务">绑定的服务</h3>
+<p>绑定的服务生命周期如下：</p>
+<p><code>onCreate()</code> ---><code>onBind()</code>---><code>onunbind()</code>---><code>onDestory()</code></p>
+<p><strong>注意</strong>：绑定服务不会调用<code>onstart()</code>或者<code>onstartcommand()</code>方法</p>
+<p><strong>特点</strong>：</p>
+<p>bind的方式开启服务，绑定服务，调用者挂了，服务也会跟着挂掉。<br>
+绑定者可以调用服务里面的方法。</p>
+<h2 id="什么是广播接收器">什么是广播接收器？</h2>
+<p>广播以intent的形式传达。要接收和响应广播，应用要包括一个称为广播接收器的组件。广播接收器不提供UI。不过，它可以创建状态栏通知，以在收到播时向用户发出提示</p>
+<h2 id="创建广播接收器要调用哪个方法">创建广播接收器要调用哪个方法？</h2>
+<ul>
+<li>
+<p>创建一个类来拓展BroadcastReceiver类</p>
+</li>
+<li>
+<p>在这个派生类中重写onReceive()方法</p>
+</li>
+</ul>
+<h2 id="如何注册广播接收器">如何注册广播接收器？</h2>
+<p>以下两种方法都可以：</p>
+<p><strong>在订单文件中配置</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">application</span><span style="color:#E1E4E8"> ...></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">receiver</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"./myReceiver"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">intent-filter</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">action</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.net.conn.CONNECTIVITY_CHANGE"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">intent-filter</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">receiver</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">user-permission</span><span style="color:#B392F0"> android:name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"android.permisson.ACCESSS_NETWORK_STATE"</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">application</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><strong>以动态的方式</strong></p>
+<p>使用与主应用线程中的过滤器匹配的广播intent调用<code>registerReceiver</code>方法，这个方法的签名是：<code>public abstract Intent registerReceiver(BroadcastReceiver reveiver, IntentFilter filter)</code></p>
+<h2 id="创建一个菜单资源要用哪些元素">创建一个菜单资源要用哪些元素？</h2>
+<ul>
+<li>
+<p><code>&#x3C;menu></code>：菜单资源的根结点</p>
+</li>
+<li>
+<p><code>&#x3C;item></code>：用于创建菜单项</p>
+</li>
+<li>
+<p><code>&#x3C;group></code>：是一个可选元素，允许对菜单项进行分类，从而允许共享属性</p>
+</li>
+</ul>
+<h2 id="创建菜单要使用哪两个方法">创建菜单要使用哪两个方法？</h2>
+<ul>
+<li>
+<p>要重写<code>onCreateIotinsMenu()</code>方法</p>
+</li>
+<li>
+<p>在这个方法中创建<code>android.view.MenuInflator</code>类的<code>expand</code>方法来拓展菜单</p>
+</li>
+</ul>
+<h2 id="viewpage是什么">ViewPage是什么？</h2>
+<p>可以使用AndroidX的ViewPage小部件创建滑动视窗</p>
+<h2 id="如何将主题引用到整个引用">如何将主题引用到整个引用？</h2>
+<p>在manifest中将<code>android:thene</code>属性添加到application标签</p>
+<h2 id="自定义控件要拓展哪个类">自定义控件要拓展哪个类？</h2>
+<p>View</p>
+<h2 id="setgravity怎么使用">setGravity怎么使用？</h2>
+<p>可以使用<code>setGravity(gavity,xOffset,yOffset)</code>方法将非常灵活地将消息条放在屏幕的任何位置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Toast toast </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Toast,</span><span style="color:#B392F0">makeText</span><span style="color:#E1E4E8">(...);</span></span>
+<span class="line"><span style="color:#E1E4E8">toast.</span><span style="color:#B392F0">setGravity</span><span style="color:#E1E4E8">(Gravity.BOTTOM</span><span style="color:#F97583">|</span><span style="color:#E1E4E8">Gravity.LEFT,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">toast.</span><span style="color:#B392F0">show</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h2 id="设置闹铃到几种方法的区别">设置闹铃到几种方法的区别？</h2>
+<ul>
+<li>
+<p>set：设置闹铃</p>
+</li>
+<li>
+<p>setRepeating：设置重复闹铃</p>
+</li>
+<li>
+<p>setInexactRepeating：按照定义的时间间隔重复闹铃，但如果设备处于休眠状态则不会唤醒，这样更省电，即不准确的重复闹铃。</p>
+</li>
+</ul>
+<h2 id="常见的定位技术有哪四种">常见的定位技术有哪四种？</h2>
+<ul>
+<li>
+<p>GPS</p>
+</li>
+<li>
+<p>WiFi定位</p>
+</li>
+<li>
+<p>IP地址定位</p>
+</li>
+<li>
+<p>三角测量法</p>
+</li>
+</ul>
+<h2 id="如何侦听传入的sms">如何侦听传入的SMS</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Bundle bundle </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> intent.</span><span style="color:#B392F0">getExtras</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8">(buddle</span><span style="color:#F97583">!=</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#F97583">    Object</span><span style="color:#E1E4E8">[] pdus </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Object</span><span style="color:#E1E4E8">[]) bundle.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"pdus);</span></span>
+<span class="line"><span style="color:#9ECBFF">    SmsMessage[] messages = new SmsMessage[pdus.length];</span></span>
+<span class="line"><span style="color:#9ECBFF">    for(int i=0;i&#x3C;pdus.length;i++){</span></span>
+<span class="line"><span style="color:#9ECBFF">        messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i])</span></span>
+<span class="line"><span style="color:#9ECBFF">    }</span></span>
+<span class="line"><span style="color:#9ECBFF">}</span></span></code></pre>
+<h2 id="如何监听电话状态">如何监听电话状态？</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">String nameService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Content.TELEPHONE_SERVICE;</span></span>
+<span class="line"><span style="color:#E1E4E8">TelephonyManager teleManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (TelephoneManager)</span><span style="color:#B392F0">getSystemService</span><span style="color:#E1E4E8">(nameService);</span></span></code></pre>
+<h2 id="canvas与paint的区别">Canvas与Paint的区别</h2>
+<p>Canvas（画布）表示可以绘制图形和图像的表面。提供了多种方法来绘制简单的图形、路径、位图和文本。</p>
+<p>Paint（画笔）提供绘制富豪、文本和图形的样式和颜色的相关信息。</p>
+<h2 id="如何画一个圆">如何画一个圆？</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">cavas.</span><span style="color:#B392F0">onDraw</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#6A737D">    // drawCircle(float cx,float cy,float radius,Paint paint);</span></span>
+<span class="line"><span style="color:#E1E4E8">    cavas.</span><span style="color:#B392F0">drawCircle</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">,paint);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="mediaplayer的getcurrentposition与setonperparedlistener方法的作用">MediaPlayer的getCurrentPosition与setOnPerparedListener方法的作用</h2>
+<ul>
+<li>
+<p><code>getCurrentPosition()</code>：返回当前播放的位置，单位毫秒</p>
+</li>
+<li>
+<p><code>setOnPerparedListener(MediaPlayer.onPerparedListener listener)</code>：注册一个回调函数，当媒体源准备好播放时，可调用该函数</p>
+</li>
+</ul>
+<h2 id="在哪里声明权限">在哪里声明权限？</h2>
+<p>AndroidManifest.xml</p>
+<h2 id="如何运行时申请权限">如何运行时申请权限？</h2>
+<p>调用<code>checkSelfPermisson(String perm)</code>来检查权限，以保证用户没有把权限撤销</p>
+<p>使用<code>requestPermissions(String permissions,int requestCode)</code>来请求权限，参数一是请求的权限，参数二随便给一个数字</p>
+<h2 id="android打包成什么">Android打包成什么？</h2>
+<p>.APK</p>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#有哪些移动端平台" data-astro-cid-xvrfupwn>有哪些移动端平台？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android中linux内核的作用" data-astro-cid-xvrfupwn>Android中Linux内核的作用</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android使用的数据库是" data-astro-cid-xvrfupwn>Android使用的数据库是？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android有哪些构建块" data-astro-cid-xvrfupwn>Android有哪些构建块？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android项目的目录结构" data-astro-cid-xvrfupwn>Android项目的目录结构</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#小部件的常用属性" data-astro-cid-xvrfupwn>小部件的常用属性</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#android颜色表示" data-astro-cid-xvrfupwn>Android颜色表示</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#listview小部件的作用" data-astro-cid-xvrfupwn>ListView小部件的作用</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#imageview小部件" data-astro-cid-xvrfupwn>ImageView小部件</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#webview小组件" data-astro-cid-xvrfupwn>WebView小组件</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android布局有那些" data-astro-cid-xvrfupwn>Android布局有那些？</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#表格布局" data-astro-cid-xvrfupwn>表格布局</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#框架布局" data-astro-cid-xvrfupwn>框架布局</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#使用那个方法来关联活动" data-astro-cid-xvrfupwn>使用那个方法来关联活动？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何注册活动为主活动" data-astro-cid-xvrfupwn>如何注册活动为主活动？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#活动生命周期" data-astro-cid-xvrfupwn>活动生命周期？</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#活动生命周期方法" data-astro-cid-xvrfupwn>活动生命周期方法</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#intent的作用" data-astro-cid-xvrfupwn>Intent的作用</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何使用显式intent启动活动" data-astro-cid-xvrfupwn>如何使用显式intent启动活动？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何使用隐式intent启动活动" data-astro-cid-xvrfupwn>如何使用隐式intent启动活动？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何使用intent在组件之间传递数据" data-astro-cid-xvrfupwn>如何使用Intent在组件之间传递数据</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#使用intent" data-astro-cid-xvrfupwn>使用Intent</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#使用bundle" data-astro-cid-xvrfupwn>使用Bundle</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#adb是什么" data-astro-cid-xvrfupwn>ADB是什么</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#adb有哪些常用命令" data-astro-cid-xvrfupwn>ADB有哪些常用命令？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#logcat有哪些日志级别" data-astro-cid-xvrfupwn>Logcat有哪些日志级别？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#内部存储区与外部存储器的概念" data-astro-cid-xvrfupwn>内部存储区与外部存储器的概念</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#共享首选项是什么" data-astro-cid-xvrfupwn>共享首选项是什么？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#一个程序的数据库在哪" data-astro-cid-xvrfupwn>一个程序的数据库在哪？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何以编程的方式创建数据库" data-astro-cid-xvrfupwn>如何以编程的方式创建数据库？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#操作数据库的方法有哪些" data-astro-cid-xvrfupwn>操作数据库的方法有哪些？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何检索受sql语句影响的行数" data-astro-cid-xvrfupwn>如何检索受SQL语句影响的行数？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何访问内容提供者公开的数据" data-astro-cid-xvrfupwn>如何访问内容提供者公开的数据？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何读写内部存储区" data-astro-cid-xvrfupwn>如何读写内部存储区</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#getfiledir与getdir的作用" data-astro-cid-xvrfupwn>getFIleDir与getDir的作用</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#外部环境enviroment的有哪些状态" data-astro-cid-xvrfupwn>外部环境Enviroment的有哪些状态？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#" data-astro-cid-xvrfupwn></a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何读写外部设备" data-astro-cid-xvrfupwn>如何读写外部设备</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何检索公共首选项" data-astro-cid-xvrfupwn>如何检索公共首选项</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何获取网络权限" data-astro-cid-xvrfupwn>如何获取网络权限</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何启动一个服务" data-astro-cid-xvrfupwn>如何启动一个服务</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#启动的服务与绑定的服务的区别" data-astro-cid-xvrfupwn>启动的服务与绑定的服务的区别</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#启动的服务" data-astro-cid-xvrfupwn>启动的服务</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#绑定的服务" data-astro-cid-xvrfupwn>绑定的服务</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#什么是广播接收器" data-astro-cid-xvrfupwn>什么是广播接收器？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#创建广播接收器要调用哪个方法" data-astro-cid-xvrfupwn>创建广播接收器要调用哪个方法？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何注册广播接收器" data-astro-cid-xvrfupwn>如何注册广播接收器？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#创建一个菜单资源要用哪些元素" data-astro-cid-xvrfupwn>创建一个菜单资源要用哪些元素？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#创建菜单要使用哪两个方法" data-astro-cid-xvrfupwn>创建菜单要使用哪两个方法？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#viewpage是什么" data-astro-cid-xvrfupwn>ViewPage是什么？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何将主题引用到整个引用" data-astro-cid-xvrfupwn>如何将主题引用到整个引用？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#自定义控件要拓展哪个类" data-astro-cid-xvrfupwn>自定义控件要拓展哪个类？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#setgravity怎么使用" data-astro-cid-xvrfupwn>setGravity怎么使用？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#设置闹铃到几种方法的区别" data-astro-cid-xvrfupwn>设置闹铃到几种方法的区别？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#常见的定位技术有哪四种" data-astro-cid-xvrfupwn>常见的定位技术有哪四种？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何侦听传入的sms" data-astro-cid-xvrfupwn>如何侦听传入的SMS</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何监听电话状态" data-astro-cid-xvrfupwn>如何监听电话状态？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#canvas与paint的区别" data-astro-cid-xvrfupwn>Canvas与Paint的区别</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何画一个圆" data-astro-cid-xvrfupwn>如何画一个圆？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#mediaplayer的getcurrentposition与setonperparedlistener方法的作用" data-astro-cid-xvrfupwn>MediaPlayer的getCurrentPosition与setOnPerparedListener方法的作用</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#在哪里声明权限" data-astro-cid-xvrfupwn>在哪里声明权限？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#如何运行时申请权限" data-astro-cid-xvrfupwn>如何运行时申请权限？</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#android打包成什么" data-astro-cid-xvrfupwn>Android打包成什么？</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

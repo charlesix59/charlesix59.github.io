@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/subject/qccstp/kmp/"><!-- Primary Meta Tags --><title>软考复习之KMP算法</title><meta name="title" content="软考复习之KMP算法"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/subject/qccstp/kmp/"><meta property="og:title" content="软考复习之KMP算法"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/subject/qccstp/kmp/"><meta property="twitter:title" content="软考复习之KMP算法"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>软考复习之KMP算法</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="kmp算法">KMP算法</h1>
+<p>KMP算法我曾今写过一篇<a href="https://blog.csdn.net/Charlesix59/article/details/119875803">博客</a>讲过，但是我当时觉得这个算法好烂，就没细讲，后来发现他们还挺喜欢考这个算法的，于是我再开帖讲一下</p>
+<h2 id="自然语言描述">自然语言描述</h2>
+<p>自然语言描述是我根据《algorithm》的内容以及我自己的理解写出来的，，一般来说是正确的计算next[]与解释KMP的算法，这个方法比较考验悟性，但是原理确实是这样😂</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1679" height="971" src="/_astro/1.CVPu8qgQ_2dsWdi.webp" ></p>
+<h2 id="考研教材解释">考研教材解释</h2>
+<p>我们还是拿<code>pat=abcac</code>举例子，我们从a开始取字串，然后找前缀与后缀的最长相等长度</p>
+<ul>
+<li>
+<p>”a“最长相等长度为0</p>
+</li>
+<li>
+<p>“ab”最长相等长度0</p>
+</li>
+<li>
+<p>“abc”最长相等长度0</p>
+</li>
+<li>
+<p>“abca”最长相等长度1</p>
+</li>
+<li>
+<p>“abcac”最长相等长度0</p>
+</li>
+</ul>
+<p>所以我们可以得到PM={0,0,0,1,0}</p>
+<p>但是我们有公式<code>右移位数=已匹配的字符数-对应的部分匹配值</code></p>
+<p>然后 <mark>对应的部分匹配值 是 j 前一个值</mark>，于是为了方便我们把PM整体右移一位，并用-1作为next[0]的值，得到<code>next[]={-1,0,0,0,1}</code></p>
+<p>所以我们有公式：</p>
+<p><code>Move=(j-1)-next[j]</code></p>
+<p>这就相当于我们将J回退到：</p>
+<p><code>j回退到的位置=j-Move=j-((j-1)-next[j])=next[j]+1</code></p>
+<p>所以我们就可以都得到next[]的新的形式：</p>
+<p><code>next[]={0,1,1,1,2}</code></p>
+<p><mark>这里next[]的含义是在j处匹配失败后，j回退到的位置</mark></p>
+<h2 id="拓展更底层的匹配方法">拓展：更底层的匹配方法</h2>
+<p>实际上，KMP算法应该生成一个有限状态自动机（DFA），然后通过DFA去匹配字串</p>
+<p>继续按照<code>pat=abcac</code>为例，画出的DFA如下：</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2000" height="1200" src="/_astro/2.GDTMLI4v_1UFkJ.webp" ></p>
+<p>生成DFA的算法如下</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">/*KMP字符串查找*/</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> KMP</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">private:</span></span>
+<span class="line"><span style="color:#B392F0">	std</span><span style="color:#E1E4E8">::string pat;</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#F97583"> static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> r </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 256</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">	int</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">dfa[r];</span><span style="color:#6A737D">    //建立一个二维数组</span></span>
+<span class="line"><span style="color:#F97583">public:</span></span>
+<span class="line"><span style="color:#B392F0">	KMP</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">string</span><span style="color:#FFAB70"> pat</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">	{</span></span>
+<span class="line"><span style="color:#79B8FF">		this</span><span style="color:#E1E4E8">->pat </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pat;</span></span>
+<span class="line"><span style="color:#F97583">		int</span><span style="color:#E1E4E8"> m </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pat.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">		for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> r; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">		{</span></span>
+<span class="line"><span style="color:#E1E4E8">			dfa[i] </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[m];</span></span>
+<span class="line"><span style="color:#B392F0">			std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">fill</span><span style="color:#E1E4E8">(dfa[i], dfa[i] </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> m, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#E1E4E8">		dfa[pat[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]][</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">		for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">, j </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; j </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> m; j</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">		{</span></span>
+<span class="line"><span style="color:#F97583">			for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; c </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> r; c</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">			{</span></span>
+<span class="line"><span style="color:#E1E4E8">				dfa[c][j] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dfa[c][x];</span><span style="color:#6A737D">	//复制匹配失败情况下的值</span></span>
+<span class="line"><span style="color:#E1E4E8">			}</span></span>
+<span class="line"><span style="color:#E1E4E8">			dfa[pat[j]][j] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D">		//设置匹配成功情况下的值</span></span>
+<span class="line"><span style="color:#E1E4E8">			x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dfa[pat[j]][x];</span><span style="color:#6A737D">		//更新重启状态</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#F97583">	int</span><span style="color:#B392F0"> seatch</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">string</span><span style="color:#FFAB70"> txt</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">	{</span></span>
+<span class="line"><span style="color:#F97583">		int</span><span style="color:#E1E4E8"> i, j, n </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> txt.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">(), m </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pat.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">		for</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">, j </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> n</span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8">j </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> m; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">		{</span></span>
+<span class="line"><span style="color:#E1E4E8">			j </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dfa[txt[i]][j];</span></span>
+<span class="line"><span style="color:#E1E4E8">		}</span></span>
+<span class="line"><span style="color:#F97583">		if</span><span style="color:#E1E4E8"> (j </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> m)</span></span>
+<span class="line"><span style="color:#F97583">			return</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> m;</span><span style="color:#6A737D">		//找到匹配</span></span>
+<span class="line"><span style="color:#F97583">		else</span></span>
+<span class="line"><span style="color:#F97583">			return</span><span style="color:#E1E4E8"> n;</span><span style="color:#6A737D">		//未找到匹配</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span></code></pre>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#自然语言描述" data-astro-cid-xvrfupwn>自然语言描述</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#考研教材解释" data-astro-cid-xvrfupwn>考研教材解释</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#拓展更底层的匹配方法" data-astro-cid-xvrfupwn>拓展：更底层的匹配方法</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

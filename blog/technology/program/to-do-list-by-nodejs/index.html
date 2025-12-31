@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/technology/program/to-do-list-by-nodejs/"><!-- Primary Meta Tags --><title>使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行</title><meta name="title" content="使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/technology/program/to-do-list-by-nodejs/"><meta property="og:title" content="使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/technology/program/to-do-list-by-nodejs/"><meta property="twitter:title" content="使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>使用node.js创建一个todo列表——node.js服务器搭建、json读写以及使用pm2保持服务运行</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="使用nodejs创建一个todo列表nodejs服务器搭建以及json读写">使用node.js创建一个todo列表——node.js服务器搭建以及json读写</h1>
+<h2 id="前言">前言</h2>
+<p>前些日子学习了 nodejs ，顺理成章的想要找点东西练练手。恰好最近需要一个简介的todo list网页，因为之前用的一些todo list应用都被墙了，访问速度感人，于是就想自己搞一个todo。</p>
+<p>而恰好，我要搞的todo是一个非常简单的程序，非常适合用nodejs这样的解释型脚本语言来实现，比起java这样光搭框架就要半天的专注大型项目的语言，nodejs 的优势就是非明显了。</p>
+<!-- more -->
+<p>nodejs搭建服务器只需要去nodejs官网复制这样的一块代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> express</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'express'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Hi!'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3000</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Server ready'</span><span style="color:#E1E4E8">))</span></span></code></pre>
+<p>所以我们可以把更多的经历放在我们的业务实现上。</p>
+<h2 id="准备工作">准备工作</h2>
+<h3 id="需求分析">需求分析</h3>
+<p>在开始动工之前，要先列出需求。当时我的需求如下：</p>
+<ul>
+<li>
+<p>添加需要做的事情</p>
+</li>
+<li>
+<p>展示需要做的事情</p>
+</li>
+<li>
+<p>完成需要做的事情</p>
+</li>
+<li>
+<p>查看曾经完成的事情</p>
+</li>
+</ul>
+<h3 id="解决方案分析">解决方案分析</h3>
+<p>对于上述需求，我打算这样实现：</p>
+<ul>
+<li>
+<p>使用json文件系统实现持久化操作</p>
+</li>
+<li>
+<p>使用nodejs来获取数据</p>
+</li>
+<li>
+<p>使用nodejs来处理数据并储存数据</p>
+</li>
+</ul>
+<p>这样的话。明确了需求与实现方式，我们就可以动工了。</p>
+<h2 id="实现">实现</h2>
+<h3 id="json读写">json读写</h3>
+<p>nodejs提供了一套文件的读写的模块：<code>fs</code>。使用fs可以很简单的实现文本文件的读写。但是为了我们在开发的时候更加方便，我又将他封装成了一个专注json读写的方法：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//in jsonHandler.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> fs</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"fs"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> test</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello world!"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> readJson</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> jsonFile </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> fs.</span><span style="color:#B392F0">readFileSync</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"./"</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">name);</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> toDoList </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(jsonFile);    </span><span style="color:#6A737D">//解析json，并直接返回json对象</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> toDoList;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> writeJson</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">,</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#E1E4E8">    fs.</span><span style="color:#B392F0">writeFileSync</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"./"</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">name,</span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(data));</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">exports</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    readJson,</span></span>
+<span class="line"><span style="color:#E1E4E8">    writeJson</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="服务器搭建">服务器搭建</h3>
+<p>还记得我们的服务器的格式吗？我们先定义一下我们的服务器接口：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//in index.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> jh</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"./jsonHandler"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> http</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'http'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> url</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'url'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> util</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'util'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> workList </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> jh.</span><span style="color:#B392F0">readJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"list.json"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> port</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 3000</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> server</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> http.</span><span style="color:#B392F0">createServer</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    //设置响应头与请求编码</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.statusCode </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 200</span></span>
+<span class="line"><span style="color:#6A737D">    //设置字节流编码为utf-8</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">setHeader</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Content-Type'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'text/plain;charset=utf8'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#6A737D">    //设置允许跨域</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">setHeader</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Access-Control-Allow-Origin'</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">'*'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    req.</span><span style="color:#B392F0">setEncoding</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'utf8'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    //write your code here</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> ret</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">;    </span><span style="color:#6A737D">//这是需要返回的数据</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">end</span><span style="color:#E1E4E8">(ret)</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">server.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(port, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>然后根据我们的需求分析，先来确定以下API接口：</p>
+<ul>
+<li>
+<p><code>addWork()</code>:用来添加一个任务并将数据保存到json</p>
+</li>
+<li>
+<p><code>deleteWord(res)</code>:用来将一个任务删除并将数据保存到json</p>
+</li>
+<li>
+<p><code>writeHistory(work)</code>:将完成的任务添加到历史记录中</p>
+</li>
+<li>
+<p><code>getAllWork()</code>:获取目前正在运行中的任务</p>
+</li>
+</ul>
+<p>首先我们先开始addWork()的编写，要添加的话，首先要接受并解析客户端发送的请求，然后再储存到json中，代码如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//用来增加一个任务</span></span>
+<span class="line"><span style="color:#F97583">    function</span><span style="color:#B392F0"> addWork</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> work</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        req.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'data'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">chunk</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {    </span><span style="color:#6A737D">//接受客户端发送的请求流</span></span>
+<span class="line"><span style="color:#6A737D">            //这里要取子串的原因是请求会带key，我这里是work=xxx，所以要将'work='去掉</span></span>
+<span class="line"><span style="color:#E1E4E8">            work</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">chunk.</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">            //设置编码，不然中文会乱码</span></span>
+<span class="line"><span style="color:#E1E4E8">            work </span><span style="color:#F97583">=</span><span style="color:#B392F0"> decodeURIComponent</span><span style="color:#E1E4E8">(work);</span></span>
+<span class="line"><span style="color:#6A737D">            //解析worklist</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> jsonObj</span><span style="color:#F97583">=</span><span style="color:#B392F0">eval</span><span style="color:#E1E4E8">(workList)</span></span>
+<span class="line"><span style="color:#E1E4E8">            jsonObj.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">({</span><span style="color:#9ECBFF">"work"</span><span style="color:#E1E4E8">:work})</span></span>
+<span class="line"><span style="color:#6A737D">            //将数据写回</span></span>
+<span class="line"><span style="color:#E1E4E8">            jh.</span><span style="color:#B392F0">writeJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"list.json"</span><span style="color:#E1E4E8">,jsonObj)</span></span>
+<span class="line"><span style="color:#E1E4E8">        })</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<p>任务历史与添加任务几乎同理，只不过这个方法获取的数据是deleteWork提供的，我们不需要再去监控客户端的请求。代码如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//任务历史</span></span>
+<span class="line"><span style="color:#F97583">    function</span><span style="color:#B392F0"> writeHistory</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">work</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> jsonStr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> jh.</span><span style="color:#B392F0">readJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"history.json"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> jsonObj </span><span style="color:#F97583">=</span><span style="color:#B392F0"> eval</span><span style="color:#E1E4E8">(jsonStr);</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> event </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {}</span></span>
+<span class="line"><span style="color:#E1E4E8">        event.work </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> work;</span></span>
+<span class="line"><span style="color:#E1E4E8">        event.finishTime </span><span style="color:#F97583">=new</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        jsonObj.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(event);</span></span>
+<span class="line"><span style="color:#E1E4E8">        jh.</span><span style="color:#B392F0">writeJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"history.json"</span><span style="color:#E1E4E8">,jsonObj)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<p>删除任务也是同理，我们要在前端给每个任务隐性的标上index，然后就可以用来删除了：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//删除任务</span></span>
+<span class="line"><span style="color:#F97583">    function</span><span style="color:#B392F0"> deleteWork</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#E1E4E8">        req.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'data'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">chunk</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`可用的数据块: ${</span><span style="color:#E1E4E8">chunk</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#6A737D">            //获取点击事件的位置</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> index</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">chunk.</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> jsonObj</span><span style="color:#F97583">=</span><span style="color:#B392F0">eval</span><span style="color:#E1E4E8">(workList)</span></span>
+<span class="line"><span style="color:#6A737D">            //添加历史</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> work </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> jsonObj[index].work</span></span>
+<span class="line"><span style="color:#B392F0">            writeHistory</span><span style="color:#E1E4E8">(work)</span></span>
+<span class="line"><span style="color:#6A737D">            //删除</span></span>
+<span class="line"><span style="color:#E1E4E8">            jsonObj.</span><span style="color:#B392F0">splice</span><span style="color:#E1E4E8">(index,</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">            // console.log(jsonObj)</span></span>
+<span class="line"><span style="color:#E1E4E8">            jh.</span><span style="color:#B392F0">writeJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"list.json"</span><span style="color:#E1E4E8">,jsonObj)</span></span>
+<span class="line"><span style="color:#E1E4E8">        })</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<p>获取任务就非常简单了，我们只需要从json中拿到数据并转发给客户端就可以了：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">//获取所有任务</span></span>
+<span class="line"><span style="color:#F97583">    function</span><span style="color:#B392F0"> getAllWork</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">        workList</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">jh.</span><span style="color:#B392F0">readJson</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"list.json"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ret</span><span style="color:#F97583">=</span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(workList);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<p>最后呢，我们需要写一个路由解析，因为js非常小，所以这些东西都写在一个文件里面就可以：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">/</span><span style="color:#E1E4E8">解析路由</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> pathname </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> url.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(req.url).pathname;</span></span>
+<span class="line"><span style="color:#6A737D">    //路由配置</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (pathname</span><span style="color:#F97583">===</span><span style="color:#9ECBFF">"/getAllWork"</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#B392F0">        getAllWork</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8">(pathname</span><span style="color:#F97583">===</span><span style="color:#9ECBFF">"/addWork"</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#B392F0">        addWork</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8">(pathname</span><span style="color:#F97583">===</span><span style="color:#9ECBFF">"/deleteWork"</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#B392F0">        deleteWork</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<p>随下贴出前端源码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#FDAEB7;font-style:italic">&#x3C;</span><span style="color:#E1E4E8">-- in index.html --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;!</span><span style="color:#85E89D">DOCTYPE</span><span style="color:#B392F0"> html</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">html</span><span style="color:#B392F0"> lang</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"ch"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"stylesheet"</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"text/css"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"https://cdn.simplecss.org/simple.css"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"stylesheet"</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"text/css"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"technological.css"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> charset</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">>Title&#x3C;/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">script</span><span style="color:#B392F0"> src</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">body</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"tech-background"</span><span style="color:#B392F0"> style</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"text-align: center"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">> wish you a substantial day&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>to do list&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">label</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">input</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"add-work"</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"add-work"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"tech-input"</span><span style="color:#B392F0"> style</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"width: 70%"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> onclick</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'</span><span style="color:#B392F0">addWork</span><span style="color:#9ECBFF">()'</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"tech-btn"</span><span style="color:#B392F0"> style</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"display: inline;"</span><span style="color:#E1E4E8">>增加&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">label</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"container"</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#9ECBFF">        'use strict'</span></span>
+<span class="line"><span style="color:#E1E4E8">        $.</span><span style="color:#B392F0">ajax</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">            url:</span><span style="color:#9ECBFF">"http://localhost:3000/getAllWork"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            method:</span><span style="color:#9ECBFF">"GET"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            crossDomain: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">            success</span><span style="color:#E1E4E8">:(</span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">                let</span><span style="color:#E1E4E8"> con</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"container"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">                let</span><span style="color:#E1E4E8"> workList</span><span style="color:#F97583">=</span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(res)</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(workList)</span></span>
+<span class="line"><span style="color:#E1E4E8">                workList</span><span style="color:#F97583">=</span><span style="color:#B392F0">eval</span><span style="color:#E1E4E8">(workList)</span></span>
+<span class="line"><span style="color:#F97583">                for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">let</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">workList.</span><span style="color:#79B8FF">length</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#F97583">                    let</span><span style="color:#E1E4E8"> list</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"label"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    list.innerHTML</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"&#x3C;input name=</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">work-list</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF"> id=</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">work"</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF"> value='"</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">workList[i].work</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">"' class='tech-input' style=</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">width: 70%</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">> "</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                        "&#x3C;button onclick='deleteWork(this)' id='"</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">"' class='tech-btn' style=</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">display: inline;</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">>完成&#x3C;/button>"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                    con.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(list);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        })</span></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> addWork</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> work</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"add-work"</span><span style="color:#E1E4E8">).value;</span></span>
+<span class="line"><span style="color:#E1E4E8">            $.</span><span style="color:#B392F0">ajax</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">                url: </span><span style="color:#9ECBFF">"http://localhost:3000/addWork"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                method: </span><span style="color:#9ECBFF">"POST"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                crossDomain: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                data:{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "work"</span><span style="color:#E1E4E8">:work</span></span>
+<span class="line"><span style="color:#E1E4E8">                },</span></span>
+<span class="line"><span style="color:#B392F0">                success</span><span style="color:#E1E4E8">:(</span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">                    // alert("success");</span></span>
+<span class="line"><span style="color:#E1E4E8">                    location.</span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> deleteWork</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#F97583">            let</span><span style="color:#E1E4E8"> index</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">res.id;</span></span>
+<span class="line"><span style="color:#E1E4E8">            $.</span><span style="color:#B392F0">ajax</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">                url: </span><span style="color:#9ECBFF">"http://localhost:3000/deleteWork"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                method: </span><span style="color:#9ECBFF">"POST"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                crossDomain: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                data:{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "id"</span><span style="color:#E1E4E8">:index</span></span>
+<span class="line"><span style="color:#E1E4E8">                },</span></span>
+<span class="line"><span style="color:#B392F0">                success</span><span style="color:#E1E4E8">:(</span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">                    // alert("success");</span></span>
+<span class="line"><span style="color:#E1E4E8">                    location.</span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">html</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>这个项目的源码我也会放在GitHub（因为项目实在太小我甚至都没有建一个文件夹）</p>
+<p><a href="https://github.com/charlesix59/todo_list_by_nodeJS">项目地址</a></p>
+<h2 id="保持代码运行">保持代码运行</h2>
+<p>我们服务器代码当然要有一个服务器去运行，而这个迷你的项目显然不值得让我们去分配他一个云服务器加一个域名，那么我们是否可以把这个服务运行在本地呢？</p>
+<p>可是运行在本地就需要频繁的重启服务，每次开机都要启动一次，这未免也太麻烦了。于是我们就可以使用<strong>pm2</strong>来使我们的项目保持运行</p>
+<p>关于pm2我在此不多赘述了，大家有兴趣的可以自行百度搜索，我只给出部署的命令：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> pm2</span><span style="color:#79B8FF"> -g</span><span style="color:#6A737D"> #全局安装pm2</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#F97583"> &#x3C;</span><span style="color:#9ECBFF">项目目</span><span style="color:#E1E4E8">录</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#B392F0">pm2</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> index.js</span><span style="color:#79B8FF"> --watch</span></span>
+<span class="line"><span style="color:#B392F0">pm2</span><span style="color:#9ECBFF"> save</span></span>
+<span class="line"><span style="color:#B392F0">pm2</span><span style="color:#9ECBFF"> list</span></span></code></pre>
+<p>如果你部署成功，那么当你运行<code>pm2 list</code>之后你就可以看到你的项目了</p>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#前言" data-astro-cid-xvrfupwn>前言</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#准备工作" data-astro-cid-xvrfupwn>准备工作</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#需求分析" data-astro-cid-xvrfupwn>需求分析</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#解决方案分析" data-astro-cid-xvrfupwn>解决方案分析</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#实现" data-astro-cid-xvrfupwn>实现</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#json读写" data-astro-cid-xvrfupwn>json读写</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#服务器搭建" data-astro-cid-xvrfupwn>服务器搭建</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#保持代码运行" data-astro-cid-xvrfupwn>保持代码运行</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

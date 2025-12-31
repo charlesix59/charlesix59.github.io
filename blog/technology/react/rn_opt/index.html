@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/technology/react/rn_opt/"><!-- Primary Meta Tags --><title>基于命令模式使用 React 实现中文自动前进输入框（OTP）</title><meta name="title" content="基于命令模式使用 React 实现中文自动前进输入框（OTP）"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/technology/react/rn_opt/"><meta property="og:title" content="基于命令模式使用 React 实现中文自动前进输入框（OTP）"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/technology/react/rn_opt/"><meta property="twitter:title" content="基于命令模式使用 React 实现中文自动前进输入框（OTP）"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>基于命令模式使用 React 实现中文自动前进输入框（OTP）</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="基于命令模式使用-react-实现中文自动前进输入框otp">基于命令模式使用 React 实现中文自动前进输入框（OTP）</h1>
+<p>最近写的项目中有一个需要自动换格子、自动聚焦并且让父组件获取输入值的需求。这个需求让我很头大，因为在 RN 中想要控制 DOM 绝非一件容易的事情。</p>
+<h2 id="难点分析">难点分析</h2>
+<ul>
+<li>
+<p>RN 控制 dom 相对麻烦</p>
+</li>
+<li>
+<p>输入的是中文，需要处理输入法或复制粘贴的问题</p>
+</li>
+<li>
+<p>内容需要和父子组件同步</p>
+</li>
+<li>
+<p>格子数量不定长</p>
+</li>
+<li>
+<p>每个 input 相对复杂</p>
+</li>
+</ul>
+<h2 id="解决方案">解决方案</h2>
+<p>React 的单向数据流与组件化的模式一定程度上可以提高我们系统的可维护性，而另一方面这种设计也会导致我们的父子组件通信相对麻烦。在此处如果我们想要使用<code>ref</code>来维护一个 input 数组这显然是不现实的，因为我们<strong>不能在 for 循环中定义<code>react hooks</code></strong>。而且我的每个 Input 都相对比较复杂，所以我选择每个 input 封装一个组件，然后在组件中使用<code>ref</code>来控制<code>vDom</code>。那么我们如何通信呢？自然就是<strong>传参</strong>咯。那么子组件如何优雅的通知父组件自身输入的改变呢？经过思索我想到了一种设计模式：<mark>命令模式</mark>。<strong>通过命令模式+状态函数我们可以优雅的将子组件的变化通知父组件</strong>。下面我们先来尝试实现一下最基本的功能，自动跳转与聚焦。</p>
+<h3 id="自动聚焦">自动聚焦</h3>
+<p>首先我们需要先思考，一个输入框可能有几种状态，其实无非两种<code>输入</code>和<code>删除</code>。但是我们是一组输入框，在其中来回跳，所以我们还需要一个<code>回退</code>状态。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// 定义命令格式</span></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> BaseCommand</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  value</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> unknown</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> CheckInputCommand</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> BaseCommand</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  value</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  additionalValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  callarIndex</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// 父组件中定义命令状态</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">command</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCommand</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CheckInputCommand</span><span style="color:#E1E4E8">>();</span></span></code></pre>
+<p>这样，确定了状态，我们还需要确定一件事情，我们的子组件要接受哪些参数呢？</p>
+<p>首先，设置命令的状态函数一定是必须的，另外我们还需要传递一个下标来让组件知道它的序号以及一个<code>boolean</code>来表示是否聚焦，代码如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// 定义子组件</span></span>
+<span class="line"><span style="color:#F97583">type</span><span style="color:#B392F0"> propsType</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  setCommand</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Dispatch</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">SetStateAction</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CheckInputCommand</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">>>;</span></span>
+<span class="line"><span style="color:#FFAB70">  index</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  focus</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> boolean</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> InputCheck</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#FFAB70">  setCommand</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">  index</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">  focus</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span><span style="color:#F97583">:</span><span style="color:#B392F0"> propsType</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> React</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">JSX</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Element</span><span style="color:#E1E4E8"> {}</span></span></code></pre>
+<p>并且我们在父组件中应该如是调用子组件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// 父组件</span></span>
+<span class="line"><span style="color:#6A737D">// 聚焦元素的下标，默认第一个元素聚焦</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">foucsElement</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setFoucsElement</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#6A737D">  // 此处省略n个字</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    {arr.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">item</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">keyIndex</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#79B8FF">InputCheck</span></span>
+<span class="line"><span style="color:#B392F0">          key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#9ECBFF">`${</span><span style="color:#E1E4E8">index</span><span style="color:#9ECBFF">}-${</span><span style="color:#E1E4E8">keyIndex</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">          setCommand</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{setCommand}</span></span>
+<span class="line"><span style="color:#B392F0">          index</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{keyIndex}</span></span>
+<span class="line"><span style="color:#6A737D">          // 下标与聚焦元素的下标相同则聚焦</span></span>
+<span class="line"><span style="color:#B392F0">          focus</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{foucsElement </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> keyIndex}</span></span>
+<span class="line"><span style="color:#E1E4E8">        /></span></span>
+<span class="line"><span style="color:#E1E4E8">      );</span></span>
+<span class="line"><span style="color:#E1E4E8">    })}</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;/</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>通过上述的代码，我们已经能够得知我们如何来让一个元素聚焦了：<strong>如果一个元素的下标与我们希望聚焦的元素下标相同则让他聚焦</strong>。我们知道在 react 中，<strong>如果 state 发生了变化则会引起发生变化的节点<code>rerender</code>，并且如果组件的 props 发生了变化会引起<code>reaction</code>的，这一系列反应让我们可以通过父节点的<code>state</code>来控制子组件。</strong></p>
+<p>那么在子组件我们应该如何处理这种变化呢？</p>
+<p>那自然是<code>useEffect</code>啊!</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 子组件</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">char</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setChar</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> inputRef</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useRef</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">any</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#6A737D">// 处理聚焦</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (focus) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      inputRef.current.</span><span style="color:#B392F0">focus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      inputRef.current.</span><span style="color:#B392F0">setNativeProps</span><span style="color:#E1E4E8">({selection: {start: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, end: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">}});</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [focus, setInputValue]);</span></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">TextInput</span></span>
+<span class="line"><span style="color:#B392F0">      value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{char}</span></span>
+<span class="line"><span style="color:#B392F0">      onChange</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#FFAB70">e</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        TextInputHandler</span><span style="color:#E1E4E8">(e.nativeEvent.text);</span></span>
+<span class="line"><span style="color:#E1E4E8">      }}</span></span>
+<span class="line"><span style="color:#B392F0">      ref</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{inputRef}</span></span>
+<span class="line"><span style="color:#E1E4E8">    /></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span></code></pre>
+<p>好的，这样我们就可以处理父组件传递的<code>focus</code>参数并且自动聚焦了。而且通过上面的代码我们也能发现我们返回的<code>TextInput</code>是一个<mark>受控组件</mark>哎~那我们又是如何处理输入的呢？</p>
+<p>详情还请看代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">/** 发送指令的函数 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> sendCommand</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">  (</span><span style="color:#FFAB70">name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">commandValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">additionalValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> command</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CheckInputCommand</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      name: name,</span></span>
+<span class="line"><span style="color:#E1E4E8">      value: commandValue,</span></span>
+<span class="line"><span style="color:#E1E4E8">      callarIndex: index,</span></span>
+<span class="line"><span style="color:#E1E4E8">      additionalValue: additionalValue,</span></span>
+<span class="line"><span style="color:#E1E4E8">    };</span></span>
+<span class="line"><span style="color:#B392F0">    setCommand</span><span style="color:#E1E4E8">(command);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">  [index, setCommand]</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/** 真正处理输入的逻辑 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> setInputValue</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">  (</span><span style="color:#FFAB70">str</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setChar</span><span style="color:#E1E4E8">(displayChar);</span></span>
+<span class="line"><span style="color:#6A737D">    // 发送命令</span></span>
+<span class="line"><span style="color:#B392F0">    sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"input"</span><span style="color:#E1E4E8">, commandStr, displayChar);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">  [sendCommand]</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/** 处理输入 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> TextInputHandler</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">inputChar</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  setInputValue</span><span style="color:#E1E4E8">(inputChar);</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p>这样当我们输入的时候，子组件就已经能够发送命令通知父组件自己的变化了，这时我们就还需要父组件去监听子组件以及做出相应的反应咯：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 父组件</span></span>
+<span class="line"><span style="color:#6A737D">/** 监听command变化 */</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  /** 接收子组件发送的命令 */</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "input"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> format.tunes.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#B392F0">    setFoucsElement</span><span style="color:#E1E4E8">(command.callarIndex </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    setChars</span><span style="color:#E1E4E8">(command.value </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [command, format.tunes, format.tunes.</span><span style="color:#79B8FF">length</span><span style="color:#E1E4E8">]);</span></span></code></pre>
+<p>这样我们就可以自动的前进并聚焦啦！</p>
+<h3 id="处理中文">处理中文</h3>
+<p>但是考虑到我们输入的是中文，所以我们必须要对输入进行一定的处理。首先是中文有输入法的问题，<strong>这样我们就需要判断是否是中文，然后只对中文做出相应</strong>。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// 中文匹配正则</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> reg</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> /</span><span style="color:#F97583">^</span><span style="color:#79B8FF">[\u4E00-\u9FA5]</span><span style="color:#F97583">+$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/** 检查是否是中文 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> verifyCharIsChinese</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">char</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (reg.</span><span style="color:#B392F0">test</span><span style="color:#E1E4E8">(char)) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 子组件</span></span>
+<span class="line"><span style="color:#6A737D"> /** 真正处理输入的逻辑 */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> setInputValue</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#B392F0">      if</span><span style="color:#E1E4E8"> (!</span><span style="color:#FFAB70">verifyCharIsChinese</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">str</span><span style="color:#E1E4E8">)) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#6A737D">// 截取中文</span></span>
+<span class="line"><span style="color:#E1E4E8">      let displayChar </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      let commandStr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      setChar</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">displayChar</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">      // 发送命令</span></span>
+<span class="line"><span style="color:#B392F0">      sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"input"</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">commandStr</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">displayChar</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    [sendCommand],</span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span></code></pre>
+<p>另外因为中文会存在一次性输入多个字符的特点，所以我们就需要将输入的字符传递给父组件的问题。像上面的代码，我们已经看到我们已经截取了输入，然后发送到父组件，我们又该如何让父组件将多出的字符传递给剩下的子组件呢？<strong>我想到的方法是：<code>useContext</code>！</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// 父组件</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> StrContext</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Context</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createContext</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">fn</span><span style="color:#E1E4E8">(){ </span><span style="color:#6A737D">//省略函数定义</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">content</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setContent</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Array</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">>>([]); </span><span style="color:#6A737D">// 保存真正的内容</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "input"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> format.tunes.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#B392F0">    setFoucsElement</span><span style="color:#E1E4E8">(command.callarIndex </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    setChars</span><span style="color:#E1E4E8">(command.value </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">return</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#6A737D">// ...此处省略n-m个字</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">StrContext.Provider</span><span style="color:#B392F0"> value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{chars}></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">          {arr.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">item</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">keyIndex</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">              &#x3C;</span><span style="color:#79B8FF">InputCheck</span></span>
+<span class="line"><span style="color:#B392F0">                key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#9ECBFF">`${</span><span style="color:#E1E4E8">index</span><span style="color:#9ECBFF">}-${</span><span style="color:#E1E4E8">keyIndex</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">                setCommand</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{setCommand}</span></span>
+<span class="line"><span style="color:#B392F0">                index</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{keyIndex}</span></span>
+<span class="line"><span style="color:#6A737D">                // 下标与聚焦元素的下标相同则聚焦</span></span>
+<span class="line"><span style="color:#B392F0">                focus</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{foucsElement </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> keyIndex}</span></span>
+<span class="line"><span style="color:#E1E4E8">              /></span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"><span style="color:#E1E4E8">          })}</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#79B8FF">StrContext</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>同时我们<strong>需要让得到焦点的子组件去处理我们的上下文</strong>，即输入与重新发送指令：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> value</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useContext</span><span style="color:#E1E4E8">(StrContext);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/** 自动移动字符 */</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (focus) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    inputRef.current.</span><span style="color:#B392F0">focus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    inputRef.current.</span><span style="color:#B392F0">setNativeProps</span><span style="color:#E1E4E8">({ selection: { start: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, end: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> } });</span></span>
+<span class="line"><span style="color:#6A737D">    // 在上文的处理聚焦的函数中添加判断是否有全局字符串的方法</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (value) {</span></span>
+<span class="line"><span style="color:#B392F0">      setInputValue</span><span style="color:#E1E4E8">(value);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}, [focus, setInputValue, value]);</span></span></code></pre>
+<h3 id="处理删除与后退">处理删除与后退</h3>
+<p>如果光前进却不能后退那不是没过河的<font color="green">卒</font>子嘛。看到如何处理前进那么如何处理后退应该也很明确了，但是需要注意，删除与后退并不一样，</p>
+<ul>
+<li>
+<p><strong>删除</strong>：输入为空</p>
+</li>
+<li>
+<p><strong>后退</strong>：输入已经为空并且继续删除</p>
+</li>
+</ul>
+<p>我们先来实现删除，删除非常简单，在处理输入的时候判断是否为空即可：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 子组件</span></span>
+<span class="line"><span style="color:#6A737D">/** 真正处理输入的逻辑 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> setInputValue</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">  (</span><span style="color:#FFAB70">str</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // 输入为空则发送删除命令</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">str) {</span></span>
+<span class="line"><span style="color:#B392F0">      setChar</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"delete"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#B392F0">verifyCharIsChinese</span><span style="color:#E1E4E8">(str)) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> displayChar </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> commandStr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    setChar</span><span style="color:#E1E4E8">(displayChar);</span></span>
+<span class="line"><span style="color:#6A737D">    // 发送命令</span></span>
+<span class="line"><span style="color:#B392F0">    sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"input"</span><span style="color:#E1E4E8">, commandStr, displayChar);</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#E1E4E8">  [sendCommand]</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p><u><em>父组件该如何处理我这里就掠过咯</em></u>~</p>
+<p>处理后退要稍微复杂一些，首先我们需要在子组件中新增一个监听，监听我们的键盘输入：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#6A737D">// 子组件</span></span>
+<span class="line"><span style="color:#6A737D">/** 监听键盘事件，处理退格事件 */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> backSpaceHandler</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">keyName</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (keyName </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "Backspace"</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">char) {</span></span>
+<span class="line"><span style="color:#B392F0">    sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"back"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">  &#x3C;</span><span style="color:#79B8FF">TextInput</span></span>
+<span class="line"><span style="color:#B392F0">    style</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{TuneStyle}</span></span>
+<span class="line"><span style="color:#B392F0">    value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{char}</span></span>
+<span class="line"><span style="color:#B392F0">    onChange</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{(</span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">      TextInputHandler</span><span style="color:#E1E4E8">(e.nativeEvent.text);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }}</span></span>
+<span class="line"><span style="color:#B392F0">    onKeyPress</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{(</span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">      backSpaceHandler</span><span style="color:#E1E4E8">(e.nativeEvent.key);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }}</span></span>
+<span class="line"><span style="color:#B392F0">    ref</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{inputRef}</span></span>
+<span class="line"><span style="color:#E1E4E8">  /></span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>然后父组件也需要处理退格事件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// 父组件</span></span>
+<span class="line"><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "back"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#B392F0">  setFoucsElement</span><span style="color:#E1E4E8">(command.callarIndex </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="内容同步">内容同步</h3>
+<p>哎呀，内容同步这种事情读者朋友们自己个性化发挥就好，毕竟我在命令模式中携带了挺多参数呢，请大家根据各自的需求随意发挥就好。</p>
+<h2 id="完整代码">完整代码</h2>
+<p>父组件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> StrContext</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Context</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createContext</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> fn</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">:</span><span style="color:#B392F0"> React</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">JSX</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Element</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">command</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCommand</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CheckInputCommand</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">foucsElement</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setFoucsElement</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">chars</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setChars</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// 多出的文字，自动填充到下一个block</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">content</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setContent</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Array</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">string</span><span style="color:#E1E4E8">>>([]); </span><span style="color:#6A737D">// 保存真正的内容</span></span>
+<span class="line"><span style="color:#6A737D">  /** 监听command变化 */</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    /** 接收子组件发送的命令 */</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "input"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">      // 添加到内容</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">        setContent</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">e</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">          e[command.callarIndex] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> addContentChar</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            command.additionalValue </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            command.callarIndex,</span></span>
+<span class="line"><span style="color:#E1E4E8">          );</span></span>
+<span class="line"><span style="color:#F97583">          return</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">e];</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> format.tunes.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#B392F0">      setFoucsElement</span><span style="color:#E1E4E8">(command.callarIndex </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      setChars</span><span style="color:#E1E4E8">(command.value </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "delete"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">      setContent</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">e</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        e[command.callarIndex] </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">e];</span></span>
+<span class="line"><span style="color:#E1E4E8">      });</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (command </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> command.name </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "back"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (command.callarIndex </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#B392F0">      setFoucsElement</span><span style="color:#E1E4E8">(command.callarIndex </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [command]);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">StrContext.Provider</span><span style="color:#B392F0"> key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{index} </span><span style="color:#B392F0">value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{chars}></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">View</span><span style="color:#B392F0"> style</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{fillPoemStyle.inlineContainer} </span><span style="color:#B392F0">key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{index}></span></span>
+<span class="line"><span style="color:#E1E4E8">        {arr.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">item</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">keyIndex</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">          return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#79B8FF">InputCheck</span></span>
+<span class="line"><span style="color:#B392F0">              tune</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{item.tune}</span></span>
+<span class="line"><span style="color:#B392F0">              rhythm</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{item.rhythm}</span></span>
+<span class="line"><span style="color:#B392F0">              key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#9ECBFF">`${</span><span style="color:#E1E4E8">index</span><span style="color:#9ECBFF">}-${</span><span style="color:#E1E4E8">keyIndex</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">              setCommand</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{setCommand}</span></span>
+<span class="line"><span style="color:#B392F0">              index</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{item.index </span><span style="color:#F97583">as</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">              focus</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{foucsElement </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> item.index}</span></span>
+<span class="line"><span style="color:#B392F0">              rhymeWord</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{rhymeWord}</span></span>
+<span class="line"><span style="color:#E1E4E8">            /></span></span>
+<span class="line"><span style="color:#E1E4E8">          );</span></span>
+<span class="line"><span style="color:#E1E4E8">        })}</span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#79B8FF">View</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#79B8FF">StrContext.Provider</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>子组件</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">type</span><span style="color:#B392F0"> propsType</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  setCommand</span><span style="color:#F97583">:</span><span style="color:#B392F0"> Dispatch</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">SetStateAction</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CheckInputCommand</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">>>;</span></span>
+<span class="line"><span style="color:#FFAB70">  index</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  focus</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> boolean</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> InputCheck</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#FFAB70">  setCommand</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">  index</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">  focus</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span><span style="color:#F97583">:</span><span style="color:#B392F0"> propsType</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">:</span><span style="color:#B392F0"> React</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">JSX</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">Element</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">char</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setChar</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> inputRef</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useRef</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#79B8FF">any</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> value</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useContext</span><span style="color:#E1E4E8">(StrContext);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> sendCommand</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#FFAB70">name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">commandValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">additionalValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">      const</span><span style="color:#79B8FF"> command</span><span style="color:#F97583">:</span><span style="color:#B392F0"> CheckInputCommand</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        name: name,</span></span>
+<span class="line"><span style="color:#E1E4E8">        value: commandValue,</span></span>
+<span class="line"><span style="color:#E1E4E8">        callarIndex: index,</span></span>
+<span class="line"><span style="color:#E1E4E8">        additionalValue: additionalValue,</span></span>
+<span class="line"><span style="color:#E1E4E8">      };</span></span>
+<span class="line"><span style="color:#B392F0">      setCommand</span><span style="color:#E1E4E8">(command);</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    [index, setCommand],</span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#6A737D">  /** 真正处理输入的逻辑 */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> setInputValue</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> useCallback</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    (</span><span style="color:#FFAB70">str</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">str) {</span></span>
+<span class="line"><span style="color:#B392F0">        setChar</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">        sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"delete"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#B392F0">verifyCharIsChinese</span><span style="color:#E1E4E8">(str)) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#F97583">      let</span><span style="color:#E1E4E8"> displayChar </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">      let</span><span style="color:#E1E4E8"> commandStr </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      setChar</span><span style="color:#E1E4E8">(displayChar);</span></span>
+<span class="line"><span style="color:#6A737D">      // 发送命令</span></span>
+<span class="line"><span style="color:#B392F0">      sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"input"</span><span style="color:#E1E4E8">, commandStr, displayChar);</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    [sendCommand],</span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#6A737D">  /** 自动移动字符 */</span></span>
+<span class="line"><span style="color:#B392F0">  useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (focus) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      inputRef.current.</span><span style="color:#B392F0">focus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      inputRef.current.</span><span style="color:#B392F0">setNativeProps</span><span style="color:#E1E4E8">({selection: {start: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, end: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">}});</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> (value) {</span></span>
+<span class="line"><span style="color:#B392F0">        setInputValue</span><span style="color:#E1E4E8">(value);</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, [focus, setInputValue, value]);</span></span>
+<span class="line"><span style="color:#6A737D">  /** 处理输入 */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> TextInputHandler</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">inputChar</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setInputValue</span><span style="color:#E1E4E8">(inputChar);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#6A737D">  /** 监听键盘事件，处理退格事件 */</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> backSpaceHandler</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">keyName</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (keyName </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> "Backspace"</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">char) {</span></span>
+<span class="line"><span style="color:#B392F0">      sendCommand</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"back"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#79B8FF">TextInput</span></span>
+<span class="line"><span style="color:#B392F0">      style</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{TuneStyle}</span></span>
+<span class="line"><span style="color:#B392F0">      value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{char}</span></span>
+<span class="line"><span style="color:#B392F0">      onChange</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#FFAB70">e</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        TextInputHandler</span><span style="color:#E1E4E8">(e.nativeEvent.text);</span></span>
+<span class="line"><span style="color:#E1E4E8">      }}</span></span>
+<span class="line"><span style="color:#B392F0">      onKeyPress</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#FFAB70">e</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        backSpaceHandler</span><span style="color:#E1E4E8">(e.nativeEvent.key);</span></span>
+<span class="line"><span style="color:#E1E4E8">      }}</span></span>
+<span class="line"><span style="color:#B392F0">      ref</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{inputRef}</span></span>
+<span class="line"><span style="color:#E1E4E8">    /></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> InputCheck;</span></span></code></pre>
+<p>types</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#6A737D">// 定义命令格式</span></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> BaseCommand</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  name</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  value</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> unknown</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> CheckInputCommand</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> BaseCommand</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#FFAB70">  value</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> undefined</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  additionalValue</span><span style="color:#F97583">?:</span><span style="color:#79B8FF"> string</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">  callarIndex</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> number</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#难点分析" data-astro-cid-xvrfupwn>难点分析</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#解决方案" data-astro-cid-xvrfupwn>解决方案</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#自动聚焦" data-astro-cid-xvrfupwn>自动聚焦</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#处理中文" data-astro-cid-xvrfupwn>处理中文</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#处理删除与后退" data-astro-cid-xvrfupwn>处理删除与后退</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#内容同步" data-astro-cid-xvrfupwn>内容同步</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#完整代码" data-astro-cid-xvrfupwn>完整代码</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

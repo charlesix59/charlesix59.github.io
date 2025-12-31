@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/technology/react/react_fn_comp_init/"><!-- Primary Meta Tags --><title>React函数组件对state进行初始化操作</title><meta name="title" content="React函数组件对state进行初始化操作"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/technology/react/react_fn_comp_init/"><meta property="og:title" content="React函数组件对state进行初始化操作"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/technology/react/react_fn_comp_init/"><meta property="twitter:title" content="React函数组件对state进行初始化操作"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>React函数组件对state进行初始化操作</h1> <hr data-astro-cid-bvzihdzo> </div>  <h2 id="前言">前言</h2>
+<p>最近学完React开始实战做项目了，但是在使用React18的函数组件时还是遇到了众多的困难。
+让我不禁感叹，函数组件确实比类式组件难上手太多了。</p>
+<!--more-->
+<h2 id="问题">问题</h2>
+<p>最近让我头疼的问题是，<strong>怎么样才能在函数组件中初始化呢？</strong></p>
+<p>对于类式组件，我们直到可以使用<code> componentDidMount()</code>方法来作用与组件声明周期中的初始化阶段，
+但是对于函数组件，并没有上述方法。</p>
+<p>在一开始，我想到了直接在函数中调用：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> getData</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    //function body</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">getData</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>这个方法对于正常的变量是没有问题的，但是我要处理的并不是普通的变量，而是<mark>state</mark>。</p>
+<p>state的特点就是每次变化的时候都会重新渲染界面，而每次重新渲染界面都会重新调用getData函数，
+然后更新state，这就陷入了一个 <code>state更新->重新渲染->更新state...</code>的死循环。</p>
+<p>面对这个问题，我最开始想到的解决方案是<mark>Effect Hock</mark>，不过我查了半天资料并没有找到
+很合适的解决方案……然后又走了很多弯路，换了其他的方法。最终还是决定细细的看一下<code>Effect Hock</code></p>
+<p>我记得曾经听说过，Effect Hook中的deps写空数组就会对任何变化都无反应，于是我就写了一个空数组</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> getData</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    //function body</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    getData</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">},[])</span></span></code></pre>
+<p>但是我发现，getData方法并没有执行，而且报一个warning，提示必须在deps中加入依赖的变量</p>
+<p>于是我就按图索骥的将getDate写进去</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> getData</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    //function body</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    getData</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">},[getData])</span></span></code></pre>
+<p>结果它提示我函数最好放在<code>useEffect</code>的体内，于是我写成了这样</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">state</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setState</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">([]);</span></span>
+<span class="line"><span style="color:#B392F0">    useEffect</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">        setApplication</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">    },[])</span></span></code></pre>
+<p>后来发现我又依赖setState函数，但是绝对不可能将他写入函数体内，同时我也不能把state变量写入deps</p>
+<p>在这里讲一下Effect Hook，它会在他的deps中的内容刷新的时候调用函数，而你在函数中用到的变量又
+必须写入deps中</p>
+<p>这里我陷入了两难，最终我通过查看文档，发现了这个hook能够return，开始我错误的理解了return的意思
+我以为需要在return时进行更改，于是我写成了下面的样子</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">state</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setState</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">([]);</span></span>
+<span class="line"><span style="color:#B392F0">    useEffect</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">        //body</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">            setApplication</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    },[])</span></span></code></pre>
+<p>有趣的是，当时我刚好在调试模式卸载了这个界面，得到了我想要的效果，为此我欣喜了一下，后来我却不能
+复现这场成功。经过我对文档的探索，发现return原来是卸载Effect钩子的！</p>
+<h2 id="解决之道">解决之道</h2>
+<p>最终，我解决问题的代码是这样的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">state</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setState</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">([]);</span></span>
+<span class="line"><span style="color:#B392F0">    useEffect</span><span style="color:#E1E4E8">(()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#6A737D">        //body</span></span>
+<span class="line"><span style="color:#B392F0">        setApplication</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    },[])</span></span></code></pre>
+<p>这里再讲一下<code>Effect Hook</code>：
+<strong>它会在他的deps中的内容刷新的时候调用函数，而你在函数中用到的变量又必须写入deps中，</strong>
+<strong>但是写入deps就会刷新，这样就和没使用EffectHook一样了，为了解决这个问题，我们在使用完成</strong>
+<strong>这个钩子之后要将它卸载，这样它就不会再被调用了，return就是来解决这个问题的，调用return之后</strong>
+<strong>这个钩子就被卸载了，这样我们就解决了函数被多次调用的问题~</strong></p>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#前言" data-astro-cid-xvrfupwn>前言</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#问题" data-astro-cid-xvrfupwn>问题</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#解决之道" data-astro-cid-xvrfupwn>解决之道</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

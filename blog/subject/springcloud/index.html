@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/subject/springcloud/"><!-- Primary Meta Tags --><title>SpringCloud 知识整理</title><meta name="title" content="SpringCloud 知识整理"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/subject/springcloud/"><meta property="og:title" content="SpringCloud 知识整理"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/subject/springcloud/"><meta property="twitter:title" content="SpringCloud 知识整理"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>SpringCloud 知识整理</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="springcloud-知识点梳理">SpringCloud 知识点梳理</h1>
+<h2 id="第二章--构建spring-cloud">第二章  构建spring cloud</h2>
+<h3 id="springboot目录结构">SpringBoot目录结构</h3>
+<ul>
+<li>
+<p><code>src/main/java</code>：主程序入口</p>
+</li>
+<li>
+<p><code>src/main/resources</code>：配置目录</p>
+</li>
+<li>
+<p><code>src/test</code>：单元测试目录</p>
+</li>
+</ul>
+<h3 id="springboot依赖">Springboot依赖</h3>
+<p>Starter POMs 是一系列轻便的依赖包，是一套一站式的Spring相关技术的解决方案。</p>
+<p>SpringBoot的StarterPOMs采用 <code>spring-boot-starter-*</code>命名，<code>*</code>表示一个特别的功能模块。</p>
+<p>我们用到的POMs有：</p>
+<ul>
+<li>
+<p><code>spring-boot-starter-web</code>：全栈Web开发模块</p>
+</li>
+<li>
+<p><code>spring-boot-starter-test</code>：通用测试模块</p>
+</li>
+</ul>
+<h3 id="配置详解">配置详解</h3>
+<p>springboot 的默认配置文件位置为 <code>src/main/resources/application.properties</code></p>
+<h4 id="自定义参数">自定义参数</h4>
+<p>在application.yaml中</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">book</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">springboot</span></span>
+<span class="line"><span style="color:#85E89D">    author</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">charles</span></span></code></pre>
+<p>在java中</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Data</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Book</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Value</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"${book.name})</span></span>
+<span class="line"><span style="color:#9ECBFF">    private String name;</span></span>
+<span class="line"><span style="color:#9ECBFF">}</span></span></code></pre>
+<p><code>@value</code> 属性在加载配置时支持两种表达式：</p>
+<ul>
+<li>
+<p>PlaceHolder方式，格式如上，为<code>${*}</code></p>
+</li>
+<li>
+<p>SpEL表达式，格式为<code>#{*}</code></p>
+</li>
+</ul>
+<h4 id="多环境配置">多环境配置</h4>
+<p>多环境配置的文件名需要满足 <code>application-{profiles}.yaml</code>的格式，其中profile对应你的环境表示：</p>
+<ul>
+<li>
+<p>dev：开发</p>
+</li>
+<li>
+<p>test：测试</p>
+</li>
+<li>
+<p>prod：生产</p>
+</li>
+</ul>
+<p>加载那个环境需要在<code>application.yaml</code>中设置<code>spring.profile.active=*</code>属性</p>
+<h4 id="加载顺序">加载顺序</h4>
+<p>springboot属性加载顺序如下：</p>
+<ol>
+<li>
+<p>在命令行中传入的参数。</p>
+</li>
+<li>
+<p>SPRING APPLICATION JSON中的属性。SPRING APPIATION JSON是以JSON格式配置在系统环境变量中的内容</p>
+</li>
+<li>
+<p>Java.comp/env中的JNDI属性</p>
+</li>
+<li>
+<p>Java的系统属性，可以通过<code>System.getProperties ()</code>获得的内容</p>
+</li>
+<li>
+<p>操作系统的环境变量</p>
+</li>
+<li>
+<p>通过<code>random.*</code>配置的随机属性</p>
+</li>
+<li>
+<p>位于当前应用 jar包之外，针对不同{profile}环境的配置文件内容，例如<code>application- {profile} .properties</code>或是YAML定义的配置文件。</p>
+</li>
+<li>
+<p>位于当前应用jar包之内，针对不同{profile}环境的配置文件内容，例如<code>aplication- {profilel} .properties</code> 或是YAML定义的配置文件。</p>
+</li>
+<li>
+<p>位于当前应用jar包之外的<code>application.properties</code>和YAML配置内容</p>
+</li>
+<li>
+<p>位于当前应用jar包之内的<code>application. properties</code>和YAML配置内容。</p>
+</li>
+<li>
+<p>在<code>@Configuration </code>注解修改的类中，通过<code>@PropertySource</code> 注解定义的属性。</p>
+</li>
+<li>
+<p>应用默认属性，使用<code>SpringApplication setDefautProperties</code>定义的内容</p>
+</li>
+</ol>
+<p>优先级按上面的顺序由高到低</p>
+<h3 id="actuator">actuator</h3>
+<p>要想使用actuator需要添加依赖：<code>spring-boot-starter-actuator</code>，然后在application添加如下配置以暴露全部端点：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">management</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    endpotints</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        web</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            exposure</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                include</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'*'</span></span></code></pre>
+<p>actuator的原生断点分为三类：</p>
+<ul>
+<li>
+<p>应用配置类</p>
+<ul>
+<li>
+<p><code>/beans</code>：获取上下文所有的Bean，每个Bean都包含以下信息</p>
+<ul>
+<li>
+<p>scope：作用域</p>
+</li>
+<li>
+<p>type：java类型</p>
+</li>
+<li>
+<p>resource：class文件的具体路径</p>
+</li>
+<li>
+<p>dependencies：依赖的bean的名称</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>/configprops</code>：配置属性</p>
+<ul>
+<li>
+<p>profix：属性前缀</p>
+</li>
+<li>
+<p>properties：各个属性的名称和值</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>/env</code>：用来获取应用所有可用的环境属性报告</p>
+</li>
+<li>
+<p><code>/mapping</code>：用来返回所有springMVC控制器的映射关系</p>
+</li>
+</ul>
+</li>
+<li>
+<p>度量指标类</p>
+<ul>
+<li>
+<p><code>/metrics</code>：返回当前应用的各种重要指标</p>
+</li>
+<li>
+<p><code>/health</code>：用来获取应用的各类健康指标信息，当项目较为简单时，只标识出应用的状态</p>
+<ul>
+<li>
+<p>UNKNOWN：未知状态，503</p>
+</li>
+<li>
+<p>UP：正常，200</p>
+</li>
+<li>
+<p>DOWN：失败，503</p>
+</li>
+<li>
+<p>OUT_OF_SERVICE：不提供对外服务，200</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>操作控制类</p>
+<ul>
+<li><code>/shutdown</code>：只提供了这一个，不支持get请求</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三章-服务治理-alibaba-nacos">第三章 服务治理 Alibaba Nacos</h2>
+<h3 id="常见方案">常见方案</h3>
+<p><code>Spring Cloud Eureka</code>：既包含了服务端组件，又包含了客户端组件，并且服务端与客户端均通过java编写</p>
+<p><code>zookeeper</code>：一个开源的分布式应用程序协调服务，是Chubby的一个开源实现，是Hadoop和Hbase的重要组件</p>
+<p><code>Consul</code>：所以一个服务网络的解决方案，他是一个分布式的高可用的系统，而且开发使用都很简便。它提供了一个功能齐全的控制平面，它的主要特点是：服务发现、健康检查、键值存储、安全服务通信、多数据中心</p>
+<p><code>Nacos</code>：帮助发现、配置和管理微服务</p>
+<h3 id="nacos">Nacos</h3>
+<p>修改端口：默认端口8848，可以进入nacos/conf目录修改<code>application.propertoes</code>的<code>server.port</code>属性</p>
+<p>启动：运行<code>startup.cmd -m standalone</code>（单例模式运行）</p>
+<p>访问：默认账号密码都是nacos</p>
+<h4 id="注册服务提供者">注册服务提供者</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yml"><code><span class="line"><span style="color:#85E89D">spring</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    application</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        name</span><span style="color:#E1E4E8">: </span><span style="color:#6A737D">#要注册到注册中心的服务名称</span></span>
+<span class="line"><span style="color:#85E89D">        cloud</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            nacos</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                server-addr</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">localhost:8848</span><span style="color:#6A737D"> #服务端地址</span></span></code></pre>
+<h4 id="服务发现与消费">服务发现与消费</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">LoadBalanced</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> RestTemplete </span><span style="color:#B392F0">restTemplete</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="第四章-负载均衡-ribbon">第四章 负载均衡 Ribbon</h2>
+<p>SpringCloud Ribbon是一个基于HTTP和TCP的<strong>客户端</strong>负载均衡工具，他基于Netflix Ribbon实现。</p>
+<p>虽然它只是一个工具类框架，不像服务注册中心、配置中心、API网关那样需要独立部署，但是它几乎存在在每一个SpringCloud构建的微服务和基础设施中。</p>
+<p>客户端负载均衡与服务端负载均衡最大的不同点在于服务清单所存储的位置。</p>
+<ul>
+<li>
+<p>服务提供者只需要启动多个服务实例并注册到一个注册中心或是多个相关联的服务注册中心</p>
+</li>
+<li>
+<p>服务消费者直接通过调用被@LoadBalanced注解修饰过的RestTemplate来实现面向服务的接口调用</p>
+</li>
+</ul>
+<h3 id="分析">分析</h3>
+<p>负载均衡器应该具备这样几种能力：</p>
+<ul>
+<li>
+<p><code>ServiceInstance choose(String serviceId)</code>：根据传入的服务名从负载均衡器中挑选一个对应服务的实例</p>
+</li>
+<li>
+<p><code>T excute(String serviceId, LoadBalancerRequest request)</code>：使用从负载均衡器中挑选出的服务实例来执行请求内容</p>
+</li>
+<li>
+<p><code>URI reconstuctURI(ServiceInstance instance, URI origianl)</code>：为系统构建合适的hostzport形式的URI</p>
+</li>
+</ul>
+<h3 id="负载均衡器">负载均衡器</h3>
+<ul>
+<li>
+<p>AbstractLoadBalancer 是 ILoadBanlancer 接口的抽象实现，在该抽象类中定义了一个关于服务实例的分组枚举类ServerGroup</p>
+</li>
+<li>
+<p>BaseLoadBalancer 是 Ribbon负载均衡器的基础实现类</p>
+</li>
+<li>
+<p>DynamicServerListLoadBalancer类是继承于BaseLoadBalancer类，他是对基础负载均衡器的扩展</p>
+</li>
+<li>
+<p>ZoneAwareLoadBalancer 负载均衡器是对 DynamicServerListLoadBalancer的扩展</p>
+</li>
+</ul>
+<h3 id="负载均衡策略">负载均衡策略</h3>
+<ul>
+<li>
+<p>AbstractLoadBalancerRule，负载均衡器策略抽象类，在该抽象类中定义了负载均衡器ILoadBalancer对象</p>
+</li>
+<li>
+<p>ClientConfigEnabledRoundRobinRule,该策略较为特殊，一般不直接使用它，因为它本身并没有实现什么特殊的处理逻辑，他在内部定义了一个RoundRobinRule策略</p>
+</li>
+<li>
+<p>PredicateBaseRule，是一个抽象策略，继承了ClientConfigEnabledRoundRobinRule，从其命名中可以看出来这个一个基于Predicate实现的策略</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>内置负载均衡规则类</th><th>规则描述</th></tr></thead><tbody><tr><td>RoundRobinRule</td><td>简单轮询服务列表来选择服务器。它是Rbbon默认的负载均衡规则。</td></tr><tr><td>AvailabilityFilteringRule</td><td>对以下两种服务器进行忽略: (1) 在默认情况下，这台服务器如果3次连接失败，这台服务器就会被设置为短路”状态。短路状态将持续30秒，如果再次连接失败，短路的持续时间就会几何级地增加。(2) 并发数过高的服务器。如果一个服务器的并发连接数过高，配置了AvailabiliyFilteringRule规则的客户端也会将其忽略。</td></tr><tr><td>WeightedResponseTimeRule</td><td>为每一个服务器赋予一个权重值。 服务器响应时间越长，这个服务器的权重就越小。这个规则会随机选择服务器，这个权重值会影响服务器的选择。</td></tr><tr><td>ZoneAvoidanceRule</td><td>以区域可用的服务器为基础进行服务器的选择。使用Zone对服务器进行分类，这个Zome可以理解为个机房、一个机架等。而后再对Zome内的多个服务做轮询</td></tr><tr><td>BestvailableRule</td><td>忽略那些短路的服务器，并选择并发数较低的服务器。</td></tr><tr><td>RandomRule</td><td>随机选择一个可用的服务器</td></tr><tr><td>RetryRule</td><td>重试机制的选择逻辑</td></tr><tr><td>NacosRule</td><td>支持优先调用同个集群实例的 rbbon负载均衡规则</td></tr></tbody></table>
+<h3 id="配置详解-1">配置详解</h3>
+<h4 id="自动化配置">自动化配置</h4>
+<p>Ribbon能够自动配置下面这些接口的实现</p>
+<ul>
+<li>
+<p>IClientConfig: Ribon的客户端配置， 默认采用com.netflix.client.config.DefaultlCientCnfigimpl实现</p>
+</li>
+<li>
+<p>IRule: Ribbon的负载均衡策略，默认采用com.netflix.loadbalancer,ZoneAvoidanceRule实现，该策略能够在多区域环境下选出最佳区域的实例进行访问。</p>
+</li>
+<li>
+<p>IPing: Ribbon的实例检查策略，默认采用com.netfix.loadbalancer.DummyPing实现，该检查策略是一个特殊的实现，实际上它并不会检查实例是否可用，而是始终返回true,默认认为所有服上面务实例都是可用的。</p>
+</li>
+<li>
+<p>ServerList: 服务实例清单的维护机制，默认采用com.netfix.loadbalancer.ConfigurationBasedServerList实现。</p>
+</li>
+<li>
+<p>ServerListFilter: 服务实例清单过滤机制，默认采用org.springrameworkcloud.netflix.ribbon.ZomeAwareKiadBakabcer实现，该策略能够优先过滤出与请求调用方处于同区域的服务实例。</p>
+</li>
+<li>
+<p>lLoadBalancer: 负载均衡器，默认采用com.netflix.loadbalancer.ZoneAwareloadBalancer实现，它具备了区域感知的能力。</p>
+</li>
+</ul>
+<p>针对一些个性化需求可以在springboot中创建对应的实现实例即可覆盖默认配置，比如</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> Irule </span><span style="color:#B392F0">rule</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NacosRule</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="参数配置">参数配置</h4>
+<p>对于RIbbon的配置有两种：</p>
+<ul>
+<li>
+<p>全局配置：使用<code>ribbon.&#x3C;key> = &#x3C;value></code>格式进行配置</p>
+</li>
+<li>
+<p>指定客户端配置：<code>&#x3C;client>.ribbon.&#x3C;key>=&#x3C;value></code>的格式进行配置</p>
+</li>
+</ul>
+<p><strong>IRule配置</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">userservice</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    ribbon</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        NFLoadBalancerRuleClassName</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">&#x3C;value></span><span style="color:#6A737D"> # 负载均衡规则类全名</span></span></code></pre>
+<p><strong>饥饿加载</strong>：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yml"><code><span class="line"><span style="color:#85E89D">ribbon</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    eager-load</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#9ECBFF">        enabled:true</span></span>
+<span class="line"><span style="color:#85E89D">        client</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">            - </span><span style="color:#9ECBFF">userservice</span></span></code></pre>
+<p><strong>与Nacos结合</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">spring</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    application</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">userservice</span><span style="color:#6A737D"> #服务名称</span></span>
+<span class="line"><span style="color:#85E89D">    cloud</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        nacos</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            server-addr</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">&#x3C;value></span><span style="color:#6A737D"> #服务端地址</span></span>
+<span class="line"><span style="color:#85E89D">            discovery</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                cluster-name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">&#x3C;value></span><span style="color:#6A737D"> # 区域集群名称</span></span></code></pre>
+<p><strong>重试机制</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">userservice</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    ribbon</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        ConnectTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #链接超时时间</span></span>
+<span class="line"><span style="color:#85E89D">        ReadTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #请求超时时间</span></span>
+<span class="line"><span style="color:#85E89D">        OkToRetryOnAllOperations</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#6A737D"> #是否对所有操作都允许重试</span></span>
+<span class="line"><span style="color:#85E89D">        MaxAutoRetriesNextServer</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#6A737D"> # 切换实例的重试次数</span></span>
+<span class="line"><span style="color:#85E89D">        MaxAutoRetries</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#6A737D"> # 当前实例的重试次数</span></span></code></pre>
+<h2 id="第五章-服务容错保护-hystrix">第五章 服务容错保护 Hystrix</h2>
+<p>快速入门：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EnableCircuitBreaker</span><span style="color:#6A737D"> //启动断路器</span></span></code></pre>
+<h3 id="分析-1">分析</h3>
+<h4 id="命令执行">命令执行</h4>
+<ul>
+<li>
+<p><code>execute()</code> 同步执行，从依赖的服务返回个单一的结果对象，或是在发生错误的时候抛出异常</p>
+</li>
+<li>
+<p><code>queue()</code> 异步执行， 直接返回一个Future对象，其中包含了服务执行结束时要返回单一结果对象。</p>
+</li>
+<li>
+<p><code>observe()</code> 返回来自依赖项的响应的Observable对象，它代表了操作的多个结果,它是一个hot Observable</p>
+</li>
+<li>
+<p><code>toObservable()</code> 同样会返回 Observable 对象，也代表了操作的多个结果，但它返回的是一个cold Observable。</p>
+</li>
+</ul>
+<h4 id="断路器是否打开">断路器是否打开</h4>
+<ul>
+<li>
+<p>如果断路器是打开的，那么Hystrix不会执行命令，而是转到fallback处理逻辑</p>
+</li>
+<li>
+<p>如果断路器关闭，则会检测是否有可用资源执行命令</p>
+</li>
+</ul>
+<h4 id="请求方法">请求方法</h4>
+<ul>
+<li>
+<p><code>HystrixCommand.run()</code> 返回一个单一的结果或抛出异常</p>
+</li>
+<li>
+<p><code>HystrixObservableCommand,constuct()</code> 返回一个Observable 对象来发射多个结果或通过 onError 发送错误通知</p>
+</li>
+</ul>
+<h4 id="计算断路器健康度">计算断路器健康度</h4>
+<p>Hystrix会将 成功 、 失败 、 拒绝 、 超时等信息报告给断路器</p>
+<h4 id="fallback处理">fallback处理</h4>
+<ul>
+<li>
+<p><code>execute()</code> : 抛出异常。</p>
+</li>
+<li>
+<p><code>queue()</code>: 正常返回Future对象，但是当调用get 0来获取结果的时候会抛出异常。</p>
+</li>
+<li>
+<p><code>observe()</code>: 正常返回Observable 对象，当订阅它的时候，将立即通过调用订阅者的onError方法来通知中止请求。</p>
+</li>
+<li>
+<p><code>tobservable()</code>: 正常返回Obsevable对象，当订阅它的时候， 将通过调用订阅者的onError方法来通知中止请求。</p>
+</li>
+</ul>
+<h4 id="成功的响应">成功的响应</h4>
+<ul>
+<li>
+<p><code>exeoute()</code> 以与queue 相同的方式获取一个Future,然后在这个Future 上调用get()获取由Observable发出的单个值</p>
+</li>
+<li>
+<p><code>queue()</code> 将Obervable转换为一个BlockingObservable,以便它可以被转换为一个Future然后返回这个Future</p>
+</li>
+<li>
+<p><code>observe ()</code> 在toObservable()产生原始Observable 之后立即订阅它，让命令能够马上开始异步执行，井返回一个 Observable对象，当调用它的subscribe时，将重新产生结果和通知给订阅者。</p>
+</li>
+<li>
+<p><code>toObservable()</code> 返回最原始的Observable,必须通过订阅它才会真正触发命令的执行流程。</p>
+</li>
+</ul>
+<h3 id="断路器">断路器</h3>
+<p>三个抽象方法：</p>
+<ul>
+<li>
+<p><code>allowRequest()</code>：每个Hystrix的命令的请求都通过他去判断是否被执行</p>
+</li>
+<li>
+<p><code>isOpen()</code>：返回当前断路器是否打开</p>
+</li>
+<li>
+<p><code>markSuccess()</code>：闭合断路器</p>
+</li>
+</ul>
+<h4 id="创建请求命令">创建请求命令</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/{param}"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">HystrixCommand</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fallbackMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "showAppInfoFallback"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">showAppInfo</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">PathVariable</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"param"</span><span style="color:#E1E4E8">) String params){</span></span>
+<span class="line"><span style="color:#E1E4E8">    String url </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "..."</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> restTemplate.</span><span style="color:#B392F0">getForObject</span><span style="color:#E1E4E8">(url,String.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="定义服务降级">定义服务降级</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">showAppInfoFallback</span><span style="color:#E1E4E8">(String param){</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "busy"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D">* 服务降级方法</span></span>
+<span class="line"><span style="color:#6A737D">*/</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">HystrixCommand</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fallbackMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "showAppInfoCallback"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">ShowAppInfoFallback</span><span style="color:#E1E4E8">(String param){</span></span>
+<span class="line"><span style="color:#E1E4E8">    ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="异常获取">异常获取</h4>
+<p>注解配置方式的实现非常简单，只需要fallback实现方法的参数中增加Throwable对象的定义，这样在方法内部就可以获取除法服务降级的具体异常内容了</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">showAppInfoFallBack</span><span style="color:#E1E4E8">(String param,Throwable exception){</span></span>
+<span class="line"><span style="color:#6A737D">//    ...something</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="hystrix注解">@Hystrix注解</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">HystrixCommand</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fallbackMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span></span>
+<span class="line"><span style="color:#79B8FF">                ignoreException</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {Exception.class}</span></span>
+<span class="line"><span style="color:#79B8FF">                commandKey</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span></span>
+<span class="line"><span style="color:#79B8FF">                groupKey</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span></span>
+<span class="line"><span style="color:#79B8FF">                threadPoolKey</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span></span>
+<span class="line"><span style="color:#E1E4E8">                )</span></span></code></pre>
+<h4 id="请求缓存">请求缓存</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>注解</th><th>描述</th><th>属性</th></tr></thead><tbody><tr><td>@CacheResult</td><td>该注解用来标记请求命令返回的结果cacheKeyMethod应该被缓存，它必须与@HystrixCommand注解结合使用</td><td>cacheKeyMethod</td></tr><tr><td>@CacheRemove</td><td>该注解用来让请求命令的缓存失效,失效的缓存根据定义的Key决定</td><td>commandKey,cacheKeyMethod</td></tr><tr><td>@CacheKey</td><td>该注解用来在请求命令的参数上标记，使其作为缓存的Key值，如果没有标注则会使用所有参数。如果同时还使用了@CacheResult和@CacheRemove注解的cacheKeyMethod方法指定缓存Key的生成，那么该注解将不会起作用</td><td>value</td></tr></tbody></table>
+<h4 id="设置请求缓存">设置请求缓存</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">CacheResult</span></span></code></pre>
+<p>定义一个filter</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">HystrixRequestContext context </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HystrixRequestContext.</span><span style="color:#B392F0">initializeContext</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h4 id="定义缓存key">定义缓存key</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">HystrixCommand</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fallbackMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "showAppInfoCallback"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">CacheResult</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">CacheKeyMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "cacheKey"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> User </span><span style="color:#B392F0">getUserInfo</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">PathVariable</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">) @</span><span style="color:#F97583">CacheKey</span><span style="color:#E1E4E8"> String id){</span></span>
+<span class="line"><span style="color:#6A737D">    // something</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">cacheKey</span><span style="color:#E1E4E8">(String id){</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> id;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="缓存清理">缓存清理</h4>
+<p><code>@CacheRemove</code>注解的<code>commandKey</code>属性是必须要指定的，它用来指明需要使用请求缓存的请求命令，因为只有通过该属性的配置，Hystrix才能知道正确的请求命令缓存位置、</p>
+<h4 id="注解请求合并">注解请求合并</h4>
+<p><code>@HystrixCollapser</code></p>
+<h4 id="请求合并的额外开销">请求合并的额外开销</h4>
+<ul>
+<li>
+<p>请求命令本身的延迟</p>
+</li>
+<li>
+<p>延迟时间窗内的并发量</p>
+</li>
+</ul>
+<h3 id="属性详解">属性详解</h3>
+<p>4个不同优先级别的配置(优先级由低到高)：</p>
+<ul>
+<li>
+<p>全局数认值:如果没有设置下面三个级别的属性，那么这个属性就是默认值。由于该属性通过代码定义，所以对于这个级别，我们主要关注它在代码中定义的默认值即可。</p>
+</li>
+<li>
+<p>全同配置属性:通过在配置文件中定义全局属性值，在应用启动时或在与SpringCloud Comfig和Spring Cloud Bus实现的动态刷新配置功能配合下，可以实现对“全局默认值”的覆盖以及在运行期对“全局默认值”的动态调整</p>
+</li>
+<li>
+<p>实例默认值。通过代码为实例定义的默认值。通过代码的方式为实例设置属性值来覆盖默认的全同配置。</p>
+</li>
+<li>
+<p>实例配置属性。通过配置文件来为指定的实例进行属性配置，以覆盖前面的三个默认值</p>
+</li>
+</ul>
+<p><strong>Command属性</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>属性级别</th><th>默认值、配置方式、配置属性</th></tr></thead><tbody><tr><td>全局默认值</td><td>THRAD</td></tr><tr><td>全局配置属性</td><td>Hystrix.command.default.execution.isolation.strategy</td></tr><tr><td>实例默认值</td><td>可通过@HystrixProperty(name = “excution.isolation.strategy” value = “THREAD”)</td></tr><tr><td>实例配置属性</td><td>hystrix.command.HystrixCommandKey.execution.isolation.strategy</td></tr></tbody></table>
+<h3 id="hystrix-仪表盘">Hystrix 仪表盘</h3>
+<p>为启动类加上@EnableHystrixDashboard, 启用Hystrix DashBoard功能</p>
+<p>Hystrix DashBoard 支持三种不同的监控方式，分别是：</p>
+<ul>
+<li>
+<p>默认的集群监控，通过URL <code>http://hostname:port/turbine.stream</code>开启</p>
+</li>
+<li>
+<p>指定的集群监控，通过URL <code>http://hostname:port/turbine.stream?cluster=[clusterName]</code>开启</p>
+</li>
+<li>
+<p>单体应用的监控，通过URL <code>http://hostname:port/hystrix.stream</code>开启</p>
+</li>
+</ul>
+<p>监控界面各项元素的意义：</p>
+<p>实心圆：颜色表示健康程度，大小表示请求流量</p>
+<p>曲线：用来记录两分钟内流量的相对变化</p>
+<h3 id="turbine集群监控">Turbine集群监控</h3>
+<p>通过启动类加<code>@EnableTurbine</code>注解开启</p>
+<h2 id="第六章-声明式服务调用-feign">第六章 声明式服务调用 Feign</h2>
+<p>启用Feign：在启动类添加<code>@EnableFeignClients</code>注解</p>
+<p>定义服务接口，定义一个接口(Interface)，通过<code>@FeignClient</code>注解指定服务名来绑定服务，然后再使用Spring MVC注解来绑定具体该服务提供的REST接口（这里服务名不区分大小写）</p>
+<h3 id="参数绑定">参数绑定</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// 获取参数</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">hello</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">RequestParam</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name"</span><span style="color:#E1E4E8">) String name){}</span></span>
+<span class="line"><span style="color:#6A737D">// 获取路径变量</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">hello</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">PathVariable</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"id"</span><span style="color:#E1E4E8">) String name){}</span></span>
+<span class="line"><span style="color:#6A737D">// 获取header</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">hello</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">RequestHeader</span><span style="color:#E1E4E8"> String name){}</span></span>
+<span class="line"><span style="color:#6A737D">// 获取body</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">hello</span><span style="color:#E1E4E8">(String name){@</span><span style="color:#F97583">RequestBody</span><span style="color:#E1E4E8"> User user}</span></span></code></pre>
+<h3 id="配置">配置</h3>
+<h4 id="ribbon">Ribbon</h4>
+<p>全局配置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">ribbon</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    NFLoadBalancerRuleClassName</span><span style="color:#E1E4E8">: * </span><span style="color:#6A737D">#负载均衡规则全类名</span></span>
+<span class="line"><span style="color:#85E89D">    ConnectTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #链接超时时间</span></span>
+<span class="line"><span style="color:#85E89D">    ReadTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #请求超时时间</span></span>
+<span class="line"><span style="color:#85E89D">    OkToRetryOnAllOperations</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#6A737D"> #是否对所有操作都允许重试</span></span>
+<span class="line"><span style="color:#85E89D">    MaxAutoRetriesNextServer</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#6A737D"> # 切换实例的重试次数</span></span>
+<span class="line"><span style="color:#85E89D">    MaxAutoRetries</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#6A737D"> # 当前实例的重试次数</span></span></code></pre>
+<p>指定服务配置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">userservice</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    ribbon</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        NFLoadBalancerRuleClassName</span><span style="color:#E1E4E8">: * </span><span style="color:#6A737D">#负载均衡规则全类名</span></span>
+<span class="line"><span style="color:#85E89D">        ConnectTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #链接超时时间</span></span>
+<span class="line"><span style="color:#85E89D">        ReadTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">200</span><span style="color:#6A737D"> #请求超时时间</span></span>
+<span class="line"><span style="color:#85E89D">        OkToRetryOnAllOperations</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#6A737D"> #是否对所有操作都允许重试</span></span>
+<span class="line"><span style="color:#85E89D">        MaxAutoRetriesNextServer</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2</span><span style="color:#6A737D"> # 切换实例的重试次数</span></span>
+<span class="line"><span style="color:#85E89D">        MaxAutoRetries</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#6A737D"> # 当前实例的重试次数</span></span></code></pre>
+<h4 id="hystrix">Hystrix</h4>
+<p>全局配置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">hystrix</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    command</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        default</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            execution</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                isolation</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                    thread</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                        timeoutInMilliseconds</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5000</span></span></code></pre>
+<p><strong>禁用Hystrix</strong></p>
+<p>通过<code>feign.hystrix.enable = false</code> 来关闭Hystrix或 <code>hystrix.command.default.execution.timeout.enabled = false</code>来关闭熔断功能</p>
+<p>如果要局部禁用，需要使用<code>@Scope("protoype")</code>注解来指定配置实例</p>
+<p><strong>服务降级配置</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">FeignClient</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">value</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "userservice"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">fallback</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> UserClientFallback.class)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> interface</span><span style="color:#B392F0"> UserClient</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="请求压缩">请求压缩</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">feign</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    compression</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        request</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            enable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">        response</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            enable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span></code></pre>
+<p>可以针对请求的数据类型以及触发压缩的大小下限进行设置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">feign</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    compression</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        request</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            enable</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#85E89D">            mime-types</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">text/html, application/xml. application/json</span></span>
+<span class="line"><span style="color:#85E89D">            min-request-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1024</span><span style="color:#6A737D"> # 设置触发压缩的大小下限</span></span></code></pre>
+<h4 id="日志配置">日志配置</h4>
+<p>Feign的Logger级别有下面四种：</p>
+<ul>
+<li>
+<p>NONE：不记录任何信息</p>
+</li>
+<li>
+<p>BASIC：金鸡路请求方法、URL以及响应码和执行时间</p>
+</li>
+<li>
+<p>HEADERS：除了BASIC之外还记录请求和响应头</p>
+</li>
+<li>
+<p>FULL：记录所有请求与响应的明细</p>
+</li>
+</ul>
+<p>全局配置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">feign</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    client</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        config</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            metaDataClient</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                connect-timeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span>
+<span class="line"><span style="color:#85E89D">                read-timeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span>
+<span class="line"><span style="color:#85E89D">            default</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                loggerLevel</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">FULL</span></span></code></pre>
+<p>局部配置</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">feign</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    client</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        config</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">            metaDataClient</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">                connect-timeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span>
+<span class="line"><span style="color:#85E89D">                read-timeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span>
+<span class="line"><span style="color:#85E89D">            userservice</span><span style="color:#E1E4E8">: </span><span style="color:#6A737D"># 服务名称</span></span>
+<span class="line"><span style="color:#85E89D">                loggerLevel</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">BASIC</span></span></code></pre>
+<p>Java配置类</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> UserClientConfig</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Logger.Level </span><span style="color:#B392F0">feignLoggerLevel</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> Logger.Level.FULL;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第二章--构建spring-cloud" data-astro-cid-xvrfupwn>第二章  构建spring cloud</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#springboot目录结构" data-astro-cid-xvrfupwn>SpringBoot目录结构</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#springboot依赖" data-astro-cid-xvrfupwn>Springboot依赖</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#配置详解" data-astro-cid-xvrfupwn>配置详解</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#actuator" data-astro-cid-xvrfupwn>actuator</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第三章-服务治理-alibaba-nacos" data-astro-cid-xvrfupwn>第三章 服务治理 Alibaba Nacos</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#常见方案" data-astro-cid-xvrfupwn>常见方案</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#nacos" data-astro-cid-xvrfupwn>Nacos</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第四章-负载均衡-ribbon" data-astro-cid-xvrfupwn>第四章 负载均衡 Ribbon</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#分析" data-astro-cid-xvrfupwn>分析</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#负载均衡器" data-astro-cid-xvrfupwn>负载均衡器</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#负载均衡策略" data-astro-cid-xvrfupwn>负载均衡策略</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#配置详解-1" data-astro-cid-xvrfupwn>配置详解</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第五章-服务容错保护-hystrix" data-astro-cid-xvrfupwn>第五章 服务容错保护 Hystrix</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#分析-1" data-astro-cid-xvrfupwn>分析</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#断路器" data-astro-cid-xvrfupwn>断路器</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#属性详解" data-astro-cid-xvrfupwn>属性详解</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hystrix-仪表盘" data-astro-cid-xvrfupwn>Hystrix 仪表盘</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#turbine集群监控" data-astro-cid-xvrfupwn>Turbine集群监控</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#第六章-声明式服务调用-feign" data-astro-cid-xvrfupwn>第六章 声明式服务调用 Feign</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#参数绑定" data-astro-cid-xvrfupwn>参数绑定</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#配置" data-astro-cid-xvrfupwn>配置</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

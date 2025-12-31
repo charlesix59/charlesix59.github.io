@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="茶理的博客" href="https://example.com/rss.xml"><meta name="generator" content="Astro v5.16.6"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://example.com/blog/technology/react/where-put-react-func/"><!-- Primary Meta Tags --><title>应该在哪里定义react函数——关于react开发规范的一些理解</title><meta name="title" content="应该在哪里定义react函数——关于react开发规范的一些理解"><meta name="description" content><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/blog/technology/react/where-put-react-func/"><meta property="og:title" content="应该在哪里定义react函数——关于react开发规范的一些理解"><meta property="og:description" content><meta property="og:image" content="https://example.com/_astro/default.DOL7xRHI.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/blog/technology/react/where-put-react-func/"><meta property="twitter:title" content="应该在哪里定义react函数——关于react开发规范的一些理解"><meta property="twitter:description" content><meta property="twitter:image" content="https://example.com/_astro/default.DOL7xRHI.png"><link rel="stylesheet" href="/_astro/about.CafuXOta.css">
+<link rel="stylesheet" href="/_astro/about.B-Pvx2p8.css"></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>茶理的博客</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 首页 </a>  <a href="/tags" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 标签 </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> 关于我 </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main class="blog-container" data-astro-cid-bvzihdzo> <article class="blog-article" data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <h1 data-astro-cid-bvzihdzo>应该在哪里定义react函数——关于react开发规范的一些理解</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="应该在哪里定义react函数关于react开发规范的一些理解">应该在哪里定义react函数——关于react开发规范的一些理解</h1>
+<h2 id="前言">前言</h2>
+<p>我之前有一个同事，从vue技术栈转入react技术栈，对于函数式编程还有一些不太熟悉。</p>
+<p>最近他问了我一个问题，<strong>react函数应该定义在什么地方</strong>？他发现有些函数写在react组件之内，有些却写在react函数之外。他想知道哪种做法是最合适的。这是一个很好的问题，因为这体现了对于代码规范的追求。现在我希望在此妥善的梳理一下这个问题。</p>
+<h2 id="看法">看法</h2>
+<p>先开门见山的说一下我的看法，我的看法就是<mark>应外尽外</mark>，意思就是<strong>能够</strong>放到组件外部的函数都应该放到外部。但是需要注意的是，只有满足一定条件的函数才能够放到组件外部。在具体的讨论这些规则之前，我们应该先来看一下函数写在组件内与组件外部的<mark>区别</mark>。</p>
+<h2 id="区别">区别</h2>
+<p>其实两者的区别十分显著，我们在编写<code>jsx</code>文件的时候一般每个文件会暴露一个文件入口，也就是我们的组件函数。当我们在父组件使用我们的子组件的时候，实际上就相当于<code>new</code>出了一个新的组件实例。而在组件外的函数或者变量，则与组件形成了闭包。（不太了解闭包的可以理解为组件内的东西是原型模式，而组件外的东西是单例模式）</p>
+<p>我们来看一个例子：</p>
+<p>首先我们有一个Test组件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "123"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> Test</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">props</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{()</span><span style="color:#F97583">=></span><span style="color:#E1E4E8">{console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(a);a </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> props.value;}}>change&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    )</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> Test;</span></span></code></pre>
+<p>然后我们在App.js中调用这个组件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"App"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">Test</span><span style="color:#B392F0"> value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">666</span><span style="color:#E1E4E8">}>&#x3C;/</span><span style="color:#79B8FF">Test</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">Test</span><span style="color:#B392F0"> value</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{</span><span style="color:#79B8FF">777</span><span style="color:#E1E4E8">}>&#x3C;/</span><span style="color:#79B8FF">Test</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>可以看到我们在这里调用了两次Test组件，页面上应当有两个按钮。</p>
+<p>这时我们应该想一下，当我们依次点击这两个按钮的时候输出的是</p>
+<blockquote>
+<p>123 123</p>
+</blockquote>
+<p>还是</p>
+<blockquote>
+<p>123 666</p>
+</blockquote>
+<p>呢？</p>
+<p>答案显而易见，是<code>123 666</code>，各位可以自己去尝试一下。导致这种现象出现的原因其实不是react的组件，而是我们的<code>esm</code>。我们应该都对闭包有一定的概念，其实我们的模块化正是使用了闭包这一概念。当我们像上文那样编写Test组件的时候，其实闭包就已经形成了。</p>
+<p>下面我们来梳理一下哪些函数是需要放到组件内的以及这其中的原因。</p>
+<h2 id="需要在组件内的函数">需要在组件内的函数</h2>
+<h3 id="hook函数">Hook函数</h3>
+<p>一个hook函数只能在以下两个位置定义：</p>
+<ol>
+<li>
+<p>自定义hook函数内部</p>
+</li>
+<li>
+<p>React组件内部</p>
+</li>
+</ol>
+<p>但是其实我们的自定义hook最终也是在React组件内部调用，所以这就相当于每一个Hook函数最终都必须在React组件内部环境中执行。</p>
+<h3 id="依赖hook函数的函数">依赖Hook函数的函数</h3>
+<p>上文说过，hook函数只能在React组件内部调用，那么调用hook函数的函数也理所应当的需要写在组件内部。</p>
+<h3 id="依赖state的函数">依赖State的函数</h3>
+<p>如果我们的函数需要直接使用State的值，那么我们需要将这个函数放置在组件内部，因为state是每一个组件实例私有的，在外部的函数无法读取到这个值。但是对于可能会复用的函数我们还是更推荐大家使用参数传递的方式传递state的值然后再使用setState的方式设置返回值。</p>
+<p>不推荐：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// :(   not recommend</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// a.jsx</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> a</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#B392F0">    setCount</span><span style="color:#E1E4E8">(count</span><span style="color:#F97583">+</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// b.jsx</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> b</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#B392F0">    setCount</span><span style="color:#E1E4E8">(count</span><span style="color:#F97583">+</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>推荐</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// :)  recommend</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">//calcCount.js</span></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> calcCount</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">count</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> count</span><span style="color:#F97583">+</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">//a.jsx</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">setCount</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">calcCount</span><span style="color:#E1E4E8">(count));</span></span>
+<span class="line"><span style="color:#6A737D">// b.jsx</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">setCount</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">setCount</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">calcCount</span><span style="color:#E1E4E8">(count));</span></span></code></pre>
+<h3 id="依赖props的函数">依赖props的函数</h3>
+<p>依赖props的函数当然也不能将其写在组件外面。我们很大程度上是通过props去区别某一个组件函数的不同实例的，所以props也是组件实例私有的，需要写在外面。</p>
+<h3 id="事件处理函数">事件处理函数</h3>
+<p>虽然事件处理函数从理论上来说完全可以放置到组件外部（只要不依赖上面所说的），但是我们会认为事件处理函数是比较私人的东西，从习惯上来说我们还是更习惯将其放到组件的内部而不是抽出到一个util文件中，而且对于不同组件的事件处理函数，我们能抽象的部分也优先。</p>
+<p>而且比起将事件处理函数抽象出来，我们更推荐将事件处理函数中处理逻辑的部分代码抽取出来，类似我们在MVC框架中所作的那样，model与controller的分离是值得推崇的设计思想。</p>
+<h3 id="其他依赖组件实例的方法变量的函数">其他依赖组件实例的方法、变量的函数</h3>
+<p>其实我们可以看到，凡是我们的函数依赖了我们组件实例的私有变量、方法，我们都需要放在组件内部。</p>
+<h2 id="为啥应外尽外">为啥应外尽外？</h2>
+<p>以上我们整理出很多需要放到组件内部的情况，那为啥还推荐放到函数外部呢？直接全部放到函数内部不是会简单很多吗？</p>
+<p>尽量将函数放到外面其实是一种函数式与模块化的设计思想，他驱使我们尽可能去复用我们的函数以及使用纯函数，综合来说，将函数与变量放到外部有如下几个好处：</p>
+<ul>
+<li>
+<p>减少内存占用：减少组件内部的函数与变量可以减少组件实例中的内容，减少对内存的占用</p>
+</li>
+<li>
+<p>重用代码：我们完全可以将一些负责逻辑、可以重用的函数归类并且放置到方法类（utils.js之类）中，减少我们的代码量</p>
+</li>
+<li>
+<p>模块化：我们将逻辑与视图抽离完全可以减少我们组件的耦合度，并且可以降低模块体积，提高我们模块化的“效率”。而且能够使我们尽量去使用纯函数编写更优雅、更容易维护的代码</p>
+</li>
+<li>
+<p>共享信息：我们可以刻意的通过将数据放置到组件外让这个组件的不同实例去共享信息。不过需要注意的是，我们放到组件外的数据肯定不是<code>React State</code>，这就意味着它们不是响应式的（一般不会有人这么做吧？）</p>
+</li>
+</ul>
+<p>综上所述，对于能够放置到组件函数外的应该尽量放置到函数外，对于能够复用的代码片，最好是能够抽取成全局的函数，这样才更符合模块化的要求。</p>  <div class="date" data-astro-cid-bvzihdzo>
+发布于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> <div class="last-updated-on" data-astro-cid-bvzihdzo>
+编辑于：<time datetime="2025-12-19T02:24:19.000Z"> Dec 19, 2025 </time> </div> </div> </div> </article> <aside class="blog-sidebar" data-astro-cid-bvzihdzo> <nav class="table-of-contents" id="toc" data-astro-cid-xvrfupwn><div class="toc-title" data-astro-cid-xvrfupwn>目录</div><ul class="toc-list" data-astro-cid-xvrfupwn><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#前言" data-astro-cid-xvrfupwn>前言</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#看法" data-astro-cid-xvrfupwn>看法</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#区别" data-astro-cid-xvrfupwn>区别</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#需要在组件内的函数" data-astro-cid-xvrfupwn>需要在组件内的函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#hook函数" data-astro-cid-xvrfupwn>Hook函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#依赖hook函数的函数" data-astro-cid-xvrfupwn>依赖Hook函数的函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#依赖state的函数" data-astro-cid-xvrfupwn>依赖State的函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#依赖props的函数" data-astro-cid-xvrfupwn>依赖props的函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#事件处理函数" data-astro-cid-xvrfupwn>事件处理函数</a></li><li class="toc-item toc-level-3" data-astro-cid-xvrfupwn><a href="#其他依赖组件实例的方法变量的函数" data-astro-cid-xvrfupwn>其他依赖组件实例的方法、变量的函数</a></li><li class="toc-item toc-level-2" data-astro-cid-xvrfupwn><a href="#为啥应外尽外" data-astro-cid-xvrfupwn>为啥应外尽外？</a></li></ul></nav> </aside> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 @charlesix59. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://https://github.com/charlesix59" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>find me on Github</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>
